@@ -11,16 +11,11 @@
     "build": "npm run backend-install && npm run frontend-install && npm run frontend-build"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fk652/mern-twitter.git"
+    "type": "git"
   },
   "keywords": [],
   "author": "Fahim Khan",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fk652/mern-twitter/issues"
-  },
-  "homepage": "https://github.com/fk652/mern-twitter#readme",
   "engines": {
     "node": "16.x"
   }
