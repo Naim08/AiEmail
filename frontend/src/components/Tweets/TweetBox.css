@@ -1,0 +1,10 @@
+p, h3 {
+  margin-left: 5px;
+}
+
+.tweet {
+  border: 2px solid blue;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  min-height: 57px;
+}

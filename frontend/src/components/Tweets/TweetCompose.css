@@ -1,0 +1,9 @@
+input[type=textarea] {
+  min-height: 30px;
+  min-width: 393px;
+  margin-top: 5px;
+}
+
+.tweet-preview {
+  min-height: 150px;
+}

@@ -1,0 +1,9 @@
+.links-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.links-auth {
+  display: flex;
+  justify-content: space-around;
+}
