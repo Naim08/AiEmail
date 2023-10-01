@@ -10,10 +10,18 @@ Recognizing the need for efficient, consistent, and high-quality email responses
 
 ## Functionality and MVP
 
-- [x] User authorization: sign up and log in
+- [ ] User authorization: sign up and log in
+- [ ] User Preference Input: This feature allows users to set and customize their preferences for email interactions.
+- [ ] CRUD Email Session: This feature enables users to initiate a new email session, view existing ones, edit email contents or settings, and delete sessions no longer needed.
+- [ ] AI-Generated Response: Based on the incoming email content and user preferences, the system will generate an appropriate email response, which users can choose to use, modify, or discard.
+- [ ] Search Previous Email: Allows users to search through their past emails (sent or received) using keywords.
+
+### Bonus Features
+- [ ] Sending Email: Once the user is satisfied with the email content, they can send it directly from the platform.
 
 
-Technologies and Technical Challenges
+
+## Technologies and Technical Challenges
 
 
-Group Members and Work Breakdown
+## Group Members and Work Breakdown
