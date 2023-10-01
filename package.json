@@ -14,7 +14,6 @@
     "type": "git"
   },
   "keywords": [],
-  "author": "Fahim Khan",
   "license": "ISC",
   "engines": {
     "node": "16.x"
