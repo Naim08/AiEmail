@@ -19,9 +19,45 @@ Recognizing the need for efficient, consistent, and high-quality email responses
 ### Bonus Features
 - [ ] Sending Email: Once the user is satisfied with the email content, they can send it directly from the platform.
 
-
-
 ## Technologies and Technical Challenges
 
+MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The technologies we will use:
+
+- Backend: Express with Node.js
+- Frontend: React, Redux
+- Database: MongoDB
+- AI and Machine Learning: OpenAI GPT
+- Authentication: JWT
+- Email Integration: Services like SendGrid, Mailgun.
+
+#### Technical Challenges:
+
+-   Backend: Express with Node.js
+
+    *   Performance: Node.js runs on a single-threaded event loop. CPU-bound tasks can block the event loop and degrade performance.
+    *   Error Handling: Proper handling of synchronous and asynchronous errors in Express routes and middleware.
+-   Frontend: React, Redux
+    *   Component Optimization: Ensuring that React components don't re-render unnecessarily. Techniques like memoization can help.
+    *   State Management: Handling complex application state with Redux requires a good understanding of actions, reducers, and store.
+-   Database: MongoDB
+    *   Data Consistency: MongoDB uses eventual consistency, which might cause issues in situations where strict consistency is required.
+    *   Query Performance: Without proper indexing, query performance can degrade, especially with large datasets.
+-   AI and Machine Learning: OpenAI GPT
+    *   Integrating OpenAI's GPT with your backend to generate responses in real-time.
+    *   Model Tuning: Ensuring the AI model gives relevant and appropriate email responses.
+    *   Cost Management: AI inference can be expensive. Monitoring and managing API call costs.
+-   Authentication: JWT
+    *   Token Security: Ensuring JWT tokens are stored securely (e.g., not in local storage due to XSS attacks).
 
 ## Group Members and Work Breakdown
+
+-   Fanyi Tang - Team Lead
+
+-   Sanjid Dewan - Frontend
+
+-   Naim Miah - Backend
+
+-   Yinyin Huang - Flex
+
+
+Naim Miah - Backend
