@@ -1,1 +1,1 @@
-# mern-twitter
+# AI Email
