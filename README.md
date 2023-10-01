@@ -49,6 +49,12 @@ MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The tec
 -   Authentication: JWT
     *   Token Security: Ensuring JWT tokens are stored securely (e.g., not in local storage due to XSS attacks).
 
+## Accomplished over the Weekend
+
+*   All members of the team finished the MERN tutorials
+*   Implement user authorization on database backend - Naim(completed on Sunday)
+*   Wrote Project Proposal and planned work for the week.
+
 ## Group Members and Work Breakdown
 
 -   Fanyi Tang - Team Lead
@@ -59,5 +65,4 @@ MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The tec
 
 -   Yinyin Huang - Flex
 
-
-Naim Miah - Backend
+### Day 1
