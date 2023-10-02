@@ -16,8 +16,16 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <Link to={"/profile"}>Profile</Link>
-          <button onClick={logoutUser}>Logout</button>
+          <div className="nav-dashboard">
+            <Link to={"/"}>Dashboard</Link>
+          </div>
+          <div>
+            <Link to={"/profile"}>Account</Link>
+          </div>
+          <div>
+            <button onClick={logoutUser}>Logout</button>
+          </div>
+
         </div>
       );
     } else {
@@ -31,10 +39,11 @@ function NavBar() {
   };
 
   return (
-    <>
-      <h1>Chirper</h1>
+    <div className="navi-container">
+      <h1>MailTo</h1>
+
       {getLinks()}
-    </>
+    </div>
   );
 }
 

@@ -1,9 +1,21 @@
+.navi-container{
+  color: #61677A;
+}
+
+
 .links-nav {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  text-decoration: none;
 }
 
 .links-auth {
   display: flex;
   justify-content: space-around;
+}
+
+.nav-dashboard{
+  text-decoration: none;
+  color: #61677A;
 }
