@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSessionErrors, signup } from "../../store/session";
+import "./SignupForm.css";
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
@@ -24,22 +25,21 @@ const SignupForm = () => {
       password
     };
 
-    dispatch(signup(user)); 
+    dispatch(signup(user));
   }
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input type="text"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.username}</div>
+      <h2>Create your account</h2>
+      <div className="signup-email">
+        <div className="errors">{errors?.email}</div>
+          <input type="text"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="Email address"
+          />
+      </div>
+      {/* <div className="errors">{errors?.username}</div>
       <label>
         <span>Username</span>
         <input type="text"
@@ -47,32 +47,36 @@ const SignupForm = () => {
           onChange={e => setUsername(e.target.value)}
           placeholder="Username"
         />
-      </label>
+      </label> */}
+    <div className="signup-password1">
       <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
         <input type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
           placeholder="Password"
         />
-      </label>
-      <div className="errors">
-        {password !== password2 && 'Confirm Password field must match'}
+    </div>
+
+      <div className="signup-password2">
+        <div className="errors">
+          {password !== password2 && 'Confirm Password field must match'}
+        </div>
+
+          <input type="password"
+            value={password2}
+            onChange={e => setPassword2(e.target.value)}
+            placeholder="Confirm Password"
+          />
       </div>
-      <label>
-        <span>Confirm Password</span>
-        <input type="password"
-          value={password2}
-          onChange={e => setPassword2(e.target.value)}
-          placeholder="Confirm Password"
-        />
-      </label>
+
+
       <input
+        className="signup-btn"
         type="submit"
         value="Sign Up"
-        disabled={!email || !username || !password || password !== password2}
+        disabled={!email || !password || password !== password2}
       />
+
     </form>
   )
 }
