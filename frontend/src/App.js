@@ -9,6 +9,9 @@ import MainPage from "./components/MainPage/MainPage";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import DashPage from "./components/DashPage/DashPage";
+import GoogleAuthRedirect from "./components/GmailAuth/GmailAuth";
+import { Route } from "react-router-dom";
+
 import Profile from "./components/Profile/Profile";
 
 import { getCurrentUser } from "./store/session";

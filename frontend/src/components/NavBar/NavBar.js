@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
 import { logout } from "../../store/session";
-
+import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
