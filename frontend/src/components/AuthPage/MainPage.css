@@ -11,6 +11,7 @@ body {
     /* height: 100vh; */
     height: calc(100vh - 50px);
     background-color: #333;
+    margin-top: 90px;
   }
   
   /* Heading Styles */
@@ -32,11 +33,11 @@ body {
   }
   
   .heading-static {
-    left: 5%;  /* Use percentage for responsive positioning */
+    left: 5%;  
   }
   
   .heading-dynamic {
-    left: 16%;  /* Use percentage for responsive positioning */
+    left: 16%;  
   }
   
   /* Center Container Styles */
@@ -47,6 +48,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: Helvetica, sans-serif;
+    /* border: 1px solid black; */
   }
   
   .button-container {
@@ -59,6 +61,9 @@ body {
   .get-started {
     margin-left: -20px;
     margin-top: -150px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #fff;
   }
   
   .vertical-line {
@@ -117,17 +122,9 @@ body {
     }
   }
 
-
-  .get-started {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-
-
   footer {
     position: fixed;  /* Fix position */
-    bottom: 0;  /* Set to bottom */
+    bottom: 35px;  /* Set to bottom */
     width: 100%;  /* Full width */
     text-align: center;
     color: #fff;
