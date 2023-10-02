@@ -22,6 +22,10 @@ const openai = new OpenAIApi(configuration);
 //const response = await openai.listEngines();
 
 router.post("/", requireUser, async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
   const userInput = req.body.prompt;
 
   if (!userInput) {
