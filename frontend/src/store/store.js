@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import errors from "./errors";
 import sessionReducer from "./session";
+import chatgptReducer from "./chatgpt";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   errors,
+  chatgpt: chatgptReducer,
 });
 
 let enhancer;
