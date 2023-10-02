@@ -8,6 +8,8 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./components/MainPage/MainPage";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
+import GoogleAuthRedirect from "./components/GmailAuth/GmailAuth";
+import { Route } from "react-router-dom";
 
 import Profile from "./components/Profile/Profile";
 
@@ -25,10 +27,10 @@ function App() {
       <>
         <NavBar />
         <Switch>
+          <Route path="/auth/google" component={GoogleAuthRedirect} />;
           <AuthRoute exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
-
           <ProtectedRoute exact path="/profile" component={Profile} />
         </Switch>
       </>
