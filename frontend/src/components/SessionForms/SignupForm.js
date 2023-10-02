@@ -42,15 +42,15 @@ const SignupForm = () => {
             placeholder="Email address"
           />
       </div>
-      {/* <div className="errors">{errors?.username}</div>
-      <label>
-        <span>Username</span>
-        <input type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          placeholder="Username"
-        />
-      </label> */}
+
+      <div>
+        <div className="errors">{errors?.username}</div>
+          <input type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            placeholder="Username"
+          />
+      </div>
     <div className="signup-password1">
       <div className="errors">{errors?.password}</div>
         <input type="password"
