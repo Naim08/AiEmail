@@ -22,21 +22,17 @@ function NavBar() {
         </div>
       );
     } else {
-      return (
-        <div className="links-auth">
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-        </div>
-      );
+      return null; // Removed Signup and Login links
     }
   };
 
   return (
     <>
-      <h1>AI Email</h1>
+      <h1>MailTo</h1>
       {getLinks()}
     </>
   );
 }
+
 
 export default NavBar;

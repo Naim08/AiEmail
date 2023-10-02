@@ -1,0 +1,72 @@
+body {
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+  }
+  
+  .heading {
+    color: #fff;
+    font-size: 4rem;
+  }
+  
+  .vertical-line {
+    width: 2px;
+    height: 50%;
+    background-color: #444;
+    margin: 0 20px;
+  }
+  
+  .neumorphic {
+    border-radius: 1rem;
+    background: #e0e0e0;
+    box-shadow:  10px 10px 30px #bebebe,
+    -10px -10px 30px #ffffff;
+    width: 160px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  .neumorphic a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #fff;
+  }
+
+
+  .typing {
+    color: #fff;
+    font-weight: normal;
+  }
+  
+  .cursor {
+    border-left: 2px solid #fff;
+    width: 0;
+    height: 1em;
+    margin-left: 2px;
+    animation: blink-animation 0.7s steps(1, start) infinite;
+  }
+  
+  @keyframes blink-animation {
+    50% {
+      border-color: transparent;
+    }
+  }
+  
+  
