@@ -40,7 +40,12 @@ function MainPage() {
   return (
     <>
       <div className="container">
-        <div className="heading">MailTo <span className="typing">{text}</span><span className="cursor"></span></div>
+        {/* <div className="heading">MailTo <span className="typing">{text}</span><span className="cursor"></span></div> */}
+        <div className="heading-static">MailTo</div>
+  <div className="heading-dynamic">
+    <span className="typing">{text}</span>
+    <span className="cursor"></span>
+  </div>
         <div className="vertical-line"></div>
         <div className="center-container">
           <div className="neumorphic">

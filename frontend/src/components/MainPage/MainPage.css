@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
   }
-
   
   .container {
     display: grid;
@@ -13,33 +12,51 @@ body {
     background-color: #333;
   }
   
+  /* Heading Styles */
+  .heading, .heading-static, .heading-dynamic {
+    color: #fff;
+    font-size: 4vw;  /* Use viewport width for responsive font size */
+  }
+  
   .heading {
     grid-column: 1;
     justify-self: end;
-    color: #fff;
-    font-size: 3.5rem;
     margin-right: 50px;
   }
   
+  .heading-static, .heading-dynamic {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .heading-static {
+    left: 5%;  /* Use percentage for responsive positioning */
+  }
+  
+  .heading-dynamic {
+    left: 16%;  /* Use percentage for responsive positioning */
+  }
+  
+  /* Center Container Styles */
   .center-container {
     grid-column: 3;
     display: flex;
     align-items: center;
-    /* min-width: 400px; */
+    margin-top: -150px;
+    margin-left: 100px;
   }
   
   .vertical-line {
     grid-column: 2;
     width: 2px;
     height: 50%;
-    background-color: #444;
+    background-color: whitesmoke;
   }
   
   .neumorphic {
     border-radius: 1rem;
     background: #e0e0e0;
-    box-shadow:  10px 10px 30px #bebebe,
-    -10px -10px 30px #ffffff;
     width: 160px;
     height: 50px;
     display: flex;
@@ -54,12 +71,14 @@ body {
     color: #333;
   }
   
+  /* Footer Styles */
   footer {
     text-align: center;
     margin-top: 2rem;
     color: #fff;
   }
   
+  /* Typing Animation Styles */
   .typing {
     color: #fff;
     font-weight: normal;
@@ -79,8 +98,3 @@ body {
     }
   }
   
-/* 
-
-  div {
-    border: 1px solid white;
-} */
