@@ -48,6 +48,8 @@ function MainPage() {
   </div>
         <div className="vertical-line"></div>
         <div className="center-container">
+        <div className="get-started">Get Started</div>
+        <div className="button-container"> {/* New div wrapper */}
           <div className="neumorphic">
             <a href="/signup">Sign Up</a>
           </div>
@@ -56,7 +58,8 @@ function MainPage() {
           </div>
         </div>
       </div>
-      <footer>Copyright &copy; 2023</footer>
+      </div>
+      <footer>PRBC &copy; 2023</footer>
     </>
   );
 }

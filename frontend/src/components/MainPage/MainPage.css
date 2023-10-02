@@ -8,7 +8,8 @@ body {
     display: grid;
     grid-template-columns: 1fr 2px 1fr;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
+    height: calc(100vh - 50px);
     background-color: #333;
   }
   
@@ -42,11 +43,22 @@ body {
   .center-container {
     grid-column: 3;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+  }
+
+
+  .get-started {
+    margin-left: -20px;
     margin-top: -150px;
-    margin-left: 100px;
   }
   
   .vertical-line {
@@ -65,7 +77,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-right: 30px;
-    font-family: Helvetica, sans-serif;
+   
     
   }
 
@@ -110,6 +122,16 @@ body {
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: #fff;
+  }
+
+
+  footer {
+    position: fixed;  /* Fix position */
+    bottom: 0;  /* Set to bottom */
+    width: 100%;  /* Full width */
+    text-align: center;
+    color: #fff;
+    background-color: #333;  /* Same as body background */
   }
   
   
