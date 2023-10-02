@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory} from "react-router-dom";
 import { clearSessionErrors, login } from "../../store/session";
 
 const LoginForm = () => {
@@ -16,36 +17,40 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({ email, password })); 
+    dispatch(login({ email, password }));
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input type="text"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="Email"
+    <div>
+      <form className="session-form" onSubmit={handleSubmit}>
+        <h2>Welcome back</h2>
+
+        <div className="errors">{errors?.email}</div>
+          <input type="text"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="Email address"
+          />
+
+        <div className="errors">{errors?.password}</div>
+          <input type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+
+        <input
+          type="submit"
+          value="Log In"
+          disabled={!email || !password}
         />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-      </label>
-      <input
-        type="submit"
-        value="Log In"
-        disabled={!email || !password}
-      />
-    </form>
+      </form>
+      <div>
+        <span>Don't have an account?</span>
+        <Link to={`/signup`}>Sign up</Link>
+      </div>
+
+    </div>
   )
 }
 
