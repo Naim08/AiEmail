@@ -3,7 +3,7 @@ import { Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../Routes/Routes";
 import NavBar from "../NavBar/NavBar";
 import Profile from "../Profile/Profile";
-import MainPage from "../MainPage/MainPage";
+import MainPage from "../AuthPage/MainPage";
 import LoginForm from "../SessionForms/LoginForm";
 import SignupForm from "../SessionForms/SignupForm";
 

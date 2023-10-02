@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
 import { logout } from "../../store/session";
-
+import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
@@ -31,18 +31,14 @@ function NavBar() {
           <div className="nav-logout">
             <a onClick={logoutUser}>Logout</a>
           </div>
+          <GoogleLoginButton />
         </div>
 
 
 
       );
     } else {
-      return (
-        <div className="links-auth">
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-        </div>
-      );
+      return null; // Removed Signup and Login links
     }
   };
 
@@ -54,5 +50,6 @@ function NavBar() {
     </div>
   );
 }
+
 
 export default NavBar;
