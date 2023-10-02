@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
 import { logout } from "../../store/session";
-
+import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ function NavBar() {
         <div className="links-nav">
           <Link to={"/profile"}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>
+          <GoogleLoginButton />
         </div>
       );
     } else {
@@ -32,7 +33,7 @@ function NavBar() {
 
   return (
     <>
-      <h1>Chirper</h1>
+      <h1>AI Email</h1>
       {getLinks()}
     </>
   );
