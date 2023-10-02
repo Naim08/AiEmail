@@ -3,25 +3,36 @@ body {
     margin: 0;
     padding: 0;
   }
+
   
   .container {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
     align-items: center;
     height: 100vh;
     background-color: #333;
   }
   
   .heading {
+    grid-column: 1;
+    justify-self: end;
     color: #fff;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    margin-right: 50px;
+  }
+  
+  .center-container {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    /* min-width: 400px; */
   }
   
   .vertical-line {
+    grid-column: 2;
     width: 2px;
     height: 50%;
     background-color: #444;
-    margin: 0 20px;
   }
   
   .neumorphic {
@@ -48,8 +59,7 @@ body {
     margin-top: 2rem;
     color: #fff;
   }
-
-
+  
   .typing {
     color: #fff;
     font-weight: normal;
@@ -69,4 +79,8 @@ body {
     }
   }
   
-  
+
+
+  div {
+    border: 1px solid white;
+}

@@ -42,11 +42,13 @@ function MainPage() {
       <div className="container">
         <div className="heading">MailTo <span className="typing">{text}</span><span className="cursor"></span></div>
         <div className="vertical-line"></div>
-        <div className="neumorphic">
-          <a href="/signup">Sign Up</a>
-        </div>
-        <div className="neumorphic">
-          <a href="/login">Log In</a>
+        <div className="center-container">
+          <div className="neumorphic">
+            <a href="/signup">Sign Up</a>
+          </div>
+          <div className="neumorphic">
+            <a href="/login">Log In</a>
+          </div>
         </div>
       </div>
       <footer>Copyright &copy; 2023</footer>
