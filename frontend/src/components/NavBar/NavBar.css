@@ -1,5 +1,8 @@
 .navi-container{
   color: #61677A;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -8,14 +11,22 @@
   flex-direction: column;
   justify-content: space-around;
   text-decoration: none;
+  padding: 10px 0px;
 }
 
 .links-auth {
   display: flex;
   justify-content: space-around;
+  text-decoration: none;
 }
 
-.nav-dashboard{
+.nav-dashboard, .nav-trash, .nav-profile{
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+}
+.nav-dashboard-link, .nav-profile-link, .nav-trash-link{
   text-decoration: none;
   color: #61677A;
+
 }

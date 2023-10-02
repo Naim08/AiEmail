@@ -22,20 +22,15 @@ function App() {
 
   return (
     loaded && (
-      <div className="app-container">
-        <div className="left-sideBar">
-            <NavBar />
-            <Switch>
-              <AuthRoute exact path="/" component={MainPage} />
-              <AuthRoute exact path="/login" component={LoginForm} />
-              <AuthRoute exact path="/signup" component={SignupForm} />
-              <AuthRoute exact path="/dashpage" component={DashPage} />
-              <ProtectedRoute exact path="/profile" component={Profile} />
-            </Switch>
-        </div>
-        <div className="email-container">
-          <h1>Emails</h1>
-        </div>
+      <div >
+          <DashPage />
+          <Switch>
+            <AuthRoute exact path="/" component={MainPage} />
+            <AuthRoute exact path="/login" component={LoginForm} />
+            <AuthRoute exact path="/signup" component={SignupForm} />
+            {/* <AuthRoute exact path="/dashpage" component={DashPage} /> */}
+            <ProtectedRoute exact path="/profile" component={Profile} />
+          </Switch>
       </div>
 
     )

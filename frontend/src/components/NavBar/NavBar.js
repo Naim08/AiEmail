@@ -15,18 +15,26 @@ function NavBar() {
   const getLinks = () => {
     if (loggedIn) {
       return (
-        <div className="links-nav">
-          <div className="nav-dashboard">
-            <Link to={"/"}>Dashboard</Link>
-          </div>
-          <div>
-            <Link to={"/profile"}>Account</Link>
-          </div>
-          <div>
-            <button onClick={logoutUser}>Logout</button>
+        <div className="left-sideBar">
+          <div className="links-nav">
+            <div className="nav-dashboard">
+              <a href="/" className="nav-dashboard-link">Dashboard</a>
+            </div>
+            <div className="nav-trash">
+              <a href="/" className="nav-trash-link">Trash</a>
+            </div>
+            <div className="nav-profile">
+              <a href="/profile" className="nav-profile-link">Account</a>
+            </div>
           </div>
 
+          <div className="nav-logout">
+            <a onClick={logoutUser}>Logout</a>
+          </div>
         </div>
+
+
+
       );
     } else {
       return (
