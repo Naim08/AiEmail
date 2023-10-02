@@ -7,10 +7,14 @@ const ChatGPT = mongoose.model("ChatGPT");
 const { requireUser } = require("../../config/passport");
 // If you're using ES6 imports elsewhere, ensure your setup supports it
 // For the sake of this example, I'm using CommonJS for all imports
-const { chatGPTKey, openAPIURL } = require("../../config/keys");
+const {
+  chatGPTKey,
+  openAPIURL,
+  openAPIOrganizationId,
+} = require("../../config/keys");
 
 const configuration = new Configuration({
-  organization: "org-GGSIN1dNV9PKXSHj4ku4Gi1r",
+  organization: openAPIOrganizationId,
   apiKey: chatGPTKey,
 });
 
