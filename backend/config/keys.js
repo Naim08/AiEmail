@@ -6,5 +6,7 @@ module.exports = {
   gmailProjectId: process.env.GOOGLE_PROJECT_ID,
   expressSessionSecret: process.env.EXPRESS_SESSION_SECRET,
   gmailRedirectUri: process.env.GOOGLE_REDIRECT_URI,
+  chatGPTKey: process.env.CHAT_GPT_KEY,
+  openAPIURL: process.env.OPEN_API_URL,
   isProduction: process.env.NODE_ENV === "production",
 };

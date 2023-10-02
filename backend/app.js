@@ -12,13 +12,14 @@ const { isProduction } = require("./config/keys");
 const { expressSessionSecret } = require("./config/keys");
 
 require("./models/User");
-
 require("./config/passport");
 
 const passport = require("passport");
 
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
+const chatGPTRouter = require("./routes/api/chatgpt");
+
 const User = require("./models/User");
 
 const app = express();
@@ -39,8 +40,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-const redirectUri = "http://localhost:5000/oauth2/redirect/google";
-
 if (!isProduction) {
   app.use(cors());
 }
@@ -57,6 +56,7 @@ app.use(
 
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
+app.use("/api/chatgpt", chatGPTRouter);
 
 if (isProduction) {
   const path = require("path");
@@ -72,26 +72,6 @@ if (isProduction) {
     res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
   });
 }
-
-// app.get("/auth/google", (req, res) => {
-//   const authUrl = oAuth2Client.generateAuthUrl({
-//     access_type: "offline",
-//     scope: scope,
-//   });
-//   console.log(authUrl);
-//   res.redirect(authUrl);
-// });
-// app.get("/oauth2/redirect/google", async (req, res) => {
-//   const { code } = req.query;
-
-//   try {
-//     const { tokens } = await oAuth2Client.getToken(code);
-//     oAuth2Client.setCredentials(tokens);
-//     res.send("Authentication successful! You can close this window.");
-//   } catch (error) {
-//     res.status(400).send("Error retrieving access token");
-//   }
-// });
 
 app.get(
   "/auth/google",
