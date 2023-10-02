@@ -4,12 +4,7 @@ const router = express.Router();
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 
-const {
-  loginUser,
-  restoreUser,
-  requireUser,
-  ensureAuthenticated,
-} = require("../../config/passport");
+const { loginUser, restoreUser } = require("../../config/passport");
 const { isProduction } = require("../../config/keys");
 
 const validateRegisterInput = require("../../validations/register");

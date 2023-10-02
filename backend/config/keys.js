@@ -8,5 +8,6 @@ module.exports = {
   gmailRedirectUri: process.env.GOOGLE_REDIRECT_URI,
   chatGPTKey: process.env.CHAT_GPT_KEY,
   openAPIURL: process.env.OPEN_API_URL,
+  openAPIOrganizationId: process.env.OPEN_API_ORGANIZATION_ID,
   isProduction: process.env.NODE_ENV === "production",
 };
