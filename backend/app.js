@@ -12,6 +12,7 @@ const { isProduction } = require("./config/keys");
 const { expressSessionSecret } = require("./config/keys");
 
 require("./models/User");
+require("./models/ChatGPT");
 require("./config/passport");
 
 const passport = require("passport");
