@@ -102,21 +102,11 @@ exports.restoreUser = (req, res, next) => {
 };
 
 function ensureAuthenticated(req, res, next) {
-  const token = req.headers["authorization"];
-
-  if (!token) {
-    return res.status(401).json({ message: "No token provided" });
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/login");
   }
-
-  jwt.verify(token, secretOrKey, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: "Failed to authenticate token" });
-    }
-
-    // If everything is good, save the decoded token to the request for use in other routes
-    req.decoded = decoded;
-    next();
-  });
 }
 
 exports.ensureAuthenticated = ensureAuthenticated;

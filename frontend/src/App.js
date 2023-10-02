@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import NavBar from "./components/NavBar/NavBar";
@@ -9,7 +9,7 @@ import MainPage from "./components/MainPage/MainPage";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import GoogleAuthRedirect from "./components/GmailAuth/GmailAuth";
-import { Route } from "react-router-dom";
+import ChatGPTComponent from "./components/ChatGPT";
 
 import Profile from "./components/Profile/Profile";
 
@@ -32,6 +32,7 @@ function App() {
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
           <ProtectedRoute exact path="/profile" component={Profile} />
+          <ProtectedRoute path="/chatgpt" component={ChatGPTComponent} />;
         </Switch>
       </>
     )
