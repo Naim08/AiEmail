@@ -103,11 +103,6 @@ router.get("/login-demo", async (req, res, next) => {
   }
 });
 
-router.post("/logout", (req, res) => {
-  req.logout();
-  res.json({ message: "Logout successful" });
-});
-
 router.patch("/update", restoreUser, async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);

@@ -1,4 +1,4 @@
-import "./Modal.css";
+import "./modal.css";
 import React, { useContext, useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";

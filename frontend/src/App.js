@@ -12,6 +12,7 @@ import GoogleAuthRedirect from "./components/GmailAuth/GmailAuth";
 import ChatGPTComponent from "./components/ChatGPT";
 import DashPage from "./components/DashPage/DashPage";
 import Profile from "./components/Profile/Profile";
+import NotFound from "./components/404";
 
 import { getCurrentUser } from "./store/session";
 
@@ -30,13 +31,14 @@ function App() {
         {/* {location.pathname !== "/dashpage" && <DashPage />} */}
 
         <Switch>
-        <Route path="/auth/google" component={GoogleAuthRedirect} />;
+          <Route exact path="/auth/google" component={GoogleAuthRedirect} />;
           <AuthRoute exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
           <Route exact path="/dashpage" component={DashPage} />
           <ProtectedRoute exact path="/profile" component={Profile} />
-          <ProtectedRoute path="/chatgpt" component={ChatGPTComponent} />;
+          <ProtectedRoute exact path="/chatgpt" component={ChatGPTComponent} />;
+          <Route path="*" component={NotFound} />
         </Switch>
       </>
     )

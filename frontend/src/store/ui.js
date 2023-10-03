@@ -37,7 +37,7 @@ export const setFormPage = (formType) => ({
   formType,
 });
 
-export const setFormSlide = (direction) => ({
+export const setformSlide = (direction) => ({
   type: SET_FORM_SLIDE,
   direction,
 });
