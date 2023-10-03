@@ -1,4 +1,4 @@
-// EmailList.js
+import "./EmailList.css";
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { readEmails, deleteEmail } from '../../../store/email';
@@ -13,20 +13,20 @@ const EmailList = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <div className='pre-email-list-container'>
           {emails.map(email => (
-            <li key={email.id}>
+            <div key={email.id} className='pre-email-item'>
               {email.subject}
               <button onClick={() => dispatch(deleteEmail(email.id))}>Delete</button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,0 +1,17 @@
+.pre-email-list-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.pre-email-item{
+    width: 140px;
+    height: 172px;
+    border: 2px solid black;
+    margin: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
