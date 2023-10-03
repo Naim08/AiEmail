@@ -30,12 +30,13 @@ body{
   .email-container{
     width: 80%;
     height: 100%;
-    border: 2px solid blanchedalmond;
+    border: 2px solid black;
+    background-color: aliceblue;
   }
   .email-list-container{
     width: 100%;
     height: 100%;
-    border: 2px solid blanchedalmond;
+    border: 2px solid black;
     display: flex;
     flex-direction: column;
   }
@@ -47,7 +48,7 @@ body{
   .new-email-item{
     width: 140px;
     height: 172px;
-    border: 2px solid white;
+    border: 2px solid black;
     margin: 30px 25px;
     display: flex;
     flex-direction: column;

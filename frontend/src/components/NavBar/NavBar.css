@@ -20,7 +20,7 @@
   text-decoration: none;
 }
 
-.nav-dashboard, .nav-trash, .nav-profile{
+.nav-dashboard, .nav-trash, .nav-profile, .nav-google-login-btn{
   display: flex;
   flex-direction: row;
   margin: 10px 0px;
