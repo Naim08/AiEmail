@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const Email = mongoose.model("Email");
 const router = express.Router();
 
-
-router.post('/send', async (req, res) => {
+//Create
+router.post('/', async (req, res) => {
     try {
         const { subject, message } = req.body;
         const email = new Email({ subject, message });
@@ -15,8 +15,8 @@ router.post('/send', async (req, res) => {
     }
 });
 
-
-router.get('/all', async (req, res) => {
+//Read
+router.get('/', async (req, res) => {
     try {
         const emails = await Email.find();
         res.status(200).send(emails);
@@ -25,7 +25,7 @@ router.get('/all', async (req, res) => {
     }
 });
 
-
+//
 router.get('/:id', async (req, res) => {
     try {
         const email = await Email.findById(req.params.id);

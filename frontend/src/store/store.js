@@ -3,13 +3,13 @@ import thunk from "redux-thunk";
 import errors from "./errors";
 import sessionReducer from "./session";
 import chatgptReducer from "./chatgpt";
-import emailReducer from "./email";
+import emailsReducer from "./email";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   errors,
   chatgpt: chatgptReducer,
-  email: emailReducer,
+  emailsReducer,
 });
 
 let enhancer;
