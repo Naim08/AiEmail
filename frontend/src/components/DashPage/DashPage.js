@@ -12,7 +12,11 @@ import SearchBar from "../SearchBar/SearchBar";
 
 const DashPage = ()=>{
     const dispatch = useDispatch();
+    const history = useHistory();
 
+    const handleToNew = () =>{
+        history.push('/email/form')
+    }
 
     return (
         <div className="app-container">
@@ -25,11 +29,11 @@ const DashPage = ()=>{
                 <SearchBar />
             </div>
             <div className="email-list-container">
-                <div className="new-email-item">
+                <div className="new-email-item" onClick={handleToNew}>
                     <div className="new-item-img">
                         <i className="fa-light fa-file"></i>
                     </div>
-                    <div className="new-item-text"><span>New</span></div>
+                    <div className="new-item-text">New</div>
                 </div>
 
                 </div>

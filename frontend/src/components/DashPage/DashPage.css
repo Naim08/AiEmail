@@ -54,5 +54,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
 
+  .new-item-text{
+    color: #61677A;
   }
