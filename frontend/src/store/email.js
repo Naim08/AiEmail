@@ -122,15 +122,15 @@ export const createEmail = (email) => async (dispatch) => {
 
 
 export const fetchSingleEmail = (id) => async (dispatch) => {
-  dispatch(emailFetchSingleRequest());
-  try {
-    const response = await jwtFetch(`/api/emails/${id}`);
-    const data = await response.json();
-    console.log(data)
-    dispatch(emailFetchSingleSuccess(data));
-  } catch (error) {
-    dispatch(emailFetchSingleFailure(error.message));
-  }
+    console.log(typeof id)
+    dispatch(emailFetchSingleRequest());
+    try {
+        const response = await jwtFetch(`/api/emails/${id}`);
+        const data = await response.json();
+        dispatch(emailFetchSingleSuccess(data));
+    } catch (error) {
+        dispatch(emailFetchSingleFailure(error.message));
+    }
 };
 
 // Read
