@@ -1,4 +1,3 @@
-// EmailForm.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
@@ -28,18 +27,34 @@ const EmailForm = ({ emailToUpdate }) => {
     }
   };
 
-  const handleExit = (e)=>{
+  const handleExit = (e) => {
     e.preventDefault();
     history.push(`/dashpage`);
   }
 
   return (
-    <div className='new-email-form-page'>
-        <div className='exit-page-btn-div'>
-          <i className="fa-sharp fa-regular fa-arrow-right-from-bracket fa-rotate-180 fa-xl exit-page-btn" onClick={handleExit}></i>
-        </div>
-        <div className='new-email-form-container'>
-          <form onSubmit={handleSubmit} className='new-email-form'>
+    // <div className='new-email-form-page'>
+    <>
+      <div className='exit-page-btn-div'>
+  <div className="exit-wrapper" onClick={handleExit}>
+    <i className="fa-regular fa-arrow-left exit-icon"></i>
+    <p className="exit-text">Return to Dashboard</p>
+  </div>
+</div>
+
+      <div className='new-email-form-container'>
+        
+        <form onSubmit={handleSubmit} className='new-email-form'>
+          {/* <label>To:</label> */}
+          <div className='new-email-to'>
+            <input
+              type="text"
+              name="to"
+              placeholder="To"
+            />
+          </div>
+          <div className="dotted-line"></div>
+          {/* <label>Subject:</label> */}
           <div className='new-email-subject'>
             <input
               type="text"
@@ -49,23 +64,25 @@ const EmailForm = ({ emailToUpdate }) => {
               placeholder="Subject"
             />
           </div>
-          <div>
+          <div className="dotted-line"></div>
+          {/* <label>Body:</label> */}
+          <div className='new-email-body' style={{ flexGrow: 1 }}>
             <textarea
               name="message"
               value={email.message}
               onChange={handleChange}
               placeholder="Message"
+              style={{ height: '100%' }}
             />
           </div>
           <div className='new-email-form-btn'>
-            <button type="submit">{emailToUpdate ? 'Update' : 'Create'}</button>
+            <button type="submit">{emailToUpdate ? '>' : '>'}</button>
           </div>
-
         </form>
       </div>
+      <div className="vertical-line"></div>
 
-    </div>
-
+      </>
   );
 };
 
