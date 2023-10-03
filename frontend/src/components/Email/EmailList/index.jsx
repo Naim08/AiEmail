@@ -31,12 +31,6 @@ const EmailList = () => {
             <div className="new-item-img">
                 <i className="fa-light fa-file"></i>
 
-        <div className='pre-email-list-container'>
-          {emails.map(email => (
-            <div key={email.id} className='pre-email-item'>
-              {email.subject}
-              <button onClick={() => dispatch(deleteEmail(email._id))}>Delete</button>
-
             </div>
             <div className="new-item-text">New</div>
           </div>
