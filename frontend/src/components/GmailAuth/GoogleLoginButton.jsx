@@ -5,7 +5,7 @@ function LoginButton(props) {
     props.history.push("/auth/google");
   };
 
-  return <button onClick={handleLogin}>Login with Google</button>;
+  return <button onClick={handleLogin}>Link Gmail</button>;
 }
 
 export default withRouter(LoginButton);
