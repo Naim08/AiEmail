@@ -15,28 +15,44 @@ function NavBar() {
   const getLinks = () => {
     if (loggedIn) {
       return (
-        <div className="links-nav">
-          <Link to={"/profile"}>Profile</Link>
-          <button onClick={logoutUser}>Logout</button>
-          <GoogleLoginButton />
+        <div className="left-sideBar">
+          <div className="links-nav">
+            <div className="nav-dashboard">
+              <a href="/" className="nav-dashboard-link">Dashboard</a>
+            </div>
+            <div className="nav-trash">
+              <a href="/" className="nav-trash-link">Trash</a>
+            </div>
+            <div className="nav-profile">
+              <a href="/profile" className="nav-profile-link">Account</a>
+            </div>
+          </div>
+
+          <div className="nav-logout">
+            <a onClick={logoutUser}>Logout</a>
+          </div>
+
+          <div className="nav-google-login-btn">
+            <GoogleLoginButton />
+          </div>
         </div>
+
+
+
       );
     } else {
-      return (
-        <div className="links-auth">
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-        </div>
-      );
+      return null; // Removed Signup and Login links
     }
   };
 
   return (
-    <>
-      <h1>AI Email</h1>
+    <div className="navi-container">
+      <h1>MailTo</h1>
+
       {getLinks()}
-    </>
+    </div>
   );
 }
+
 
 export default NavBar;

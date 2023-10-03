@@ -31,9 +31,10 @@ const SignupForm = () => {
 
   return (
     <>
-
+    <div className="center-container">
+    <div className="inner-container">
     <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Create your account</h2>
+      <h2 style={{marginBottom: '30px'}}>Create your account</h2>
       <div className="signup-email">
         <div className="errors">{errors?.email}</div>
           <input type="text"
@@ -81,10 +82,11 @@ const SignupForm = () => {
       />
     </form>
     <div>
-      <span>Already have an account?</span>
-      <Link to={`/login`}>Log in</Link>
+      <span>Already have an account? <Link to={`/login`} className="login-link">Log in</Link></span>
+      
     </div>
-
+    </div>
+    </div>
     </>
   )
 }
