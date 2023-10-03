@@ -12,6 +12,8 @@ const { isProduction } = require("./config/keys");
 const { expressSessionSecret } = require("./config/keys");
 
 require("./models/User");
+
+require('./models/Email'); 
 require("./models/ChatGPT");
 require("./config/passport");
 
@@ -20,6 +22,7 @@ const passport = require("passport");
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 const chatGPTRouter = require("./routes/api/chatgpt");
+const emailRouter = require("./routes/api/emails")
 
 const User = require("./models/User");
 
@@ -58,6 +61,7 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/chatgpt", chatGPTRouter);
+app.use("/api/emails",emailRouter);
 
 if (isProduction) {
   const path = require("path");
