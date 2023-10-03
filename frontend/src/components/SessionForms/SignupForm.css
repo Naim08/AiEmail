@@ -1,0 +1,112 @@
+/* SignupForm.css */
+
+/* General Styles */
+body {
+    font-family: Helvetica, sans-serif;
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centering the form on the page */
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Form Container */
+.session-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 300px;
+}
+
+/* Heading */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"] {
+    width: 320px;
+    height: 50px;
+    border: none;
+    border-radius: 0.5rem;
+    background: #e0e0e0;
+    box-sizing: border-box;
+    padding-left: 10px; /* Add some padding to the left */
+}
+
+/* Error Messages */
+.errors {
+    color: red;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #e0e0e0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background: #d0d0d0;
+}
+
+input[type="submit"]:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+/* Signup Link */
+span {
+    color: #fff;
+}
+
+Link {
+    color: #fff;
+    text-decoration: none;
+}
+
+Link:hover {
+    text-decoration: underline;
+}
+
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+
+
+  .login-link,
+  .login-link:visited {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  

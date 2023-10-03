@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory} from "react-router-dom";
 import { clearSessionErrors, login } from "../../store/session";
+import './LoginForm.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -21,9 +22,10 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+
+    <div className="center-container">
       <form className="session-form" onSubmit={handleSubmit}>
-        <h2>Welcome back</h2>
+        <h2>Welcome Back</h2>
 
         <div className="errors">{errors?.email}</div>
           <input type="text"
@@ -46,8 +48,8 @@ const LoginForm = () => {
         />
       </form>
       <div>
-        <span>Don't have an account?</span>
-        <Link to={`/signup`}>Sign up</Link>
+        <span>Don't have an account? <Link to={`/signup`} className="signup-link">Sign up</Link></span>
+        
       </div>
 
     </div>
