@@ -1,10 +1,13 @@
+div {
+  border: 1px solid white;
+}
 .navi-container {
   color: #61677A;
   height: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-left: -55px;
+  margin-left: 20px;
 }
 
 .navi-header h1 {
