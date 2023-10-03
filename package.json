@@ -4,11 +4,12 @@
   "description": "MERN stack clone of Twitter",
   "scripts": {
     "backend-install": "npm install --prefix backend",
-    "backend": "npm run dev --prefix backend",
+    "backend": "npm run dev --prefix backend watch",
     "frontend-install": "npm install --prefix frontend",
-    "frontend": "npm start --prefix frontend",
+    "frontend": "npm start --prefix frontend watch",
     "frontend-build": "npm run build --prefix frontend",
-    "build": "npm run backend-install && npm run frontend-install && npm run frontend-build"
+    "build": "npm run backend-install && npm run frontend-install && npm run frontend-build",
+    "run-all": "npm run backend & npm run frontend"
   },
   "repository": {
     "type": "git"
