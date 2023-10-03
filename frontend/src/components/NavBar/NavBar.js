@@ -9,6 +9,7 @@ function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
   const [selectedLink, setSelectedLink] = useState(null);
+  const userEmail = useSelector((state) => state.session.user.email);
 
   const logoutUser = (e) => {
     e.preventDefault();
@@ -49,10 +50,11 @@ function NavBar() {
             <div className="nav-google-login-btn">
             <i class="fab fa-google"></i> <GoogleLoginButton />
             </div>
-            <div className="nav-logout nav-link">
+            <div className="nav-logout nav-link logout-container">
               <a className={`${selectedLink === 'logout' ? 'selected' : ''}`} 
                  onClick={(e) => {logoutUser(e); setSelectedLink('logout'); }}>
                   <i class="fa-sharp fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Logout</a>
+                  <small className="user-email">{userEmail}</small>
             </div>
           </div>
   
