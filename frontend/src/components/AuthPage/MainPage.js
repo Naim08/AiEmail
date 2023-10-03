@@ -8,13 +8,13 @@ function MainPage() {
   const [loopNum, setLoopNum] = useState(0);
   const typingSpeed = 100;  // Constant typing speed
 
-  const phrases = ['your boss', 'Mom', 'the hiring manager', 'Greg', 'the design team'];
+  const phrases = ['your boss', 'Mom', '程表弟', 'the hiring manager', 'Greg', 'the design team'];
 
   useEffect(() => {
     const i = loopNum % phrases.length;
     const fullText = phrases[i];
 
-    const delay = isDeleting ? 100 : typingSpeed;  // Different delay for deleting
+    const delay = isDeleting ? 90 : typingSpeed;  // Different delay for deleting
 
     const handleType = () => {
       setText(
