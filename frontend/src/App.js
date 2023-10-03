@@ -9,7 +9,10 @@ import MainPage from "./components/MainPage/MainPage";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import GoogleAuthRedirect from "./components/GmailAuth/GmailAuth";
-import { Route } from "react-router-dom";
+import EmailForm from "./components/Email/EmailForm";
+import EmailList from "./components/Email/EmailList";
+import EmailDetails from "./components/Email/EmailDetails";
+import ChatGPTComponent from "./components/ChatGPT";
 
 import Profile from "./components/Profile/Profile";
 
