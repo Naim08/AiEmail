@@ -23,7 +23,7 @@ body{
     background-color: #323439;
     position: relative;
     overflow-y: auto;
-    width: 280px;
+    width: 255px;
     color: #61677A;
   }
 
@@ -38,7 +38,9 @@ body{
     height: 100%;
     border: 2px solid black;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
   }
   .search-bar-container{
     width: 80%;
@@ -54,5 +56,11 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    box-sizing: border-box;
   }
+
+  .new-item-text{
+    color: #61677A;
+  }
+
+

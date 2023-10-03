@@ -103,4 +103,33 @@ router.get("/login-demo", async (req, res, next) => {
   }
 });
 
+router.patch("/update", restoreUser, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      const err = new Error("User not found");
+      err.statusCode = 404;
+      return next(err);
+    }
+    if (req.body.username) user.username = req.body.username;
+    if (req.body.email) user.email = req.body.email;
+    if (req.body.password) {
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err) throw err;
+        bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
+          if (err) throw err;
+          user.hashedPassword = hashedPassword;
+          await user.save();
+          return res.json(await loginUser(user));
+        });
+      });
+    } else {
+      await user.save();
+      return res.json(await loginUser(user));
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
