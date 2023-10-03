@@ -31,7 +31,10 @@ function NavBar() {
           <div className="nav-logout">
             <a onClick={logoutUser}>Logout</a>
           </div>
-          <GoogleLoginButton />
+
+          <div className="nav-google-login-btn">
+            <GoogleLoginButton />
+          </div>
         </div>
 
 

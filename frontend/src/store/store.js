@@ -4,12 +4,15 @@ import errors from "./errors";
 import sessionReducer from "./session";
 import chatgptReducer from "./chatgpt";
 import uiReducer from "./ui";
+import emailsReducer from "./email";
+
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   errors,
   chatgpt: chatgptReducer,
   ui: uiReducer,
+  emailsReducer,
 });
 
 let enhancer;

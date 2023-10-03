@@ -9,6 +9,9 @@ import MainPage from "./components/AuthPage/MainPage.js";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import GoogleAuthRedirect from "./components/GmailAuth/GmailAuth";
+import EmailForm from "./components/Email/EmailForm";
+import EmailList from "./components/Email/EmailList";
+import EmailDetails from "./components/Email/EmailDetails";
 import ChatGPTComponent from "./components/ChatGPT";
 import DashPage from "./components/DashPage/DashPage";
 import Profile from "./components/Profile/Profile";
@@ -32,6 +35,10 @@ function App() {
 
         <Switch>
           <Route exact path="/auth/google" component={GoogleAuthRedirect} />;
+          <Route path="/auth/google" component={GoogleAuthRedirect} />
+          <Route path="/email/list" component={EmailList} />
+          <Route path="/email/form" component={EmailForm} />
+          <Route path="/email/:emailId" component={EmailDetails} />
           <AuthRoute exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />

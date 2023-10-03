@@ -1,0 +1,19 @@
+.search-bar{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.search-box{
+    width: 80%;
+    height: 28px;
+}
+
+.search-btn{
+    height: 34px;
+    padding-inline: 0px;
+
+}
+
+
+
