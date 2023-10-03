@@ -24,6 +24,7 @@ const LoginForm = () => {
   return (
 
     <div className="center-container">
+      <div className="form-container">
       <form className="session-form" onSubmit={handleSubmit}>
         <h2>Welcome Back</h2>
 
@@ -48,10 +49,10 @@ const LoginForm = () => {
         />
       </form>
       <div>
-        <span>Don't have an account? <Link to={`/signup`} className="signup-link">Sign up</Link></span>
+        <span style={{marginLeft: '75px'}}>Don't have an account? <Link to={`/signup`} className="signup-link">Sign up</Link></span>
         
       </div>
-    
+      </div>
     </div>
   )
 }
