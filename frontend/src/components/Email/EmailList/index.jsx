@@ -15,6 +15,9 @@ const EmailList = () => {
       history.push('/email/form')
   }
 
+  const handleEmailClick = (email) =>{
+    history.push(`/email/${email._id}`)
+  }
 
   useEffect(() => {
     dispatch(readEmails());
@@ -36,9 +39,9 @@ const EmailList = () => {
           </div>
 
             {emails.map(email => (
-              <div key={email.id} className='pre-email-item'>
+              <div key={email.id} className='pre-email-item' onClick={() => handleEmailClick(email)}>
                 {email.subject}
-                <button onClick={() => dispatch(deleteEmail(email.id))}>Delete</button>
+                <button onClick={() => dispatch(deleteEmail(email._id))}>Delete</button>
               </div>
             ))}
           </div>

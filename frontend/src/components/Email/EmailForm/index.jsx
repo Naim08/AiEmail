@@ -15,14 +15,17 @@ const EmailForm = ({ emailToUpdate }) => {
   });
 
   const handleChange = (e) => {
+    console.log("change")
+    console.log(e.target)
     const { name, value } = e.target;
     setEmail(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (emailToUpdate) {
-      dispatch(updateEmail({ ...email, id: emailToUpdate.id }));
+      dispatch(updateEmail({ ...email, id: emailToUpdate._id }));
     } else {
       dispatch(createEmail(email));
     }
