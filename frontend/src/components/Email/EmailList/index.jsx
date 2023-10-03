@@ -22,7 +22,7 @@ const EmailList = () => {
             <div key={email.id} className='pre-email-item'>
               {email.subject}
               <button onClick={() => dispatch(deleteEmail(email._id))}>Delete</button>
-            </li>
+            </div>
           ))}
         </div>
       )}
