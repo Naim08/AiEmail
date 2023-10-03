@@ -1,44 +1,97 @@
-.navi-container{
-  color: #64676e;
+.navi-container {
+  color: #61677A;
   height: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  margin-left: -55px;
 }
 
-.navi-container h1 {
-  font-size: 36px;
+.navi-header h1 {
+  font-size: 40px;
   font-family: 'Times';
-  margin: 0; 
-  padding: 10px; 
-  text-align: center;  
-  width: 100%;
   margin-left: -50px;
 }
-
-
 
 .links-nav {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  text-decoration: none;
   padding: 30px 0px;
   font-size: 20px;
 }
 
-.links-auth {
-  display: flex;
-  justify-content: space-around;
-  text-decoration: none;
-}
-
-.nav-dashboard, .nav-trash, .nav-profile, .nav-logout, .nav-google-login-btn{
+.nav-link {  /* New generic class */
   display: flex;
   flex-direction: row;
-  margin: 10px 0px;
+  margin: 15px 0;
 }
-.nav-dashboard-link, .nav-profile-link, .nav-trash-link, .nav-logout{
-  text-decoration: none;
-  color: #6f717a;
 
+.nav-link a {
+  font-family: 'Helvetica'; 
+  font-weight: 300;
+  text-decoration: none;
+  color: #c3c3c3;
 }
+
+.nav-link a:hover {
+color: #fafafa;
+}
+.selected {
+  color: #fafafa;
+}
+
+
+
+.left-sideBar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bottom-links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* Align child elements to the start */
+  font-size: 18px;
+}
+
+.nav-logout {
+  margin-top: 20px;  /* Add space above the Logout link */
+}
+
+
+.nav-link i {
+  margin-right: 10px;  /* Adjust this value to add more or less space */
+}
+
+
+.nav-google-login-btn {
+  margin-bottom: 10px;
+}
+
+.nav-google-login-btn button {
+  background-color: #4285f4;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: #61677A;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.nav-google-login-btn button:hover {
+  color: #357ae8;
+}
+
+
+.nav-google-login-btn i {
+  margin-right: 5px;  /* Adjust this value to add more or less space */
+}
+
+

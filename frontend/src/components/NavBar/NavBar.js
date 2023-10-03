@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import "./NavBar.css";
+import "./NavBar.css";  // Assuming you've updated this CSS file based on previous suggestions
 import { logout } from "../../store/session";
 import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
+import React, { useState } from 'react';
+
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
+  const [selectedLink, setSelectedLink] = useState(null);
 
   const logoutUser = (e) => {
     e.preventDefault();
@@ -16,51 +19,60 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="left-sideBar">
-
+  
           <div className="links-nav">
-
-            <div className="nav-dashboard">
-              <a href="/" className="nav-dashboard-link">Dashboard</a>
-            </div>
             
-            <div className="nav-trash">
-              <a href="/" className="nav-trash-link">Trash</a>
+            <div className="nav-dashboard nav-link">
+              <a href="/" 
+                 className={`nav-dashboard-link ${selectedLink === 'dashboard' ? 'selected' : ''}`} 
+                 onClick={() => setSelectedLink('dashboard')}>
+                  <i class="fa-sharp fa-solid fa-house"></i>Dashboard</a>
             </div>
-
-            <div className="nav-profile">
-              <a href="/profile" className="nav-profile-link">Account</a>
+  
+            <div className="nav-trash nav-link">
+              <a href="/" 
+                 className={`nav-trash-link ${selectedLink === 'trash' ? 'selected' : ''}`} 
+                 onClick={() => setSelectedLink('trash')}>
+                  <i class="fa-solid fa-trash"></i> Trash</a>
             </div>
-
-            <div className="nav-logout">
-              <a onClick={logoutUser}>Logout</a>
+  
+            <div className="nav-profile nav-link">
+              <a href="/profile" 
+                 className={`nav-profile-link ${selectedLink === 'account' ? 'selected' : ''}`} 
+                 onClick={() => setSelectedLink('account')}>
+                  <i class="fa-solid fa-user"></i> Account</a>
             </div>
-
-          </div> 
-
-          <div className="nav-google-login-btn">
-            <GoogleLoginButton />
+  
           </div>
-          
-
+  
+          <div className="bottom-links">  {/* New wrapper div for bottom links */}
+            <div className="nav-google-login-btn">
+            <i class="fab fa-google"></i> <GoogleLoginButton />
+            </div>
+            <div className="nav-logout nav-link">
+              <a className={`${selectedLink === 'logout' ? 'selected' : ''}`} 
+                 onClick={(e) => {logoutUser(e); setSelectedLink('logout'); }}>
+                  <i class="fa-sharp fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Logout</a>
+            </div>
+          </div>
+  
         </div>
-
-      );//end return
-
-
+      );
     } else {
-      return null; // Removed Signup and Login links
+      return null;
     }
   };
+  
+  
 
   return (
     <div className="navi-container">
       <div className="navi-header">
-        <h1>MailTo</h1>
+        <h1><i class="fa-sharp fa-solid fa-envelope"></i> MailTo</h1>
       </div>
       {getLinks()}
     </div>
   );
 }
-
 
 export default NavBar;
