@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const Email = mongoose.model("Email");
 const router = express.Router();
+const ObjectId = require('mongodb').ObjectId;
 
 //Create
 router.post('/', async (req, res) => {
@@ -28,6 +29,7 @@ router.get('/', async (req, res) => {
 //
 router.get('/:id', async (req, res) => {
     try {
+        console.log(req)
         const email = await Email.findById(req.params.id);
         if (!email) {
             return res.status(404).send();

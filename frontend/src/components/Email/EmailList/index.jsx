@@ -21,7 +21,7 @@ const EmailList = () => {
           {emails.map(email => (
             <li key={email.id}>
               {email.subject}
-              <button onClick={() => dispatch(deleteEmail(email.id))}>Delete</button>
+              <button onClick={() => dispatch(deleteEmail(email._id))}>Delete</button>
             </li>
           ))}
         </ul>
