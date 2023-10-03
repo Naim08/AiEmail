@@ -1,0 +1,260 @@
+.server-tooltip {
+  position: fixed;
+  left: 80px;
+  z-index: 5;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #dbdee1;
+  text-align: center;
+  background-color: black;
+  border-radius: 6px;
+  padding: 10px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  animation: tooltip .1s ease-out;
+  transform-origin: left;
+}
+
+.server-tooltip:after{
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
+.action-tooltip {
+  position: fixed;
+  z-index: 5;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dbdee1;
+  font-weight: bold;
+  text-align: center;
+  background-color: black;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  animation: tooltip .1s ease-out;
+  transform-origin: bottom;
+}
+
+.action-tooltip:after{
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.nav-tooltip {
+  position: fixed;
+  z-index: 5;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dbdee1;
+  font-weight: bold;
+  text-align: center;
+  background-color: black;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  animation: tooltip .1s ease-out;
+  transform-origin: top;
+}
+
+.nav-tooltip:after{
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.time-tooltip {
+  position: fixed;
+  z-index: 5;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dbdee1;
+  font-weight: bold;
+  text-align: center;
+  background-color: black;
+  border-radius: 6px;
+  padding: 8px 5px 8px 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  animation: tooltip .1s ease-out;
+  transform-origin: bottom;
+}
+
+.time-tooltip-pointer {
+  content: "";
+  position: relative;
+  bottom: -20px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+@keyframes tooltip {
+  0% {
+    opacity: 0%;
+    scale: 0.75;
+  }
+  100% {
+    opacity: 100%;
+    scale: 1;
+  }
+}
+
+.modal-form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.modal-form-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  position: absolute;
+  background-color:white;
+  border-radius: 4px;
+  max-width: 440px;
+  overflow: clip;
+}
+
+.modal-content.expand {
+  animation: expand 0.2s;
+}
+
+.modal-content.close {
+  animation: close 0.2s both;
+}
+
+@keyframes expand {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes close {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.5;
+  }
+}
+
+.dropdown-modal {
+  position: fixed;
+  z-index: 5;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: clip;
+  top: 56px;
+  left: 82px;
+  animation: dropdown-open ease-out 0.1s;
+  transform-origin: top;
+}
+
+@keyframes dropdown-open {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.setting-page-modal {
+  position: fixed;
+  z-index: 5;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: clip;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  animation: setting-page-animate ease-in 0.2s;
+}
+
+.setting-page-modal.hide {
+  animation: setting-page-animate-leave ease-out 0.2s both;
+}
+
+@keyframes setting-page-animate {
+  0% {
+    opacity: 0;
+    scale: 1.2;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes setting-page-animate-leave {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 1.2;
+  }
+}
