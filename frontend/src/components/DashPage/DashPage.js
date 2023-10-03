@@ -15,9 +15,9 @@ const DashPage = ()=>{
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleToNew = () =>{
-        history.push('/email/form')
-    }
+    // const handleToNew = () =>{
+    //     history.push('/email/form')
+    // }
 
     return (
         <div className="app-container">
@@ -29,19 +29,19 @@ const DashPage = ()=>{
                 <div className="search-bar-container">
                     <SearchBar />
                 </div>
-                <div className="email-list-container">
-                    <div className="new-email-item" onClick={handleToNew}>
+                {/* <div className="email-list-container"> */}
+                    {/* <div className="new-email-item" onClick={handleToNew}>
                         <div className="new-item-img">
                             <i className="fa-light fa-file"></i>
                         </div>
                         <div className="new-item-text">New</div>
-                    </div>
+                    </div> */}
 
 
-                    <EmailList />
+                <EmailList />
 
 
-                </div>
+                {/* </div> */}
             </div>
         </div>
     )

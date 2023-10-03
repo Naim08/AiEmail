@@ -1,10 +1,34 @@
-.pre-email-list-container{
+/* .pre-email-list-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
+
+} */
 
 .pre-email-item{
+    width: 140px;
+    height: 172px;
+    border: 2px solid black;
+    margin: 30px 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.email-list-container{
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .new-email-item{
     width: 140px;
     height: 172px;
     border: 2px solid black;
@@ -13,5 +37,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-}
+  }
+
+  .new-item-text{
+    color: #61677A;
+  }
