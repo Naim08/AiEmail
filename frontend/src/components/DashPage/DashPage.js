@@ -6,6 +6,7 @@ import { AuthRoute, ProtectedRoute } from "../Routes/Routes";
 import NavBar from "../NavBar/NavBar";
 import Profile from "../Profile/Profile";
 import SearchBar from "../SearchBar/SearchBar";
+import EmailList from "../Email/EmailList";
 
 
 
@@ -24,20 +25,24 @@ const DashPage = ()=>{
                 <NavBar />
             </div>
             <div className="email-container">
-            <h1>Emails</h1>
-            <div className="search-bar-container">
-                <SearchBar />
-            </div>
-            <div className="email-list-container">
-                <div className="new-email-item" onClick={handleToNew}>
-                    <div className="new-item-img">
-                        <i className="fa-light fa-file"></i>
-                    </div>
-                    <div className="new-item-text">New</div>
+                <h1>Emails</h1>
+                <div className="search-bar-container">
+                    <SearchBar />
                 </div>
+                <div className="email-list-container">
+                    <div className="new-email-item" onClick={handleToNew}>
+                        <div className="new-item-img">
+                            <i className="fa-light fa-file"></i>
+                        </div>
+                        <div className="new-item-text">New</div>
+                    </div>
+
+
+                    <EmailList />
+
 
                 </div>
-                </div>
+            </div>
         </div>
     )
 
