@@ -16,30 +16,37 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="left-sideBar">
+
           <div className="links-nav">
+
             <div className="nav-dashboard">
               <a href="/" className="nav-dashboard-link">Dashboard</a>
             </div>
+            
             <div className="nav-trash">
               <a href="/" className="nav-trash-link">Trash</a>
             </div>
+
             <div className="nav-profile">
               <a href="/profile" className="nav-profile-link">Account</a>
             </div>
-          </div>
 
-          <div className="nav-logout">
-            <a onClick={logoutUser}>Logout</a>
-          </div>
+            <div className="nav-logout">
+              <a onClick={logoutUser}>Logout</a>
+            </div>
+
+          </div> 
 
           <div className="nav-google-login-btn">
             <GoogleLoginButton />
           </div>
+          
+
         </div>
 
+      );//end return
 
 
-      );
     } else {
       return null; // Removed Signup and Login links
     }
@@ -47,8 +54,9 @@ function NavBar() {
 
   return (
     <div className="navi-container">
-      <h1>MailTo</h1>
-
+      <div className="navi-header">
+        <h1>MailTo</h1>
+      </div>
       {getLinks()}
     </div>
   );

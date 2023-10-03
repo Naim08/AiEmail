@@ -1,9 +1,20 @@
 .navi-container{
-  color: #61677A;
+  color: #64676e;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
+
+.navi-container h1 {
+  font-size: 36px;
+  font-family: 'Times';
+  margin: 0; 
+  padding: 10px; 
+  text-align: center;  
+  width: 100%;
+  margin-left: -50px;
+}
+
 
 
 .links-nav {
@@ -11,7 +22,8 @@
   flex-direction: column;
   justify-content: space-around;
   text-decoration: none;
-  padding: 10px 0px;
+  padding: 30px 0px;
+  font-size: 20px;
 }
 
 .links-auth {
@@ -20,13 +32,13 @@
   text-decoration: none;
 }
 
-.nav-dashboard, .nav-trash, .nav-profile, .nav-google-login-btn{
+.nav-dashboard, .nav-trash, .nav-profile, .nav-logout, .nav-google-login-btn{
   display: flex;
   flex-direction: row;
   margin: 10px 0px;
 }
-.nav-dashboard-link, .nav-profile-link, .nav-trash-link{
+.nav-dashboard-link, .nav-profile-link, .nav-trash-link, .nav-logout{
   text-decoration: none;
-  color: #61677A;
+  color: #6f717a;
 
 }
