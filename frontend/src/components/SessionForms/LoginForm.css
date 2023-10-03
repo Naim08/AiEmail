@@ -1,0 +1,81 @@
+/* LoginForm.css */
+
+/* General Styles */
+/* div {
+  border: 2px solid white;
+} */
+body {
+    font-family: Helvetica, sans-serif;
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Centering the form on the page */
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+
+  
+  /* Form Styles */
+  .session-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+  
+  /* Heading */
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Input Fields */
+  input[type="text"],
+  input[type="password"] {
+    width: 320px;
+    height: 50px;
+    border: none;
+    border-radius: 0.5rem;
+    background: #e0e0e0;
+    margin-bottom: 12px;
+    padding-left: 10px;
+  }
+  
+  /* Error Messages */
+  .errors {
+    color: red;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Submit Button */
+  input[type="submit"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #e0e0e0;
+  }
+  
+  /* Signup Link */
+  .signup-link,
+  .signup-link:visited {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+
+span {
+    color: #fff;
+}
