@@ -1,6 +1,6 @@
 import React, { useEffect, useState }  from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ReactSlider from "react-slider";
 import "./UserPreferModal.css"
 import { FormModal } from "../../context/modal";
@@ -48,8 +48,8 @@ const UserPreferModal = () =>{
                 <div className="user-modal-body">
 
                     <div className="user-modal-body-row">
-                        <div>
-                            <h3>Output Randomness</h3>
+                        <div className="tooltip">Output Randomness
+                            <span className="tooltiptext">Between 0 and 2, higher values will make the output more random</span>
                         </div>
                         <div >
                             <ReactSlider
@@ -70,8 +70,8 @@ const UserPreferModal = () =>{
                     </div>
 
                     <div className="user-modal-body-row">
-                        <div className="presencePenalty-label">
-                            <h3>Content Repeatability</h3>
+                        <div className="presencePenalty-label tooltip">Content Repeatability
+                            <span className="tooltiptext">Number between -2.0 and 2.0, positive values increasing the model's likelihood to talk about new topics.</span>
                         </div>
                         <div>
                             <ReactSlider
@@ -92,8 +92,8 @@ const UserPreferModal = () =>{
                     </div>
 
                     <div className="user-modal-body-row">
-                        <div>
-                            <h3>Word Repeatability</h3>
+                        <div className="tooltip">Word Repeatability
+                            <span className="tooltiptext">Number between -2.0 and 2.0, positive values decreasing the model's likelihood to repeat the same line verbatim</span>
                         </div>
                         <div>
                             <ReactSlider
@@ -114,8 +114,8 @@ const UserPreferModal = () =>{
                     </div>
 
                     <div className="user-modal-body-row">
-                        <div className="user-token-label">
-                            <h3>Words Length Limit</h3>
+                        <div className="user-token-label tooltip">Words Length Limit
+                            <span className="tooltiptext">The maximum number of words to generate in the AI response</span>
                         </div>
                         <div >
                             <input
