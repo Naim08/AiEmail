@@ -33,14 +33,18 @@
 }
 
 .user-modal-submit-btn-container{
+    height: 30px;
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
-    padding-right: 25px;
+    padding: 25px 26px;
+    text-align: center;
+
 }
 
 .user-modal-submit-btn{
     width: 20%;
-    height: 120%;
+    height: 130%;
 }
 
 .horizontal-slider {
@@ -78,11 +82,6 @@ input[type="text"]{
 }
 .user-token-label{
     padding-top: 10px;
-}
-
-.functionCall-btn{
-    width: 70px;
-    height: 30px;
 }
 
 .presencePenalty-label{

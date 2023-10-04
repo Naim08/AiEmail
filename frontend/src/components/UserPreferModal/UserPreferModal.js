@@ -9,7 +9,6 @@ import { setFormPage, setformSlide } from "../../store/ui";
 const UserPreferModal = () =>{
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
-    const [functionCall, setFunctionCall] = useState("none");
     const [temperature, setTemperature] = useState(1);
     const [presencePenalty, setPresencePenalty] = useState(0);
     const [frequencyPenalty, setFrequencyPenalty] = useState(0);
@@ -21,7 +20,6 @@ const UserPreferModal = () =>{
 
         const formData = {
             max_tokens: maxTokens,
-            function_call: functionCall,
             presence_penalty: presencePenalty,
             frequency_penalty: frequencyPenalty,
             temperature: temperature,
@@ -48,16 +46,6 @@ const UserPreferModal = () =>{
                     </div>
                 </div>
                 <div className="user-modal-body">
-
-                    <div className="user-modal-body-row">
-                        <div>
-                            <h3>Model Function Call</h3>
-                        </div>
-                        <div >
-                            <button  className="functionCall-btn" onClick={()=> setFunctionCall("none") }>none</button>
-                            <button className="functionCall-btn" onClick={()=> setFunctionCall("auto")}>auto</button>
-                        </div>
-                    </div>
 
                     <div className="user-modal-body-row">
                         <div>
