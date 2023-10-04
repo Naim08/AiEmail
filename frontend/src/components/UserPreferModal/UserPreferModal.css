@@ -27,13 +27,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     padding: 25px 20px;
     text-align: center;
 }
 
 .user-modal-submit-btn{
     padding-left: 350px;
+    padding-top: 5px;
+
 }
 
 .horizontal-slider {
@@ -78,4 +80,8 @@ input[type="text"]{
     height: 30px;
 }
 
+.presencePenalty-label{
+    display: flex;
+
+}
 

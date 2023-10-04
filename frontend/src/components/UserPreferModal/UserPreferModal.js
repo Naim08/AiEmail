@@ -20,7 +20,12 @@ const UserPreferModal = () =>{
         e.preventDefault();
 
         const formData = {
-            max_tokens: maxTokens
+            max_tokens: maxTokens,
+            function_call: functionCall,
+            presence_penalty: presencePenalty,
+            frequency_penalty: frequencyPenalty,
+            temperature: temperature,
+            messages: userMessage
         };
         //dispatch create new user perference
     }
@@ -77,8 +82,8 @@ const UserPreferModal = () =>{
                     </div>
 
                     <div className="user-modal-body-row">
-                        <div>
-                            <h3>Presence Penalty</h3>
+                        <div className="presencePenalty-label">
+                            <h3>Content Repeatability</h3>
                         </div>
                         <div>
                             <ReactSlider
@@ -100,7 +105,7 @@ const UserPreferModal = () =>{
 
                     <div className="user-modal-body-row">
                         <div>
-                            <h3>Frequency Penalty</h3>
+                            <h3>Word Repeatability</h3>
                         </div>
                         <div>
                             <ReactSlider
@@ -149,7 +154,7 @@ const UserPreferModal = () =>{
 
                 </div>
                 <div className="user-modal-submit-btn">
-                    <button>Done</button>
+                    <button >Done</button>
                 </div>
             </form>
         </FormModal>
