@@ -11,8 +11,9 @@ const  SearchBar = () => {
 
     return (
         <div className={`search-bar ${isExpanded ? 'expanded' : ''}`} onClick={() => setIsExpanded(true)}>
-             <button className='search-btn' >
-            Search   <i class="fa-sharp fa-regular fa-magnifying-glass"></i>
+            <button className='search-btn' >
+            {!isExpanded && <span className="search-text">Search</span>}
+            <i className={`fa-sharp fa-regular fa-magnifying-glass ${isExpanded ? 'icon-expanded' : ''}`}></i>
             </button>
             {isExpanded && (
             <input

@@ -16,7 +16,7 @@
 .search-bar.expanded .search-btn {
     left: auto;  /* Remove left positioning */
     right: 0;  /* Move it to the right */
-  }
+}
 
 .search-box {
     flex: 1; /* Take up all available space */
@@ -36,11 +36,10 @@
     right: 0;
     top: 0;
     height: 30px;
-    width: 36px;
+    width: 100px;
     cursor: pointer; /* Change cursor to pointer on hover */
-    appearance: none;
     background: none;
-    border: none;
+    /* border: none; */
     padding: 0;
     font: inherit;
     cursor: pointer;
@@ -53,9 +52,13 @@
 
 
 .search-btn span {
-    margin-right: 50px !important;
+    margin-right: 6px !important;
+    font-size: 18px;
 }
 
-
+.icon-expanded {
+    color: #2D2F33; /* Color to match the email-container */
+  }
+  
 
 
