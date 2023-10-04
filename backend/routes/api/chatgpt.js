@@ -33,28 +33,31 @@ router.post("/", requireUser, async (req, res) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  const userInput = req.body.prompt;
+  const userPrompt = req.body.prompt;
 
-  if (!userInput) {
+  if (!userPrompt) {
     return res.status(400).json({ error: "Prompt is required" });
   }
-  console.log(userInput);
+  console.log(userPrompt);
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: userInput,
+      prompt: userPrompt.subject + userPrompt.message,
     });
     console.log(completion.data.choices[0].text);
     const chatOutput = completion.data.choices[0].text;
 
     const chatEntry = new ChatGPT({
       userId: req.user ? req.user._id : null, // Assuming you have user authentication and req.user contains the authenticated user
-      prompt: userInput,
+      prompt: {
+        subject: userPrompt.subject,
+        message: userPrompt.message,
+      },
       response: chatOutput,
       modelUsed: "text-davinci-003", // This is hardcoded for this example. You could also dynamically retrieve it from the completion data if it's provided.
       apiParameters: {
         temperature: 0.7, // This is just a sample value. Replace with actual temperature if used.
-        maxTokens: 150, // This is just a sample value. Replace with actual max tokens if used.
+        maxTokens: 400, // This is just a sample value. Replace with actual max tokens if used.
       },
       apiResponseMetadata: {
         duration: completion.data.duration, // Assuming the API returns a duration field
@@ -85,8 +88,14 @@ router.post("/", requireUser, async (req, res) => {
       console.error("Failed to save chat entry:", dbError);
       return res.status(500).json({ error: "Failed to save chat entry." });
     }
-
-    res.json({ response: chatEntry });
+    const response = {
+      response: chatEntry.response,
+      prompt: chatEntry.prompt,
+      promptParams: chatEntry.apiParameters,
+      modelUsed: chatEntry.modelUsed,
+      responseId: chatEntry.apiResponseMetadata.responseId,
+    };
+    res.json({ [chatEntry._id]: response });
   } catch (error) {
     if (error.response) {
       console.log(error.response.status);
@@ -108,7 +117,6 @@ router.get("/models", requireUser, async (req, res) => {
     const response = await openai.listEngines();
 
     response.data.data.forEach(async (model) => {
-      console.log(model.id);
       const gptModel = new GPTModel({
         modelId: model.id,
         modelOwner: model.owner,

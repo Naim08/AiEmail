@@ -6,11 +6,12 @@ import {
   fetchMessages,
   fetchEmails,
   fetchChatGptModels,
+  getMessages,
 } from "../../store/chatgpt";
 
 function ChatGPTComponent() {
   const [userMessage, setUserMessage] = useState("");
-  const messages = useSelector((state) => state.chatgpt.messages);
+  const messages = useSelector(getMessages);
   const errors = useSelector((state) => state.chatgpt.errors);
   const dispatch = useDispatch();
 
@@ -47,9 +48,10 @@ function ChatGPTComponent() {
   return (
     <div className="chat-gpt-container">
       <div className="chat-messages">
-        {messages.map((message, idx) => (
+        {Object.values(messages).map((message, idx) => (
           <div key={idx} className="message">
-            {message}
+            <div className="message-prompt">{message.prompt}</div>
+            <div className="message-text">{message.response}</div>
           </div>
         ))}
       </div>
