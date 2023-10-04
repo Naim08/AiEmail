@@ -9,20 +9,23 @@ const UserPreferModal = () =>{
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        //dispatch create new user perference
+    }
 
     const closeUserPreferModal = ()=>{
         dispatch(setShowModal(false));
         dispatch(setFormPage("start"));
         dispatch(setformSlide("expand"));
-
     }
 
     return (
         <FormModal onClose={closeUserPreferModal}>
-            <div className="user-modal-content">
+            <form className="user-modal-content" onSubmit={handleSubmit}>
                 <div className="user-modal-header">
                     <div className="user-modal-header-img">
-                        <i className="fa-solid fa-bullseye-arrow fa-2xl"></i>
+                        <i className="fa-solid fa-bullseye fa-2xl"></i>
                     </div>
                     <div>
                         <h1>Set Your preference</h1>
@@ -68,8 +71,7 @@ const UserPreferModal = () =>{
                 <div className="user-modal-submit-btn">
                     <button>Done</button>
                 </div>
-
-            </div>
+            </form>
         </FormModal>
     )
 
