@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { createEmail, updateEmail } from '../../../store/email';
+import { createEmail, updateEmail, readEmails} from '../../../store/email';
 import "./EmailForm.css";
 
 const EmailForm = ({ emailToUpdate }) => {
+    console.log(emailToUpdate)
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -14,10 +15,9 @@ const EmailForm = ({ emailToUpdate }) => {
   });
 
   const handleChange = (e) => {
-    console.log("change")
-    console.log(e.target)
     const { name, value } = e.target;
-    setEmail(prevState => ({ ...prevState, [name]: value }));
+    setEmail({ ...email, [name]: value });
+
   };
 
   const handleSubmit = (e) => {
@@ -28,12 +28,14 @@ const EmailForm = ({ emailToUpdate }) => {
     } else {
       dispatch(createEmail(email));
     }
+    
   };
 
   const handleExit = (e) => {
     e.preventDefault();
     history.push(`/dashpage`);
   }
+
 
   return (
     // <div className='new-email-form-page'>
@@ -79,7 +81,7 @@ const EmailForm = ({ emailToUpdate }) => {
             />
           </div>
           <div className='new-email-form-btn'>
-            <button type="submit">{emailToUpdate ? '>' : '>'}</button>
+            <button type="submit">{emailToUpdate ? 'update' : '>'}</button>
           </div>
         </form>
       </div>

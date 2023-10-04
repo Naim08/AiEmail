@@ -14,12 +14,13 @@ const EmailDetails = () => {
     const isLoading = useSelector(state => state.emailsReducer.isLoading);
     const [emailToUpdate, setEmailToUpdate] = useState({ subject: email.subject, message: email.message, _id: emailId });
 
-
     useEffect(() => {
         if (!email) {
             dispatch(fetchSingleEmail(emailId));
         }
     }, [dispatch, email, emailId]);
+
+    
 
     return (
         <div>
@@ -29,7 +30,7 @@ const EmailDetails = () => {
                 <div>
                     <h2>{email.subject}</h2>
                     <p>{email.message}</p>
-                    <EmailForm emailToUpdate={emailToUpdate} />
+                    <EmailForm emailToUpdate={emailToUpdate}/>
                 </div>
             
             ) : (
