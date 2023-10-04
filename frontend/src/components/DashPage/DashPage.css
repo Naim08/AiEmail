@@ -1,43 +1,39 @@
-body{
-    margin: 0px 0px;
-    display: flex;
-    color: #61677A;
-
-  }
-  #root{
-    height: 954px;
+body, html, #root {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
     width: 100%;
-  }
-  .app-container{
-    height: 950px;
-    display: flex;
-    flex-direction: row;
-  }
 
-  .left-sideBar{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: stretch;
-    padding: 50px 0 0 50px;
-    background-color: #323439;
-    position: relative;
-    overflow-y: auto;
-    width: 255px;
-    color: #61677A;
-  }
+}
+  
 
-  .email-container{
-    width: 80%;
-    height: 100%;
-    border: 2px solid black;
-    background-color: aliceblue;
-  }
+.email-container {
+  flex: 1; /* Takes up all remaining space */
+  /* background-color: #323439;  */
+  background-color: #2D2F33; 
+  padding-top: 20px; 
+}
 
-  .search-bar-container{
-    width: 80%;
-    height: 40px;
-  }
+.search-bar-container {
+  width: 100%;
+  height: 40px;
+  padding: 5px; /* Add some padding around the container */
+  margin-bottom: 10px;
+}
+
+
+.app-container, .email-container {
+  height: 100%;
+}
+
+
+.app-container {
+  display: flex;
+}
+.email-container {
+  flex-grow: 1;
+}
+
 
 
 

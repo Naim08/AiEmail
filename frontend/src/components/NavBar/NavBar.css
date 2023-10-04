@@ -1,24 +1,37 @@
+div {
+  /* border: 1px solid white; */
+}
+
+
 .navi-container {
   color: #61677A;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-left: -55px;
+  width: 255px;
+  box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+
 }
 
 .navi-header h1 {
   font-size: 40px;
   font-family: 'Times';
   margin-left: -50px;
+  margin-top: 20px;
 }
 
 .links-nav {
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 30px 0px;
   font-size: 20px;
+  /* border: 4px dotted cyan; */
+  flex: 1;
+  flex-grow: 1;
 }
 
 .nav-link {  /* New generic class */
@@ -45,8 +58,14 @@ color: #fafafa;
 
 .left-sideBar {
   display: flex;
+  flex: 0 0 255px;
   flex-direction: column;
   height: 100%;
+  /* background-color: #323439; */
+  /* color: #61677A; */
+  margin-left: 20px;
+  
+  /* border: 4px dotted magenta; */
 }
 
 .bottom-links {
@@ -55,6 +74,9 @@ color: #fafafa;
   flex-direction: column;
   align-items: flex-start;  /* Align child elements to the start */
   font-size: 18px;
+  /* border: 4px solid blue; */
+  flex: 0;
+
 }
 
 .nav-logout {
@@ -108,4 +130,14 @@ color: #fafafa;
   align-items: flex-start;  /* Optional, to align items to the start */
 }
 
-
+/* 
+.navi-container::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 230px;
+  bottom: 20px;
+  width: 2px;
+  background-color: white;
+}
+ */

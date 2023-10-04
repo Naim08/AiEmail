@@ -32,18 +32,24 @@ const EmailList = () => {
         <div className="email-list-container">
           <div className="new-email-item" onClick={handleToNew}>
             <div className="new-item-img">
-                <i className="fa-light fa-file"></i>
-
+            <i class="fa-sharp fa-light fa-plus fa-2xl"></i>
             </div>
-            <div className="new-item-text">New</div>
           </div>
 
-            {emails.map(email => (
-              <div key={email.id} className='pre-email-item' onClick={() => handleEmailClick(email)}>
-                {email.subject}
-                <button onClick={() => dispatch(deleteEmail(email._id))}>Delete</button>
-              </div>
-            ))}
+          {emails.map(email => (
+  <div key={email.id} className='pre-email-item' onClick={() => handleEmailClick(email)}>
+    <div className="email-content">
+      <span className="email-subject">{email.subject}</span>
+      <span className="email-body">{email.message}</span>
+    </div>
+    <button className="delete-button" onClick={() => dispatch(deleteEmail(email._id))}>
+    <i className="fa-light fa-trash icon-light"></i>
+    <i className="fa-solid fa-trash icon-solid"></i>
+</button>
+
+  </div>
+))}
+
           </div>
       )}
     </>
