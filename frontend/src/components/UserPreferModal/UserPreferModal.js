@@ -13,6 +13,7 @@ const UserPreferModal = () =>{
     const [temperature, setTemperature] = useState(1);
     const [presencePenalty, setPresencePenalty] = useState(0);
     const [frequencyPenalty, setFrequencyPenalty] = useState(0);
+    const [maxTokens, setMaxTokens] = useState(0);
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -43,9 +44,8 @@ const UserPreferModal = () =>{
                             <h3>functionCall</h3>
                         </div>
                         <div>
-                            <button>none</button>
-                            <button>auto</button>
-                            <button>Custom</button>
+                            <button  className="functionCall-btn" onClick={()=> setFunctionCall("none") }>none</button>
+                            <button className="functionCall-btn" onClick={()=> setFunctionCall("auto")}>auto</button>
                         </div>
                     </div>
 
@@ -120,7 +120,13 @@ const UserPreferModal = () =>{
                             <h3>Max Tokens</h3>
                         </div>
                         <div>
-                            <input className="max-Tokens-input"></input>
+                            <input
+                                type="number"
+                                className="max-Tokens-input"
+                                onChange={(e)=>setMaxTokens(Number(e.target.value))}
+                                // value={maxTokens}
+                                min={0}
+                            />
                         </div>
                     </div>
 

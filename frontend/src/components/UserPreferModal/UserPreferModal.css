@@ -41,11 +41,12 @@
 
 
 .temperature-thumb, .presencePenalty-thumb, .frequencyPenalty-thumb{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 20px;
     background-color: grey;
     /* border-radius: 50%; */
     cursor: pointer;
+    text-align: center;
 }
 
 .temperature-track, .presencePenalty-track, .frequencyPenalty-track{
