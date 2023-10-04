@@ -127,7 +127,7 @@ const UserPreferModal = () =>{
 
                     <div className="user-modal-body-row">
                         <div className="user-token-label">
-                            <h3>Words Count</h3>
+                            <h3>Words Length Limit</h3>
                         </div>
                         <div >
                             <input
@@ -153,8 +153,8 @@ const UserPreferModal = () =>{
                     </div>
 
                 </div>
-                <div className="user-modal-submit-btn">
-                    <button >Done</button>
+                <div className="user-modal-submit-btn-container">
+                    <button className="user-modal-submit-btn">Done</button>
                 </div>
             </form>
         </FormModal>
