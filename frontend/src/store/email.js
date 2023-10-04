@@ -216,14 +216,23 @@ const emailsReducer = (state = initialState, action) => {
         error: null,
       };
     case EMAIL_FETCH_SINGLE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        emails: state.emails.map((email) =>
-          email.id === action.payload.id ? action.payload : email
-        ),
-        error: null,
-      };
+      const emailExists = state.emails.some(
+        (email) => email._id === action.payload._id
+      );
+      if (emailExists) {
+        return {
+          ...state,
+          isLoading: false,
+          error: null,
+        };
+      } else {
+        return {
+          ...state,
+          isLoading: false,
+          emails: [...state.emails, action.payload],
+          error: null,
+        };
+      }
     case EMAIL_FETCH_SINGLE_FAILURE:
       return {
         ...state,
