@@ -13,8 +13,10 @@ const { expressSessionSecret } = require("./config/keys");
 
 require("./models/User");
 
-require('./models/Email'); 
+require("./models/Email");
 require("./models/ChatGPT");
+require("./models/GPTModel");
+
 require("./config/passport");
 
 const passport = require("passport");
@@ -22,9 +24,14 @@ const passport = require("passport");
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 const chatGPTRouter = require("./routes/api/chatgpt");
-const emailRouter = require("./routes/api/emails")
-
+const emailRouter = require("./routes/api/emails");
 const User = require("./models/User");
+const {
+  restoreUser,
+  getUserEmail,
+  getMostRecentEmails,
+  requireUser,
+} = require("./config/passport");
 
 const app = express();
 
@@ -34,7 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(
-  require("express-session")({
+  session({
     secret: expressSessionSecret,
     resave: true,
     saveUninitialized: true,
@@ -61,7 +68,7 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/chatgpt", chatGPTRouter);
-app.use("/api/emails",emailRouter);
+app.use("/api/emails", emailRouter);
 
 if (isProduction) {
   const path = require("path");
@@ -85,7 +92,7 @@ app.get(
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/plus.login",
-      "https://www.googleapis.com/auth/gmail.readonly",
+      "https://mail.google.com/",
     ],
     accessType: "offline",
     prompt: "consent",
@@ -99,7 +106,7 @@ app.get(
   },
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    console.log(req.user);
+    console.log("user", req.user);
 
     //save req.accessToken and req.refreshToken to your database, user model
     User.findOneAndUpdate(
@@ -108,18 +115,24 @@ app.get(
         googleAccessToken: req.user.accessToken,
         googleRefreshToken: req.user.refreshToken,
       }
-    ).then((user) => {
-      // save the user data to your database here
-      user.googleAccessToken = req.user.accessToken;
-      user.refreshToken = req.user.refreshToken;
-      user.save();
-    });
-
-    res.cookie("accessToken", req.user.accessToken);
-    res.cookie("refreshToken", req.user.refreshToken);
-    res.redirect("http://localhost:3000");
+    ).exec();
+    res.redirect("http://localhost:3000/dashpage");
   }
 );
+
+app.get("/fetch-emails", requireUser, async (req, res) => {
+  try {
+    const emails = await getMostRecentEmails(
+      req.user.googleAccessToken,
+      req.user.googleRefreshToken
+    );
+
+    res.json({ emails });
+  } catch (error) {
+    console.error("Error fetching emails:", error);
+    res.status(500).json({ error: "Error fetching emails" });
+  }
+});
 
 app.use((req, res, next) => {
   const err = new Error("Not Found");

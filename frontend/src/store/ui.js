@@ -8,6 +8,7 @@ export const SET_PROMPT_RESPONSE = "ui/setPromptResponse";
 export const SET_FORM_PAGE = "ui/setFormPage";
 export const SET_FORM_SLIDE = "ui/setFormSlide";
 export const SET_SCROLL = "ui/setScroll";
+export const SET_CHAT_GPT_MODELS = "ui/setChatGPTModels";
 
 export const receiveModalToggle = (boolean) => ({
   type: RECEIVE_MODAL_TOGGLE,
@@ -46,6 +47,11 @@ export const setScroll = (toggle) => ({
   toggle,
 });
 
+export const setChatGPTModels = (models) => ({
+  type: SET_CHAT_GPT_MODELS,
+  models,
+});
+
 export const setModalStatus = (boolean) => async (dispatch) => {
   return dispatch(receiveModalToggle(boolean));
 };
@@ -77,6 +83,10 @@ export const getFormType = (state) => {
 export const getFormSlide = (state) => {
   return state.ui.formSlide;
 };
+
+export const getChatGPTModels = (state) => {
+  return state.ui.models;
+};
 export const setUnauthorizedStatus = (boolean) => async (dispatch) => {
   return dispatch(setUnauthorized(boolean));
 };
@@ -101,6 +111,7 @@ const initialState = {
   setScroll: true,
   formType: "start",
   formSlide: "expand",
+  models: [],
 };
 
 const uiReducer = (state = initialState, action) => {
@@ -121,6 +132,8 @@ const uiReducer = (state = initialState, action) => {
       return { ...state, formSlide: action.direction };
     case SET_SCROLL:
       return { ...state, setScroll: action.toggle };
+    case SET_CHAT_GPT_MODELS:
+      return { ...state, models: action.models };
 
     default:
       return state;
