@@ -10,6 +10,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const errors = useSelector(state => state.errors.session);
+  const history = useHistory();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,7 +19,7 @@ const SignupForm = () => {
     };
   }, [dispatch]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
       email,
@@ -26,7 +27,12 @@ const SignupForm = () => {
       password
     };
 
-    dispatch(signup(user));
+    await dispatch(signup(user));
+
+    // Check if there are no errors and redirect
+    if (!errors) {
+      history.push('/dashpage');
+    }
   }
 
   return (

@@ -4,17 +4,27 @@ import { Link, useHistory} from "react-router-dom";
 import { clearSessionErrors, login } from "../../store/session";
 import './LoginForm.css';
 
+
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const currentUser = useSelector(state => state.session.user);
+  console.log(currentUser)
 
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
     };
   }, [dispatch]);
+
+  useEffect(() => {
+    if (currentUser) {
+      history.push('/dashpage');
+      }
+  }, [currentUser, history]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

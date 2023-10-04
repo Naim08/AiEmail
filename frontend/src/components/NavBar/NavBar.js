@@ -4,17 +4,25 @@ import "./NavBar.css";  // Assuming you've updated this CSS file based on previo
 import { logout } from "../../store/session";
 import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
   const [selectedLink, setSelectedLink] = useState(null);
   const userEmail = useSelector((state) => state.session.user.email);
+  const history = useHistory();
 
   const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
+
+  const handleLogOut = (e) =>{
+    logoutUser(e); 
+    setSelectedLink('logout');
+    history.push("/")
+  }
 
   const getLinks = () => {
     if (loggedIn) {
@@ -52,7 +60,7 @@ function NavBar() {
             </div>
             <div className="nav-logout nav-link logout-container">
               <a className={`${selectedLink === 'logout' ? 'selected' : ''}`}
-                 onClick={(e) => {logoutUser(e); setSelectedLink('logout'); }}>
+                 onClick={handleLogOut}>
                   <i class="fa-sharp fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Logout</a>
                   <small className="user-email">{userEmail}</small>
             </div>
