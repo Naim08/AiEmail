@@ -16,20 +16,19 @@
     padding-right:30px;
     width: 100%;
     border-radius: 30px !important;
+    height: 30px !important;
 }
 
 .search-btn {
     position: absolute;
     right: 0;
     top: 0;
-    height: 45px; /* Make the height consistent with the input */
+    height: 30px;
     width: 36px;
     cursor: pointer; /* Change cursor to pointer on hover */
-    padding: 0 10px;
     appearance: none;
     background: none;
     border: none;
-    margin: 0;
     padding: 0;
     font: inherit;
     cursor: pointer;

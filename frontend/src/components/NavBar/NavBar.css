@@ -126,7 +126,7 @@ color: #fafafa;
   align-items: flex-start;  /* Optional, to align items to the start */
 }
 
-
+/* 
 .navi-container::after {
   content: '';
   position: absolute;
@@ -136,4 +136,4 @@ color: #fafafa;
   width: 2px;
   background-color: white;
 }
-
+ */

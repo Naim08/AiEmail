@@ -1,10 +1,3 @@
-/* .pre-email-list-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-} */
-
 .pre-email-item{
     width: 140px;
     height: 172px;
@@ -27,7 +20,7 @@
 }
 
 .email-subject {
-  /* Limit text to two lines */
+
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
