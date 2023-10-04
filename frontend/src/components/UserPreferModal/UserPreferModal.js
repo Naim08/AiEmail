@@ -13,10 +13,15 @@ const UserPreferModal = () =>{
     const [temperature, setTemperature] = useState(1);
     const [presencePenalty, setPresencePenalty] = useState(0);
     const [frequencyPenalty, setFrequencyPenalty] = useState(0);
-    const [maxTokens, setMaxTokens] = useState(0);
+    const [maxTokens, setMaxTokens] = useState(0)
+    const [userMessage, setUserMessage] = useState("");
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+
+        const formData = {
+            max_tokens: maxTokens
+        };
         //dispatch create new user perference
     }
 
@@ -41,9 +46,9 @@ const UserPreferModal = () =>{
 
                     <div className="user-modal-body-row">
                         <div>
-                            <h3>functionCall</h3>
+                            <h3>Function Call</h3>
                         </div>
-                        <div>
+                        <div >
                             <button  className="functionCall-btn" onClick={()=> setFunctionCall("none") }>none</button>
                             <button className="functionCall-btn" onClick={()=> setFunctionCall("auto")}>auto</button>
                         </div>
@@ -51,7 +56,7 @@ const UserPreferModal = () =>{
 
                     <div className="user-modal-body-row">
                         <div>
-                            <h3>temperature</h3>
+                            <h3>Output Randomness</h3>
                         </div>
                         <div >
                             <ReactSlider
@@ -116,16 +121,28 @@ const UserPreferModal = () =>{
                     </div>
 
                     <div className="user-modal-body-row">
-                        <div>
-                            <h3>Max Tokens</h3>
+                        <div className="user-token-label">
+                            <h3>Words Count</h3>
                         </div>
-                        <div>
+                        <div c>
                             <input
                                 type="number"
                                 className="max-Tokens-input"
                                 onChange={(e)=>setMaxTokens(Number(e.target.value))}
                                 // value={maxTokens}
                                 min={0}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="user-modal-body-row">
+                        <div className="user-messgae-label">
+                            <h3>User Message</h3>
+                        </div>
+                        <div className="user-messgae-input">
+                            <input
+                                type="text"
+                                onChange={(e)=>setUserMessage(e.target.value)}
                             />
                         </div>
                     </div>
