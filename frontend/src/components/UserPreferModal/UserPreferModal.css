@@ -33,3 +33,24 @@
 .user-modal-submit-btn{
     padding-left: 350px;
 }
+
+.horizontal-slider {
+    width: 150px;
+    height: 25px;
+  }
+
+
+.temperature-thumb, .presencePenalty-thumb, .frequencyPenalty-thumb{
+    width: 25px;
+    height: 25px;
+    background-color: grey;
+    /* border-radius: 50%; */
+    cursor: pointer;
+}
+
+.temperature-track, .presencePenalty-track, .frequencyPenalty-track{
+    top: 10px;
+    bottom: 0;
+    background: grey;
+    height: 5px;
+}
