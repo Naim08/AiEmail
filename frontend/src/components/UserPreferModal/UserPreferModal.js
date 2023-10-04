@@ -51,7 +51,7 @@ const UserPreferModal = () =>{
 
                     <div className="user-modal-body-row">
                         <div>
-                            <h3>Function Call</h3>
+                            <h3>Model Function Call</h3>
                         </div>
                         <div >
                             <button  className="functionCall-btn" onClick={()=> setFunctionCall("none") }>none</button>
@@ -129,10 +129,10 @@ const UserPreferModal = () =>{
                         <div className="user-token-label">
                             <h3>Words Count</h3>
                         </div>
-                        <div c>
+                        <div >
                             <input
                                 type="number"
-                                className="max-Tokens-input"
+                                className="max-tokens-input"
                                 onChange={(e)=>setMaxTokens(Number(e.target.value))}
                                 // value={maxTokens}
                                 min={0}
