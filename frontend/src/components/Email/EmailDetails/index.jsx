@@ -1,10 +1,11 @@
-// EmailDetails.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleEmail } from '../../../store/email';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { updateEmail, deleteEmail } from '../../../store/email';
 import { useHistory } from "react-router-dom";
+import MessageComponent from "../../ChatGPT/MessageComponent";
+import { sendMessage, getMessage } from "../../../store/chatgpt";
 
 
 const EmailDetails = () => {
@@ -13,6 +14,16 @@ const EmailDetails = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [email, setEmail] = useState(useSelector(state => state.emailsReducer.emails.find(e => e._id === emailId)))
+    const emailResponse = useSelector(getMessage);
+  useEffect(() => {
+    if (email) {
+      const prompt = {
+        subject: email.subject,
+        message: email.message,
+      };
+      dispatch(sendMessage({ prompt: prompt }));
+    }
+  }, [email]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,8 +40,6 @@ const EmailDetails = () => {
         history.push(`/dashpage`);
     }
 
-
-    
 
     return (
         // <div className='new-email-form-page'>
@@ -81,10 +90,14 @@ const EmailDetails = () => {
             </form>
         </div>
         <div className="vertical-line"></div>
-
+     <div className="chat-messages">
+        {emailResponse &&
+          Object.values(emailResponse).map((message, idx) => (
+            <MessageComponent key={idx} message={message} />
+          ))}
+      </div>
         </>
   );
 };
 
 export default EmailDetails;
-

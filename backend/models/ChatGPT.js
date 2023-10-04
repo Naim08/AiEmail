@@ -7,7 +7,10 @@ const chatGPTSchema = new mongoose.Schema({
     required: false,
   },
   prompt: {
-    type: String,
+    type: {
+      subject: String,
+      message: String,
+    },
     required: true,
   },
   response: {
