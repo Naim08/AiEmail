@@ -20,6 +20,15 @@ const EmailDetails = () => {
         }
     }, [dispatch, email, emailId]);
 
+    useEffect(() => {
+        setEmailToUpdate({ 
+            subject: email?.subject, 
+            message: email?.message, 
+            _id: emailId 
+        });
+    }, [email, emailId]);
+
+
     
 
     return (

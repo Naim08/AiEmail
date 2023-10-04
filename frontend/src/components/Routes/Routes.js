@@ -9,7 +9,7 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
       path={path}
       exact={exact}
       render={(props) =>
-        !loggedIn ? <Component {...props} /> : <Redirect to="/" />
+        !loggedIn ? <Component {...props} /> : <Redirect to="/dashpage" />
       }
     />
   );
