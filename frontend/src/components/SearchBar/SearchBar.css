@@ -24,8 +24,6 @@
     top: 0;
     height: 45px; /* Make the height consistent with the input */
     width: 36px;
-    background: none;
-    /* border-radius: 0 4px 4px 0; */
     cursor: pointer; /* Change cursor to pointer on hover */
     padding: 0 10px;
     appearance: none;
