@@ -46,6 +46,7 @@ input[type="password"] {
     background: #e0e0e0;
     box-sizing: border-box;
     padding-left: 10px; /* Add some padding to the left */
+    color: black;
 }
 
 /* Error Messages */
@@ -90,23 +91,18 @@ Link:hover {
     text-decoration: underline;
 }
 
-
 .inner-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
 
-  
-
-
-  .login-link,
-  .login-link:visited {
+.login-link,
+.login-link:visited {
     color: #fff;
     text-decoration: underline;
-  }
-  
-  .login-link:hover {
+}
+
+.login-link:hover {
     text-decoration: underline;
-  }
-  
+}

@@ -1,49 +1,38 @@
-body {
-    background-color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
+.container {
     display: grid;
     grid-template-columns: 1fr 2px 1fr;
     align-items: center;
-    /* height: 100vh; */
     height: calc(100vh - 50px);
     background-color: #333;
-    margin-top: 90px;
-  }
-  
-  /* Heading Styles */
-  .heading, .heading-static, .heading-dynamic {
+}
+
+/* Heading Styles */
+.heading,
+.heading-static,
+.heading-dynamic {
     color: #fff;
-    font-size: 4vw;  /* Use viewport width for responsive font size */
-  }
-  
-  .heading {
-    grid-column: 1;
-    justify-self: end;
-    margin-right: 50px;
-  }
-  
-  .heading-static, .heading-dynamic {
+    font-size: 4vw; /* Use viewport width for responsive font size */
+}
+
+.heading-static,
+.heading-dynamic {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-  }
-  
-  .heading-static {
+}
+
+.heading-static {
     font-family: Times;
-    left: 5%;  
-  }
-  
-  .heading-dynamic {
-    font-size: 4em;
-    left: 16%;  
-  }
-  
-  /* Center Container Styles */
-  .center-container {
+    left: 5%;
+}
+
+.heading-dynamic {
+    left: 18%;
+    font-size: 3.2vw;
+}
+
+/* Center Container Styles */
+.center-container {
     grid-column: 3;
     display: flex;
     flex-direction: column;
@@ -51,31 +40,30 @@ body {
     justify-content: center;
     font-family: Helvetica, sans-serif;
     /* border: 1px solid black; */
-  }
-  
-  .button-container {
+}
+
+.button-container {
     display: flex;
     justify-content: center;
     padding-top: 15px;
-  }
+}
 
-
-  .get-started {
+.get-started {
     margin-left: -20px;
-    margin-top: -150px;
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: #fff;
-  }
-  
-  .vertical-line {
+}
+
+.vertical-line {
     grid-column: 2;
     width: 2px;
     height: 50%;
     background-color: whitesmoke;
-  }
-  
-  .neumorphic {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.neumorphic {
     border-radius: 1rem;
     background: #e0e0e0;
     width: 160px;
@@ -84,53 +72,48 @@ body {
     align-items: center;
     justify-content: center;
     margin-right: 30px;
-   
-    
-  }
-
-  .neumorphic:first-child {
-    margin-right: 50px;  /* Add some space to the right of the first button */
-  }
-  
-  .neumorphic a {
     text-decoration: none;
     color: #333;
-  }
-  
-  /* Footer Styles */
-  footer {
-    text-align: center;
-    margin-top: 2rem;
-    color: #fff;
-  }
-  
-  /* Typing Animation Styles */
-  .typing {
+}
+
+.neumorphic:first-child {
+    margin-right: 50px; /* Add some space to the right of the first button */
+}
+
+.neumorphic a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Typing Animation Styles */
+.typing {
     color: #fff;
     font-weight: normal;
-  }
-  
-  .cursor {
+}
+
+.cursor {
     border-left: 2px solid #fff;
     width: 0;
     height: 1em;
     margin-left: 2px;
     animation: blink-animation 0.7s steps(1, start) infinite;
-  }
-  
-  @keyframes blink-animation {
-    50% {
-      border-color: transparent;
-    }
-  }
+}
 
-  footer {
-    position: fixed;  /* Fix position */
-    bottom: 35px;  /* Set to bottom */
-    width: 100%;  /* Full width */
-    text-align: center;
+@keyframes blink-animation {
+    50% {
+        border-color: transparent;
+    }
+}
+
+footer {
     color: #fff;
-    background-color: #333;  /* Same as body background */
-  }
-  
-  
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .heading-static,
+    .heading-dynamic,
+    .vertical-line {
+        display: none;
+    }
+}

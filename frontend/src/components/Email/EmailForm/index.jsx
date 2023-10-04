@@ -5,7 +5,6 @@ import { createEmail, updateEmail, readEmails} from '../../../store/email';
 import "./EmailForm.css";
 
 const EmailForm = ({ emailToUpdate }) => {
-    console.log(emailToUpdate)
   const dispatch = useDispatch();
   const history = useHistory();
 
