@@ -32,10 +32,8 @@ const EmailList = () => {
         <div className="email-list-container">
           <div className="new-email-item" onClick={handleToNew}>
             <div className="new-item-img">
-                <i className="fa-light fa-file"></i>
-
+            <i class="fa-sharp fa-light fa-plus fa-2xl"></i>
             </div>
-            <div className="new-item-text">New</div>
           </div>
 
             {emails.map(email => (
