@@ -8,10 +8,8 @@ const DashPage = () => {
 
     return (
         <div className="app-container">
-
-            <div className="left-sideBar">
+            
                 <NavBar />
-            </div>
 
             <div className="email-container">
 

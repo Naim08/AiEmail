@@ -44,7 +44,7 @@ function NavBar() {
                   <i class="fa-solid fa-user"></i> Account</a>
             </div>
 
-          </div>
+          </div> {/*end links-nav*/}
 
           <div className="bottom-links">  {/* New wrapper div for bottom links */}
             <div className="nav-google-login-btn">
@@ -56,7 +56,7 @@ function NavBar() {
                   <i class="fa-sharp fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i> Logout</a>
                   <small className="user-email">{userEmail}</small>
             </div>
-          </div>
+          </div> {/*end bottom-links*/}
 
         </div>
       );

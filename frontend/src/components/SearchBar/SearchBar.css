@@ -1,18 +1,40 @@
-.search-bar{
+.search-bar {
     display: flex;
     flex-direction: row;
+    align-items: center; /* Add this to vertically align the elements */
+    position: relative;
+    width: 50%;
+    max-width: 800px;
+    margin-left: 20px;
 }
 
-
-.search-box{
-    width: 80%;
-    height: 28px;
+.search-box {
+    flex: 1; /* Take up all available space */
+    border: 1px solid #ccc;
+    padding-left: 10px; /* Add some padding */
+    color: black;
+    padding-right:30px;
+    width: 100%;
+    border-radius: 30px !important;
 }
 
-.search-btn{
-    height: 34px;
-    padding-inline: 0px;
-
+.search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 45px; /* Make the height consistent with the input */
+    width: 36px;
+    background: none;
+    /* border-radius: 0 4px 4px 0; */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    padding: 0 10px;
+    appearance: none;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 

@@ -13,11 +13,11 @@ const  SearchBar = () => {
                 type='text'
                 className='search-box'
                 // value={title}
-                placeholder='Search your email'
+                placeholder='find something..'
                 // onChange={e => setTitle(e.target.value)}
             />
             <button className='search-btn' >
-                <i className="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-sharp fa-regular fa-magnifying-glass"></i>
             </button>
         </div>
     )
