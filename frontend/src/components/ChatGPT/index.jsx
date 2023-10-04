@@ -4,6 +4,8 @@ import {
   sendMessage,
   clearMessageErrors,
   fetchMessages,
+  fetchEmails,
+  fetchChatGptModels,
 } from "../../store/chatgpt";
 
 function ChatGPTComponent() {
@@ -60,6 +62,11 @@ function ChatGPTComponent() {
         />
         <button type="submit">Send</button>
       </form>
+      <button onClick={() => dispatch(fetchChatGptModels())}>
+        {" "}
+        Fetch Models{" "}
+      </button>
+      <button onClick={() => dispatch(fetchEmails())}> Fetch Emails </button>
       {renderErrors()}
     </div>
   );

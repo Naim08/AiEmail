@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import { setChatGPTModels } from "./ui";
 
 const SEND_MESSAGE = "chatgpt/SEND_MESSAGE";
 const RECEIVE_MESSAGE = "chatgpt/RECEIVE_MESSAGE";
@@ -55,11 +56,41 @@ export const sendMessage = (message) => async (dispatch) => {
   }
 };
 
+export const fetchEmails = () => async (dispatch) => {
+  try {
+    const res = await jwtFetch("/fetch-emails");
+    const emails = await res.data;
+    dispatch(receiveMessages(emails));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      dispatch(receiveErrors(resBody.errors));
+    } else if (resBody.statusCode === 500) {
+      dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
 export const fetchMessages = () => async (dispatch) => {
   try {
     const res = await jwtFetch("/api/chatgpt");
     const messages = await res.data;
     dispatch(receiveMessages(messages));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      dispatch(receiveErrors(resBody.errors));
+    } else if (resBody.statusCode === 500) {
+      dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
+export const fetchChatGptModels = () => async (dispatch) => {
+  try {
+    const res = await jwtFetch("/api/chatgpt/models");
+    const models = await res.data;
+    dispatch(setChatGPTModels(models));
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {

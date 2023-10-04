@@ -4,6 +4,7 @@ const router = express.Router();
 const { Configuration, OpenAIApi } = require("openai");
 const mongoose = require("mongoose");
 const ChatGPT = mongoose.model("ChatGPT");
+const GPTModel = mongoose.model("GPTModel");
 const { requireUser } = require("../../config/passport");
 // If you're using ES6 imports elsewhere, ensure your setup supports it
 // For the sake of this example, I'm using CommonJS for all imports
@@ -22,6 +23,12 @@ const openai = new OpenAIApi(configuration);
 //const response = await openai.listEngines();
 
 router.post("/", requireUser, async (req, res) => {
+  if (req.isAuthenticated()) {
+    console.log(req.user);
+  } else {
+    console.log("not authenticated");
+  }
+
   if (!req.user) {
     return res.status(401).json({ error: "Unauthorized" });
   }
@@ -92,4 +99,42 @@ router.post("/", requireUser, async (req, res) => {
   }
 });
 
+router.get("/models", requireUser, async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const response = await openai.listEngines();
+
+    response.data.data.forEach(async (model) => {
+      console.log(model.id);
+      const gptModel = new GPTModel({
+        modelId: model.id,
+        modelOwner: model.owner,
+        ready: model.ready,
+        modelObject: model.object,
+        permissions: model.permissions,
+        created: model.created,
+      });
+
+      try {
+        gptModel.save();
+      } catch (dbError) {
+        console.error("Failed to save chat entry:", dbError);
+        return res.status(500).json({ error: "Failed to save chat entry." });
+      }
+    });
+    res.json({ models: response.data.data });
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.data);
+      res.status(500).json({ error: "Failed to get a response from ChatGPT." });
+    } else {
+      console.log(error.message);
+      res.status(500).json({ error: "Failed to get a response from ChatGPT." });
+    }
+  }
+});
 module.exports = router; // Using CommonJS export here
