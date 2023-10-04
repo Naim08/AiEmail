@@ -9,8 +9,9 @@ body, html, #root {
 
 .email-container {
   flex: 1; /* Takes up all remaining space */
-  background-color: #323439; /* Or any color you prefer */
-  margin-top: 20px; 
+  /* background-color: #323439;  */
+  background-color: #2D2F33; 
+  padding-top: 20px; 
 }
 
 .search-bar-container {

@@ -10,6 +10,9 @@ div {
   flex-direction: column;
   text-align: center;
   width: 255px;
+  box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+
 }
 
 .navi-header h1 {
@@ -58,9 +61,10 @@ color: #fafafa;
   flex: 0 0 255px;
   flex-direction: column;
   height: 100%;
-  background-color: #323439;
-  color: #61677A;
+  /* background-color: #323439; */
+  /* color: #61677A; */
   margin-left: 20px;
+  
   /* border: 4px dotted magenta; */
 }
 
