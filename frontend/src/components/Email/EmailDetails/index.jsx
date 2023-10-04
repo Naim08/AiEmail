@@ -12,13 +12,14 @@ const EmailDetails = () => {
   const isLoading = useSelector((state) => state.emailsReducer.isLoading);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [email, setEmail] = useState(
-    useSelector((state) =>
-      state.emailsReducer.emails.find((e) => e._id === emailId)
-    )
-  );
+  const email = useSelector(getEmail(emailId));
   const emailResponse = useSelector(getMessage);
   const emailPrompt = useSelector(getEmail(emailId));
+  const [localEmail, setLocalEmail] = useState(email);
+  useEffect(() => {
+    dispatch(fetchSingleEmail(emailId));
+  }, []);
+
   useEffect(() => {
     if (emailPrompt) {
       const prompt = {
@@ -26,23 +27,25 @@ const EmailDetails = () => {
         message: email.message,
       };
       dispatch(sendMessage({ prompt: prompt }));
+      setLocalEmail(email);
     }
   }, [emailPrompt]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEmail({ ...email, [name]: value });
+    setLocalEmail({ ...localEmail, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateEmail({ ...email, id: emailId }));
+    dispatch(updateEmail({ ...localEmail, id: emailId }));
   };
 
   const handleExit = (e) => {
     e.preventDefault();
     history.push(`/dashpage`);
   };
+  console.log(localEmail);
 
   return (
     // <div className='new-email-form-page'>
@@ -66,7 +69,7 @@ const EmailDetails = () => {
             <input
               type="text"
               name="subject"
-              value={email.subject}
+              value={localEmail ? localEmail.subject : ""}
               onChange={handleChange}
               placeholder="Subject"
             />
@@ -76,7 +79,7 @@ const EmailDetails = () => {
           <div className="new-email-body" style={{ flexGrow: 1 }}>
             <textarea
               name="message"
-              value={email.message}
+              value={localEmail ? localEmail.message : ""}
               onChange={handleChange}
               placeholder="Message"
               style={{ height: "100%" }}
