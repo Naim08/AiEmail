@@ -7,18 +7,21 @@ import './SearchBar.css'
 
 const  SearchBar = () => {
 
+    const [isExpanded, setIsExpanded] = useState(false);
+
     return (
-        <div className='search-bar'>
+        <div className={`search-bar ${isExpanded ? 'expanded' : ''}`} onClick={() => setIsExpanded(true)}>
+             <button className='search-btn' >
+            Search   <i class="fa-sharp fa-regular fa-magnifying-glass"></i>
+            </button>
+            {isExpanded && (
             <input
                 type='text'
                 className='search-box'
-                // value={title}
                 placeholder='find something..'
-                // onChange={e => setTitle(e.target.value)}
             />
-            <button className='search-btn' >
-            <i class="fa-sharp fa-regular fa-magnifying-glass"></i>
-            </button>
+            )}
+           
         </div>
     )
 
