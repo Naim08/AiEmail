@@ -1,73 +1,43 @@
-/* body{
-    margin: 0px 0px;
-    display: flex;
-    color: #61677A;
-
-  }
-  #root{
-    height: 954px;
-    width: 100%;
-  }
-  .app-container{
-    height: 950px;
-    display: flex;
-    flex-direction: row;
-  }
-
-  .left-sideBar{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: stretch;
-    padding: 50px 0 0 50px;
-    background-color: #323439;
-    position: relative;
-    overflow-y: auto;
-    width: 255px;
-    color: #61677A;
-  }
-
-  .email-container{
-    width: 80%;
-    height: 100%;
-    border: 2px solid black;
-    background-color: aliceblue;
-  }
-
-  .search-bar-container{
-    width: 80%;
-    height: 40px;
-  } */
-
-  body, html, #root {
-    margin: 0;
+body, html, #root {
+    margin: 0px;
+    padding: 0px;
     height: 100%;
     width: 100%;
-  }
+
+}
   
-  .app-container {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .left-sideBar {
-    flex: 0 0 255px; /* Fixed width, no growth, no shrink */
-    display: flex;
-    flex-direction: column;
-    background-color: #323439;
-    color: #61677A;
-    overflow-y: auto;
-  }
-  
-  .email-container {
-    flex: 1; /* Takes up all remaining space */
-    background-color: white; /* Or any color you prefer */
-  }
-  
-  .search-bar-container {
-    width: 100%;
-    height: 40px;
-  }
-  
+/* .app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  border: 4px solid red;
+
+} */
+.email-container {
+  flex: 1; /* Takes up all remaining space */
+  background-color: white; /* Or any color you prefer */
+  border: 4px solid green;
+}
+
+.search-bar-container {
+  width: 100%;
+  height: 40px;
+  border: 4px solid purple;
+}
+
+
+.app-container, .left-sideBar, .email-container {
+  height: 100%;
+}
+
+
+.app-container {
+  display: flex;
+}
+.email-container {
+  flex-grow: 1;
+}
+
+
+
 

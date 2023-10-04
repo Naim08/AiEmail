@@ -7,7 +7,8 @@ div {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-left: 20px;
+  /* margin-left: 20px; */
+  border: 4px  dotted white;
 }
 
 .navi-header h1 {
@@ -22,6 +23,8 @@ div {
   justify-content: space-around;
   padding: 30px 0px;
   font-size: 20px;
+  border: 4px dotted cyan;
+  flex: 1;
 }
 
 .nav-link {  /* New generic class */
@@ -48,8 +51,15 @@ color: #fafafa;
 
 .left-sideBar {
   display: flex;
+  flex: 0 0 255px;
   flex-direction: column;
   height: 100%;
+  background-color: #323439;
+  color: #61677A;
+  /* overflow-y: auto; */
+  /* border: 4px solid magenta; */
+
+
 }
 
 .bottom-links {
