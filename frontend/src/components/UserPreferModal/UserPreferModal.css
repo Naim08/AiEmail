@@ -109,7 +109,7 @@ input[type="text"]{
     padding: 5px 5px;
     position: absolute;
     z-index: 1;
-    top: 150%;
+    top: 100%;
     left: 50%;
     margin-left: -60px;
     font-size: 13px;

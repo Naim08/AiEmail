@@ -16,8 +16,18 @@ const emailSchema = new Schema({
     dateSent: {
         type: Date,
         default: Date.now
+    },
+    to: {
+        type: String
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
+
+
 
 
 module.exports = mongoose.model("Email", emailSchema);
