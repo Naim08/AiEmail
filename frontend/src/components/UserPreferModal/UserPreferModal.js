@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import ReactSlider from "react-slider";
 import "./UserPreferModal.css"
 import { FormModal } from "../../context/modal";
 import { setFormPage, setformSlide } from "../../store/ui";
@@ -8,20 +9,27 @@ import { setFormPage, setformSlide } from "../../store/ui";
 const UserPreferModal = () =>{
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
+    const [temperature, setTemperature] = useState(1);
+    const [presencePenalty, setPresencePenalty] = useState(0);
+    const [frequencyPenalty, setFrequencyPenalty] = useState(0);
+    const [maxTokens, setMaxTokens] = useState(0)
+    const [userMessage, setUserMessage] = useState("");
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+
+        const formData = {
+            max_tokens: maxTokens,
+            presence_penalty: presencePenalty,
+            frequency_penalty: frequencyPenalty,
+            temperature: temperature,
+            messages: userMessage
+        };
         //dispatch create new user perference
     }
 
-    const closeUserPreferModal = ()=>{
-        dispatch(setShowModal(false));
-        dispatch(setFormPage("start"));
-        dispatch(setformSlide("expand"));
-    }
-
     return (
-        <FormModal onClose={closeUserPreferModal}>
+
             <form className="user-modal-content" onSubmit={handleSubmit}>
                 <div className="user-modal-header">
                     <div className="user-modal-header-img">
@@ -30,49 +38,108 @@ const UserPreferModal = () =>{
                     <div>
                         <h1>Set Your preference</h1>
                     </div>
+
                 </div>
                 <div className="user-modal-body">
+
                     <div className="user-modal-body-row">
-                        <div>
-                            <h3>Tone</h3>
+                        <div className="tooltip">Output Randomness
+                            <span className="tooltiptext">Between 0 and 2, higher values will make the output more random</span>
                         </div>
-                        <div>
-                            <button>Formal</button>
-                            <button>Casual</button>
-                            <button>Friendly</button>
-                            <button>Professional</button>
+                        <div >
+                            <ReactSlider
+                                value={temperature}
+                                onAfterChange={(val) => {
+                                    setTemperature(val);
+                                  }}
+                                orientation="horizontal"
+                                min={0}
+                                max={2}
+                                className="horizontal-slider"
+                                thumbClassName="temperature-thumb"
+                                trackClassName="temperature-track"
+                                renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+                                step={0.1}
+                            />
                         </div>
                     </div>
 
                     <div className="user-modal-body-row">
-                        <div>
-                            <h3>Length</h3>
+                        <div className="presencePenalty-label tooltip">Content Repeatability
+                            <span className="tooltiptext">Number between -2.0 and 2.0, positive values increasing the model's likelihood to talk about new topics.</span>
                         </div>
                         <div>
-                            <button>Concise</button>
-                            <button>Medium</button>
-                            <button>Detailed</button>
-                            <button>Custom</button>
+                            <ReactSlider
+                                    value={presencePenalty}
+                                    onAfterChange={(val) => {
+                                        setPresencePenalty(val);
+                                    }}
+                                    orientation="horizontal"
+                                    min={-2.0}
+                                    max={2.0}
+                                    className="horizontal-slider"
+                                    thumbClassName="presencePenalty-thumb"
+                                    trackClassName="presencePenalty-track"
+                                    renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+                                    step={0.1}
+                                />
                         </div>
                     </div>
 
                     <div className="user-modal-body-row">
-                        <div>
-                            <h3>Response Promptness</h3>
+                        <div className="tooltip">Word Repeatability
+                            <span className="tooltiptext">Number between -2.0 and 2.0, positive values decreasing the model's likelihood to repeat the same line verbatim</span>
                         </div>
                         <div>
-                            <button>Immediate</button>
-                            <button>Delayed</button>
-                            <button>Business Hours</button>
-                            <button>Scheduled Time</button>
+                            <ReactSlider
+                                    value={frequencyPenalty}
+                                    onAfterChange={(val) => {
+                                        setFrequencyPenalty(val);
+                                    }}
+                                    orientation="horizontal"
+                                    min={-2.0}
+                                    max={2.0}
+                                    className="horizontal-slider"
+                                    thumbClassName="frequencyPenalty-thumb"
+                                    trackClassName="frequencyPenalty-track"
+                                    renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+                                    step={0.1}
+                                />
                         </div>
                     </div>
+
+                    <div className="user-modal-body-row">
+                        <div className="user-token-label tooltip">Words Length Limit
+                            <span className="tooltiptext">The maximum number of words to generate in the AI response</span>
+                        </div>
+                        <div >
+                            <input
+                                type="number"
+                                className="max-tokens-input"
+                                onChange={(e)=>setMaxTokens(Number(e.target.value))}
+                                // value={maxTokens}
+                                min={0}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="user-modal-body-row">
+                        <div className="user-messgae-label">
+                            <h3>User Message</h3>
+                        </div>
+                        <div className="user-messgae-input">
+                            <input
+                                type="text"
+                                onChange={(e)=>setUserMessage(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
                 </div>
-                <div className="user-modal-submit-btn">
-                    <button>Done</button>
+                <div className="user-modal-submit-btn-container">
+                    <button className="user-modal-submit-btn">Done</button>
                 </div>
             </form>
-        </FormModal>
     )
 
 

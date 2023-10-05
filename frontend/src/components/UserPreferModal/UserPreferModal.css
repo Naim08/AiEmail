@@ -18,18 +18,114 @@
     margin-right: 10px;
 }
 
-/* .user-modal-body{
-    margin: 20px 20px;
-} */
+.user-modal-body{
+    display: flex;
+    flex-direction: column;
+}
 
 .user-modal-body-row{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    border-bottom: 1px solid black;
-    padding: 25px 5px;
+    /* border-bottom: 1px solid black; */
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.user-modal-submit-btn-container{
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 25px 26px;
+    text-align: center;
+
 }
 
 .user-modal-submit-btn{
-    padding-left: 350px;
+    width: 20%;
+    height: 130%;
 }
+
+.horizontal-slider {
+    width: 150px;
+    height: 25px;
+  }
+
+
+.temperature-thumb, .presencePenalty-thumb, .frequencyPenalty-thumb{
+    width: 30px;
+    height: 20px;
+    background-color: grey;
+    /* border-radius: 50%; */
+    cursor: pointer;
+    text-align: center;
+}
+
+.temperature-track, .presencePenalty-track, .frequencyPenalty-track{
+    top: 10px;
+    bottom: 0;
+    background: grey;
+    height: 5px;
+}
+
+input[type="text"]{
+    width: 120%;
+    height:120%;
+}
+.user-messgae-label{
+    padding-top: 15px;
+}
+
+.user-messgae-input{
+    padding-right: 6px;
+}
+.user-token-label{
+    padding-top: 10px;
+}
+
+.presencePenalty-label{
+    display: flex;
+}
+
+.max-tokens-input{
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+  }
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: start;
+    border-radius: 6px;
+    padding: 5px 5px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+    font-size: 13px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+  }

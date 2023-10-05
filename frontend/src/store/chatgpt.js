@@ -2,7 +2,7 @@ import jwtFetch from "./jwt";
 import { setChatGPTModels } from "./ui";
 
 const SEND_MESSAGE = "chatgpt/SEND_MESSAGE";
-const RECEIVE_MESSAGE = "chatgpt/RECEIVE_MESSAGE";
+export const RECEIVE_MESSAGE = "chatgpt/RECEIVE_MESSAGE";
 const RECEIVE_MESSAGES = "chatgpt/RECEIVE_MESSAGES";
 const RECEIVE_MESSAGE_ERRORS = "chatgpt/RECEIVE_MESSAGE_ERRORS";
 const CLEAR_MESSAGE_ERRORS = "chatgpt/CLEAR_MESSAGE_ERRORS";
@@ -26,6 +26,13 @@ export const clearMessageErrors = () => ({
   type: CLEAR_MESSAGE_ERRORS,
 });
 
+export const getMessages = (state) => {
+  return state.chatgpt.messages;
+};
+
+export const getMessage = (state) => {
+  return state.chatgpt.message;
+};
 export const sendMessage = (message) => async (dispatch) => {
   try {
     const res = await jwtFetch("/api/chatgpt", {
@@ -35,7 +42,7 @@ export const sendMessage = (message) => async (dispatch) => {
       },
       body: JSON.stringify(message),
     });
-    const responseData = await res.json; // Renamed the constant
+    const responseData = await res.json(); // Renamed the constant
     dispatch(receiveMessage(responseData));
   } catch (err) {
     if (err.response) {
@@ -111,12 +118,19 @@ const chatgptReducer = (state = initialState, action) => {
     case RECEIVE_MESSAGE:
       return {
         ...state,
-        messages: [...state.messages, action.message],
+        messages: {
+          ...state.messages,
+          ...action.message,
+        },
+        message: action.message,
       };
     case RECEIVE_MESSAGES:
       return {
         ...state,
-        messages: action.messages,
+        messages: {
+          ...state.messages,
+          ...action.message,
+        },
       };
     case RECEIVE_MESSAGE_ERRORS:
       return {
