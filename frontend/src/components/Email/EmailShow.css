@@ -149,3 +149,15 @@ textarea {
     height: 100%;
     width: 100%;
 }
+
+.modal-content.expand {
+    background-color: #2e2e2e;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+}
