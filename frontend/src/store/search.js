@@ -11,11 +11,11 @@ export const clearSearchResults = () => ({
     type: CLEAR_SEARCH_RESULTS
 });
 
-export const fetchSearchResults = (query) => async dispatch => {
+export const fetchSearchResults = (subject) => async dispatch => {
     //res route may need to change
-    const res = await jwtFetch(`/api/emails/search?query=${query}`);
-    const data = await res.json();
-    dispatch(receiveSearchResults(data));
+    const res = await jwtFetch(`/api/emails/search?query=${subject}`);
+    const emails = await res.json();
+    dispatch(receiveSearchResults(emails));
 }
 
 
@@ -23,7 +23,7 @@ const searchReducer = (state = {}, action) => {
     const newState = {...state}
     switch (action.type) {
         case GET_SEARCH_RESULTS:
-            return {...action.searchResults.properties};
+            return {...action.searchResults.emails};
         case CLEAR_SEARCH_RESULTS:
             return {};
         default:

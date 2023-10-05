@@ -19,7 +19,7 @@ function NavBar() {
   };
 
   const handleLogOut = (e) =>{
-    logoutUser(e); 
+    logoutUser(e);
     setSelectedLink('logout');
     history.push("/")
   }
@@ -78,7 +78,7 @@ function NavBar() {
   return (
     <div className="navi-container">
       <div className="navi-header">
-        <h1><i class="fa-sharp fa-solid fa-envelope"></i> MailTo</h1>
+        <h1><i className="fa-sharp fa-solid fa-envelope"></i> MailTo</h1>
       </div>
       {getLinks()}
     </div>
