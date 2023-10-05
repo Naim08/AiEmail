@@ -1,0 +1,151 @@
+/* div {
+    border: 1px dotted white;
+} */
+.new-email-form-container {
+    width: 33%;
+    height: 40rem;
+    box-shadow: 8px 8px 16px #0a0a0a, -8px -8px 16px #2e2e2e; /* neumorphism */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 6%;
+    margin-left: 5%;
+    background-color: black;
+    padding: 20px;
+}
+
+/* Input fields */
+input,
+textarea {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#form-input {
+    width: 100%;
+    height: 100%;
+}
+
+/* The form itself */
+.new-email-form {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.black-input-field {
+    background-color: black !important;
+    color: white !important;
+    border: none;
+}
+
+.black-input-field::placeholder {
+    color: #ccc;
+}
+
+.new_email_body {
+    flex-grow: 1;
+}
+
+textarea {
+    height: 100%;
+}
+
+.new-email-to input,
+.new-email-subject input {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.dotted-line {
+    border-bottom: 1px dotted white; /* Change 'white' to whatever color you prefer */
+    margin: 10px 0; /* Add some margin to space it out */
+}
+
+.new-email-form-btn button {
+    background: #2e2e2e; /* Same as your primary text color */
+    border: 0.5px solid white; /* A subtle border */
+    color: white; /* Text color */
+    padding: 12px 24px;
+    font-family: Helvetica;
+    font-size: 12px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.new-email-form-btn button:hover {
+    background: white; /* Inverted colors on hover */
+    color: #61677a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.vertical-line {
+    position: absolute; /* or 'fixed' depending on your needs */
+    left: 50%; /* centers the line */
+    top: 10%; /* starts the line 10% from the top */
+    height: 80%; /* ends the line 10% from the bottom */
+    width: 1px; /* width of the line */
+    background-color: white; /* color of the line */
+    z-index: 1; /* so that it appears above other elements */
+}
+
+.exit-wrapper {
+    display: flex;
+    cursor: pointer;
+    margin: 20px;
+    width: 16%;
+    height: 10px;
+}
+
+.exit-icon {
+    font-size: 24px;
+    color: #61677a;
+    padding-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.exit-text {
+    font-family: Helvetica;
+    color: #61677a;
+    margin-top: 5px;
+}
+
+.exit-wrapper:hover .exit-icon,
+.exit-wrapper:hover .exit-text {
+    color: white;
+}
+
+.new-email-form-btn {
+    display: flex;
+    justify-content: flex-end; /* Aligns the button to the end (right side) */
+    width: 100%; /* Takes up full width */
+}
+
+.chat-message {
+    width: 33%; /* same width as the email form */
+    height: 20rem; /* half the height */
+    background-color: black; /* same background */
+    color: white; /* same text color */
+    padding: 20px; /* same padding */
+    margin-top: 6%;
+    margin-right: 100px;
+    box-shadow: 8px 8px 16px #0a0a0a, -8px -8px 16px #2e2e2e; /* same shadow */
+    font-family: "Courier";
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
