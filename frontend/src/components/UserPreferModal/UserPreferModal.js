@@ -28,14 +28,8 @@ const UserPreferModal = () =>{
         //dispatch create new user perference
     }
 
-    const closeUserPreferModal = ()=>{
-        dispatch(setShowModal(false));
-        dispatch(setFormPage("start"));
-        dispatch(setformSlide("expand"));
-    }
-
     return (
-        <FormModal onClose={closeUserPreferModal}>
+
             <form className="user-modal-content" onSubmit={handleSubmit}>
                 <div className="user-modal-header">
                     <div className="user-modal-header-img">
@@ -44,6 +38,7 @@ const UserPreferModal = () =>{
                     <div>
                         <h1>Set Your preference</h1>
                     </div>
+
                 </div>
                 <div className="user-modal-body">
 
@@ -145,7 +140,6 @@ const UserPreferModal = () =>{
                     <button className="user-modal-submit-btn">Done</button>
                 </div>
             </form>
-        </FormModal>
     )
 
 
