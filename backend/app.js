@@ -127,7 +127,7 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
       req.user.googleRefreshToken
     );
 
-    res.json({ emails });
+    res.json({ emails: Object.values(emails) });
   } catch (error) {
     console.error("Error fetching emails:", error);
     res.status(500).json({ error: "Error fetching emails" });
