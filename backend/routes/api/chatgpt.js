@@ -34,15 +34,33 @@ router.post("/", requireUser, async (req, res) => {
   }
 
   const userPrompt = req.body.prompt;
+  const options = req.body.options;
+  // options example
+  //  temperature: 0.65,
+  // max_tokens: 2155,
+  // top_p: 0.52,
+  // frequency_penalty: 0,
+  // presence_penalty: 0,
 
   if (!userPrompt) {
     return res.status(400).json({ error: "Prompt is required" });
   }
   console.log(userPrompt);
   try {
-    const completion = await openai.createCompletion({
+    const completion = await openai.chat.completions.create({
       model: "text-davinci-003",
-      prompt: userPrompt.subject + userPrompt.message,
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a helpful assistant specialized in crafting email responses.",
+        },
+        {
+          role: "user",
+          content: userPrompt,
+        },
+      ],
+      ...options,
     });
     console.log(completion.data.choices[0].text);
     const chatOutput = completion.data.choices[0].text;

@@ -149,7 +149,6 @@ async function getMostRecentEmails(authToken, refreshToken, maxResults = 10) {
   });
 
   const messages = response.data.messages;
-  console.log(messages);
 
   const promises = messages.map(async (message) => {
     const response = await gmail.users.messages.get({
@@ -157,12 +156,63 @@ async function getMostRecentEmails(authToken, refreshToken, maxResults = 10) {
       id: message.id,
     });
 
+    response.data.url = response.config.url;
     return response.data;
   });
 
   const emails = await Promise.all(promises);
 
-  return emails;
+  return emails.map((email) => {
+    const payload = email.payload;
+    let parts = null;
+    if (payload.parts) {
+      const part = findTextPlainPart(payload.parts);
+      if (part) parts = Buffer.from(part.body.data, "base64").toString("utf-8");
+    }
+    const bodyData = payload.body.data || payload.parts[0].body.data; // Adjust as needed depending on the email structure
+    if (!bodyData) return { payload, decodedBody: "", parts };
+
+    const decodedBody = Buffer.from(bodyData, "base64").toString("utf-8");
+    const subjectHeader = payload.headers.find(
+      (header) => header.name === "Subject"
+    );
+    const subject = subjectHeader ? subjectHeader.value : "";
+
+    const fromEmail = payload.headers.find((header) => header.name === "From");
+    const toEmail = payload.headers.find(
+      (header) => header.name === "Delivered-To"
+    );
+    const emailDate = payload.headers.find((header) => header.name === "Date");
+    return {
+      emailId: email.id,
+      labels: email.labels,
+      snippet: email.snippet,
+      threadId: email.threadId,
+      responseUrl: email.url,
+      dateSent: emailDate ? emailDate.value : null,
+      fromEmail: fromEmail ? fromEmail.value : null,
+      subject,
+      message: decodedBody,
+      toEmail: toEmail ? toEmail.value : null,
+      messagePart: parts,
+    };
+  });
 }
+function findTextPlainPart(parts) {
+  if (!parts) return null;
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (part.mimeType === "text/plain") {
+      return part;
+    } else if (part.parts) {
+      const nestedPart = findTextPlainPart(part.parts);
+      if (nestedPart) return nestedPart;
+    }
+  }
+  return null;
+}
+// Assume `auth` is your authorized OAuth2 client
+// Use the workflow function like so:
+// await fetchAndDecodeEmails(auth);
 
 exports.getMostRecentEmails = getMostRecentEmails;
