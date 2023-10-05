@@ -28,13 +28,6 @@ const UserPreferModal = () =>{
         //dispatch create new user perference
     }
 
-    const closeUserPreferModal = ()=>{
-        setShowModal(false);
-        // dispatch(setShowModal(false));
-        // dispatch(setFormPage("start"));
-        // dispatch(setformSlide("expand"));
-    }
-
     return (
 
             <form className="user-modal-content" onSubmit={handleSubmit}>

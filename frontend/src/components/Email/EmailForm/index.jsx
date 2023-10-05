@@ -43,18 +43,13 @@ const EmailForm = ({ emailToUpdate }) => {
   const handleUserModalShow = (e)=>{
     e.preventDefault();
     setShowModal(true);
-    // dispatch(setShowModal(true));
-
   }
 
 
   const closeUserPreferModal = ()=>{
 
     setShowModal(false);
-    // dispatch(setShowModal(false));
-    // dispatch(setFormPage("start"));
-    // dispatch(setformSlide("expand"));
-    // history.push(`/email/form`);
+    dispatch(setformSlide("expand"));
 }
 
   return (
