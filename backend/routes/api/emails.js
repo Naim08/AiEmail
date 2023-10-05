@@ -3,12 +3,22 @@ const mongoose = require("mongoose");
 const Email = mongoose.model("Email");
 const router = express.Router();
 const ObjectId = require('mongodb').ObjectId;
+const { requireUser } = require('../../config/passport');
+
+
+
 
 //Create
-router.post('/', async (req, res) => {
+router.post('/', requireUser,async (req, res) => {
     try {
-        const { subject, message } = req.body;
-        const email = new Email({ subject, message });
+        
+        const { subject, message, to } = req.body;
+        const email = new Email({ 
+        subject, 
+        message, 
+        to, 
+        user: req.body.user 
+        });
         await email.save();
         res.status(201).send(email);
     } catch (error) {
@@ -17,14 +27,15 @@ router.post('/', async (req, res) => {
 });
 
 //Read
-router.get('/', async (req, res) => {
-    try {
-        const emails = await Email.find();
-        res.status(200).send(emails);
-    } catch (error) {
-        res.status(500).send(error);
-    }
+router.get('/', requireUser, async (req, res) => {
+  try {
+    const emails = await Email.find({ user: req.user });
+    res.status(200).send(emails);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
+
 
 //
 router.get('/:id', async (req, res) => {
