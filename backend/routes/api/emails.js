@@ -22,6 +22,7 @@ router.post('/', requireUser,async (req, res) => {
         await email.save();
         res.status(201).send(email);
     } catch (error) {
+        console.log(error)
         res.status(400).send(error);
     }
 });

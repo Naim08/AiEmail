@@ -18,6 +18,8 @@ const EmailDetails = () => {
     const emailResponse = useSelector(getMessage);
     const emailPrompt = useSelector(getEmail(emailId));
     const [localEmail, setLocalEmail] = useState(email);
+    const error  = useSelector((state)=>(state.emailsReducer.error));
+
     useEffect(() => {
         dispatch(fetchSingleEmail(emailId));
     }, []);
@@ -47,7 +49,7 @@ const EmailDetails = () => {
         e.preventDefault();
         history.push(`/dashpage`);
     };
-    console.log(localEmail);
+  
 
     return (
         <>
@@ -57,6 +59,7 @@ const EmailDetails = () => {
             </div>
             <div className="main-container">
                 <div className="new-email-form-container">
+                  <div style={{ color: 'white' }}>{error ? error : ""}</div>
                     <form onSubmit={handleSubmit} className="new-email-form">
                         {/* <label>To:</label> */}
                         <div className="new-email-to">
@@ -65,6 +68,8 @@ const EmailDetails = () => {
                                 id="form-input"
                                 name="to"
                                 placeholder="To"
+                                value={localEmail? localEmail.to : ""}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="dotted-line"></div>
