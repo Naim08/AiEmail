@@ -1,27 +1,17 @@
-/* Container */
+/* div {
+    border: 1px dotted white;
+} */
 .new-email-form-container {
-    width: 600px;
-    height: 800px;
-    /* background-color: #1c1c1c;  */
-    /* border-radius: 12px; */
+    width: 33%;
+    height: 40rem;
     box-shadow: 8px 8px 16px #0a0a0a, -8px -8px 16px #2e2e2e; /* neumorphism */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* padding: 20px; */
-    font-family: "Söhne Mono", "Courier New", monospace; /* typewriter font */
-    margin-left: 10%;
-    margin-top: 5%;
+    margin-top: 6%;
+    margin-left: 5%;
     background-color: black;
     padding: 20px;
-}
-
-/* Dividers */
-.divider {
-    height: 1px;
-    width: 80%; /* not extending all the way across */
-    background-color: white;
-    margin: 20px 0;
 }
 
 /* Input fields */
@@ -35,9 +25,9 @@ textarea {
     border-radius: 4px;
 }
 
-.form-input {
-    width: 100% !important;
-    height: 100% !important;
+#form-input {
+    width: 100%;
+    height: 100%;
 }
 
 /* The form itself */
@@ -82,11 +72,11 @@ textarea {
 
 .new-email-form-btn button {
     background: #2e2e2e; /* Same as your primary text color */
-    border: 1px solid white; /* A subtle border */
+    border: 0.5px solid white; /* A subtle border */
     color: white; /* Text color */
     padding: 12px 24px;
-    font-family: "Courier New", Courier, monospace; /* A typewriter-like font */
-    font-size: 16px;
+    font-family: Helvetica;
+    font-size: 12px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     cursor: pointer;
@@ -111,31 +101,51 @@ textarea {
 
 .exit-wrapper {
     display: flex;
-    align-items: center;
     cursor: pointer;
     margin: 20px;
+    width: 16%;
+    height: 10px;
 }
 
 .exit-icon {
     font-size: 24px;
-    color: white;
-    padding-right: 10px; /* Some space between the icon and the text */
+    color: #61677a;
+    padding-right: 10px;
     transition: color 0.3s ease;
 }
 
 .exit-text {
     font-family: Helvetica;
-    color: white;
-    margin: 0; /* Remove default paragraph margins */
+    color: #61677a;
+    margin-top: 5px;
 }
 
 .exit-wrapper:hover .exit-icon,
 .exit-wrapper:hover .exit-text {
-    color: #61677a;
+    color: white;
 }
 
 .new-email-form-btn {
     display: flex;
     justify-content: flex-end; /* Aligns the button to the end (right side) */
     width: 100%; /* Takes up full width */
+}
+
+.chat-message {
+    width: 33%; /* same width as the email form */
+    height: 20rem; /* half the height */
+    background-color: black; /* same background */
+    color: white; /* same text color */
+    padding: 20px; /* same padding */
+    margin-top: 6%;
+    margin-right: 100px;
+    box-shadow: 8px 8px 16px #0a0a0a, -8px -8px 16px #2e2e2e; /* same shadow */
+    font-family: "Courier";
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
 }
