@@ -33,7 +33,7 @@ const EmailList = () => {
         <div className="email-list-container">
           <div className="new-email-item" onClick={handleToNew}>
             <div className="new-item-img">
-            <i class="fa-sharp fa-light fa-plus fa-2xl"></i>
+            <i className="fa-sharp fa-light fa-plus fa-2xl"></i>
             </div>
           </div>
 
@@ -43,8 +43,8 @@ const EmailList = () => {
       <span className="email-subject">{email.subject}</span>
       <span className="email-body">{email.message}</span>
     </div>
-    <button 
-        className="delete-button" 
+    <button
+        className="delete-button"
         onClick={async (e) => {
             e.stopPropagation(); // Stop event propagation
             await dispatch(deleteEmail(email._id));

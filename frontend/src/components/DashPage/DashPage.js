@@ -4,10 +4,11 @@ import NavBar from "../NavBar/NavBar";
 import SearchBar from "../SearchBar/SearchBar";
 import EmailList from "../Email/EmailList";
 import { useDispatch } from 'react-redux';
+import SearchResult from "../SearchResult/SearchResult";
 
 const DashPage = () => {
     const dispatch = useDispatch();
-    const [search, setSearch] = useState();
+    const [search, setSearch] = useState(false);
 
     return (
         <div className="app-container">
@@ -18,7 +19,9 @@ const DashPage = () => {
                     <SearchBar />
                 </div>
 
-                <EmailList />
+                {/* <EmailList /> */}
+                <SearchResult />
+
             </div>
 
         </div>

@@ -14,6 +14,7 @@ export const clearSearchResults = () => ({
 export const fetchSearchResults = (subject) => async dispatch => {
     //res route may need to change
     const res = await jwtFetch(`/api/emails/search?query=${subject}`);
+    debugger
     const emails = await res.json();
     dispatch(receiveSearchResults(emails));
 }

@@ -1,22 +1,27 @@
 import './SearchResult.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch,  useSelector  } from 'react-redux';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import EmailList from '../Email/EmailList';
 
 const SearchResult = () =>{
     const dispatch = useDispatch();
     const location = useLocation();
-    // const searchParams = new URLSearchParams(location.search);
+    const emails = useSelector(state => state.emailsReducer.emails);
+    const isLoading = useSelector(state => state.emailsReducer.isLoading);
+    // const searchResults = useSelector((state) => state.search);
+    const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get("query");
-    const noResults = Object.keys(searchResults).length === 0;
+    // const noResults = Object.keys(searchResults).length === 0;
 
+    console.log("searchParams", searchParams);
 
     return (
         <div>
-            {noResults &&
+            {/* {noResults &&
                 <div>No results containing "{query}"</div>
-            }
-            <EmailList />
+            } */}
+            <h1>SearchResult</h1>
+
         </div>
     )
 }

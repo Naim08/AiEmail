@@ -11,13 +11,13 @@ const { requireUser } = require('../../config/passport');
 //Create
 router.post('/', requireUser,async (req, res) => {
     try {
-        
+
         const { subject, message, to } = req.body;
-        const email = new Email({ 
-        subject, 
-        message, 
-        to, 
-        user: req.body.user 
+        const email = new Email({
+        subject,
+        message,
+        to,
+        user: req.body.user
         });
         await email.save();
         res.status(201).send(email);
@@ -76,5 +76,7 @@ router.delete('/:id', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+
 
 module.exports = router;

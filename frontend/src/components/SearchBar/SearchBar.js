@@ -27,9 +27,11 @@ const  SearchBar = () => {
 
 
     const handleSubmit = (e) =>{
+        debugger
+        console.log("isExpanded", isExpanded)
         e.preventDefault();
         e.stopPropagation();
-        console.log("handleSubmit", handleSubmit());
+
         if (searchText.trim() !== '') {
             setSearchText('');
             history.push(`/dashpage`)
