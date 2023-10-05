@@ -27,10 +27,16 @@ const userSchema = new Schema(
       type: Date,
       default: null,
     },
+    emails: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Email'
+    }]
   },
   {
     timestamps: true,
   }
 );
+
+
 
 module.exports = mongoose.model("User", userSchema);

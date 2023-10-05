@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from "react-router-dom";
 import { readEmails, deleteEmail } from '../../../store/email';
+import { fetchEmails } from "../../../store/chatgpt";
 
 const EmailList = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,14 @@ const EmailList = () => {
       <span className="email-subject">{email.subject}</span>
       <span className="email-body">{email.message}</span>
     </div>
-    <button className="delete-button" onClick={() => dispatch(deleteEmail(email._id))}>
+    <button 
+        className="delete-button" 
+        onClick={async (e) => {
+            e.stopPropagation(); // Stop event propagation
+            await dispatch(deleteEmail(email._id));
+            dispatch(readEmails()); // Assuming you have a fetchEmail action
+        }}
+    >
     <i className="fa-light fa-trash icon-light"></i>
     <i className="fa-solid fa-trash icon-solid"></i>
 </button>

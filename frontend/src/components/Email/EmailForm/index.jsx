@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { createEmail, updateEmail, readEmails} from '../../../store/email';
 import "./EmailForm.css";
@@ -7,16 +7,20 @@ import UserPreferModal from '../../UserPreferModal/UserPreferModal';
 import { FormModal } from '../../../context/modal';
 import { setFormPage, setformSlide } from '../../../store/ui';
 
+
 const EmailForm = ({ emailToUpdate }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false);
-
 
   const [email, setEmail] = useState({
     subject: emailToUpdate ? emailToUpdate.subject : '',
     message: emailToUpdate ? emailToUpdate.message : '',
+    to: ''
   });
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,10 +31,15 @@ const EmailForm = ({ emailToUpdate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const emailWithUser = {
+        ...email,
+        user: sessionUser._id,
+    };
+
     if (emailToUpdate) {
-      dispatch(updateEmail({ ...email, id: emailToUpdate._id }));
+      dispatch(updateEmail({ ...email, id: emailToUpdate._id}));
     } else {
-      dispatch(createEmail(email));
+      dispatch(createEmail(emailWithUser));
     }
 
   };
@@ -82,6 +91,8 @@ const EmailForm = ({ emailToUpdate }) => {
               type="text"
               name="to"
               placeholder="To"
+              value={email.to}
+              onChange={handleChange}
             />
           </div>
           <div className="dotted-line"></div>
