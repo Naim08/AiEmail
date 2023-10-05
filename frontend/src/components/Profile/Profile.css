@@ -1,0 +1,45 @@
+.exit-page-btn-div{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 20px;
+    color: #fff;
+}
+
+.exit-page-btn-img{
+    margin-right: 5px;
+}
+
+.profile-content-header{
+    font-size: 1.5rem;
+    /* margin: 8px 0px; */
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid grey;
+}
+
+.profile-content{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    color: #fff;
+    /* border: 1px solid #fff; */
+}
+
+.profile-content-name-div, .profile-content-email-div{
+    margin: 15px 0px;
+    /* border: 1px solid #fff; */
+}
+
+.profile-content-name, .profile-content-email{
+    margin-bottom: 8px;
+}
+
+.profile-content-name-container, .profile-content-email-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-content-update-link{
+    margin-left: 20px;
+}
