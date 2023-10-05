@@ -15,9 +15,11 @@ const  SearchBar = () => {
     const [searchText, setSearchText] = useState("");
 
     const handleSearch = (e)=>{
+        debugger
         const query = e.target.value;
         setSearchText(query);
         if (query.trim() !== "") {
+            debugger
             dispatch(fetchSearchResults(query));
         }else{
             dispatch(clearSearchResults());

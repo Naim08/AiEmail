@@ -11,10 +11,10 @@ export const clearSearchResults = () => ({
     type: CLEAR_SEARCH_RESULTS
 });
 
-export const fetchSearchResults = (subject) => async dispatch => {
+export const fetchSearchResults = (query) => async dispatch => {
     //res route may need to change
-    const res = await jwtFetch(`/api/emails/search?query=${subject}`);
-    debugger
+    const res = await jwtFetch(`/api/emails/search?query=${query}`);
+
     const emails = await res.json();
     dispatch(receiveSearchResults(emails));
 }
