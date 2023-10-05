@@ -3,10 +3,15 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { createEmail, updateEmail, readEmails} from '../../../store/email';
 import "./EmailForm.css";
+import UserPreferModal from '../../UserPreferModal/UserPreferModal';
+import { FormModal } from '../../../context/modal';
+import { setFormPage, setformSlide } from '../../../store/ui';
 
 const EmailForm = ({ emailToUpdate }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [showModal, setShowModal] = useState(false);
+
 
   const [email, setEmail] = useState({
     subject: emailToUpdate ? emailToUpdate.subject : '',
@@ -27,7 +32,7 @@ const EmailForm = ({ emailToUpdate }) => {
     } else {
       dispatch(createEmail(email));
     }
-    
+
   };
 
   const handleExit = (e) => {
@@ -35,19 +40,46 @@ const EmailForm = ({ emailToUpdate }) => {
     history.push(`/dashpage`);
   }
 
+  const handleUserModalShow = (e)=>{
+    e.preventDefault();
+    setShowModal(true);
+    // dispatch(setShowModal(true));
+
+  }
+
+
+  const closeUserPreferModal = ()=>{
+
+    setShowModal(false);
+    // dispatch(setShowModal(false));
+    // dispatch(setFormPage("start"));
+    // dispatch(setformSlide("expand"));
+    // history.push(`/email/form`);
+}
 
   return (
     // <div className='new-email-form-page'>
     <>
       <div className='exit-page-btn-div'>
-  <div className="exit-wrapper" onClick={handleExit}>
-    <i className="fa-regular fa-arrow-left exit-icon"></i>
-    <p className="exit-text">Return to Dashboard</p>
-  </div>
-</div>
+        <div className="exit-wrapper" onClick={handleExit}>
+          <i className="fa-regular fa-arrow-left exit-icon"></i>
+          <p className="exit-text">Return to Dashboard</p>
+        </div>
+
+      <div>
+        <button className='user-perfer-btn' onClick={handleUserModalShow}>User Preference</button>
+      </div>
+
+      </div>
+
+      { showModal && (<FormModal onClose={closeUserPreferModal}>
+        <button className="close-modal-btn" onClick={closeUserPreferModal}>X</button>
+        <UserPreferModal  />
+      </FormModal>
+      )}
 
       <div className='new-email-form-container'>
-        
+
         <form onSubmit={handleSubmit} className='new-email-form'>
           {/* <label>To:</label> */}
           <div className='new-email-to'>
