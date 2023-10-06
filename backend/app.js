@@ -32,6 +32,7 @@ const {
   getMostRecentEmails,
   requireUser,
 } = require("./config/passport");
+const Email = require("./models/Email");
 
 const app = express();
 
@@ -70,21 +71,6 @@ app.use("/api/csrf", csrfRouter);
 app.use("/api/chatgpt", chatGPTRouter);
 app.use("/api/emails", emailRouter);
 
-if (isProduction) {
-  const path = require("path");
-  app.get("/", (req, res) => {
-    res.cookie("CSRF-TOKEN", req.csrfToken());
-    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-  });
-
-  app.use(express.static(path.resolve("../frontend/build")));
-
-  app.get(/^(?!\/?api).*/, (req, res) => {
-    res.cookie("CSRF-TOKEN", req.csrfToken());
-    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-  });
-}
-
 app.get(
   "/auth/google",
   passport.authenticate("google", {
@@ -106,8 +92,6 @@ app.get(
   },
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    console.log("user", req.user);
-
     //save req.accessToken and req.refreshToken to your database, user model
     User.findOneAndUpdate(
       { email: req.user.email },
@@ -126,7 +110,15 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
       req.user.googleAccessToken,
       req.user.googleRefreshToken
     );
-
+    Object.values(emails).forEach((email) => {
+      const newEmail = new Email({
+        ...email,
+        message: email.message,
+        user: req.user._id,
+      });
+      console.log(newEmail);
+      newEmail.save();
+    });
     res.json({ emails: Object.values(emails) });
   } catch (error) {
     console.error("Error fetching emails:", error);
@@ -134,13 +126,26 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
   }
 });
 
+if (isProduction) {
+  const path = require("path");
+  app.get("/", (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+
+  app.use(express.static(path.resolve("../frontend/build")));
+
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+}
+
 app.use((req, res, next) => {
   const err = new Error("Not Found");
   err.statusCode = 404;
   next(err);
 });
-
-
 
 const serverErrorLogger = debug("backend:error");
 
