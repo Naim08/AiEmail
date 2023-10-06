@@ -26,8 +26,28 @@ router.post('/', requireUser,async (req, res) => {
     }
 });
 
+router.get('/search', requireUser, async (req, res) => {
+        const searchTerm = req.query.query;
+        console.log("searchTerm",searchTerm)
+        if (!searchTerm) {
+            return res.status(400).send({ error: 'Search term is required' });
+        }
+
+        try {
+            const emails = await Email.find({
+                // user: req.user,
+                subject: new RegExp(searchTerm, 'i') // This will make the search case-insensitive
+            });
+
+            res.status(200).send(emails);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    });
+
 //Read
 router.get('/', requireUser, async (req, res) => {
+
   try {
     const emails = await Email.find({ user: req.user });
     res.status(200).send(emails);
@@ -40,7 +60,7 @@ router.get('/', requireUser, async (req, res) => {
 //
 router.get('/:id', async (req, res) => {
     try {
-        console.log(req)
+        // console.log(req)
         const email = await Email.findById(req.params.id);
         if (!email) {
             return res.status(404).send();
@@ -78,25 +98,6 @@ router.delete('/:id', async (req, res) => {
 });
 
 
-router.get('/search', requireUser, async (req, res) => {
-    console.log(req.query.query)
-    const searchTerm = req.query.query;
-
-    if (!searchTerm) {
-        return res.status(400).send({ error: 'Search term is required' });
-    }
-
-    try {
-        const emails = await Email.find({
-            user: req.user,
-            subject: new RegExp(searchTerm, 'i') // This will make the search case-insensitive
-        });
-
-        res.status(200).send(emails);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
 
 
 

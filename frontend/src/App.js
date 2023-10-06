@@ -17,7 +17,7 @@ import DashPage from "./components/DashPage/DashPage";
 import Profile from "./components/Profile/Profile";
 import UserPreferModal from "./components/UserPreferModal/UserPreferModal";
 import NotFound from "./components/404";
-
+import SearchResult from "./components/SearchResult/SearchResult";
 import { getCurrentUser } from "./store/session";
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
           <Route path="/email/form" component={EmailForm} />
           <Route path="/email/:emailId" component={EmailDetails} />
           <Route path="/usermodal" component={UserPreferModal} />
+          <Route exact path="/searchResult" component={SearchResult} />
           <AuthRoute exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />

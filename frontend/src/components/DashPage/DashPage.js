@@ -19,8 +19,8 @@ const DashPage = () => {
                     <SearchBar />
                 </div>
 
-                {/* <EmailList /> */}
-                <SearchResult />
+                <EmailList />
+                {/* <SearchResult /> */}
 
             </div>
 

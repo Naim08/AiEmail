@@ -15,7 +15,9 @@ const  SearchBar = () => {
     const [searchText, setSearchText] = useState("");
 
     const handleSearch = (e)=>{
+        e.preventDefault();
         debugger
+
         const query = e.target.value;
         setSearchText(query);
         if (query.trim() !== "") {
@@ -36,7 +38,7 @@ const  SearchBar = () => {
 
         if (searchText.trim() !== '') {
             setSearchText('');
-            history.push(`/dashpage`)
+            history.push(`/searchResult`)
         }
 
     }
