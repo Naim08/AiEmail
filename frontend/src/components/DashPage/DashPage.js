@@ -17,11 +17,10 @@ const DashPage = () => {
             <div className="email-container">
 
                 <div className="search-bar-container">
-                    <SearchBar />
+                    <SearchBar setSearch={setSearch}/>
                 </div>
 
-                <EmailList />
-                {/* <SearchResult /> */}
+                {search? <SearchResult /> : <EmailList />}
 
             </div>
 

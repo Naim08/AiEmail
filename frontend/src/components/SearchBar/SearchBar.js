@@ -7,7 +7,7 @@ import { fetchSearchResults, clearSearchResults } from '../../store/search';
 
 
 
-const  SearchBar = () => {
+const  SearchBar = ({setSearch}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [isExpanded, setIsExpanded] = useState(false);
@@ -38,7 +38,8 @@ const  SearchBar = () => {
 
         if (searchText.trim() !== '') {
             setSearchText('');
-            history.push(`/searchresult`)
+            setSearch(true)
+            history.push(`/dashpage`)
         }
 
     }

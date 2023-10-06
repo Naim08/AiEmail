@@ -25,33 +25,33 @@ const SearchResult = () =>{
       }
 
     return (
-        <div>
+        <div >
             {noResults &&
                 <div>No results containing "{query}"</div>
             }
+            <div className="email-list-container">
+            {searchResults.map( result => (
+                (currentUser._id === result.user) && (
+                <div key={result.id} className='pre-email-item' onClick={() => handleEmailClick(result)}>
+                    <div className="email-content">
+                        <span className="email-subject">{result.subject}</span>
+                        <span className="email-body">{result.message}</span>
+                    </div>
+                    <button
+                    className="delete-button"
+                    onClick={async (e) => {
+                        e.stopPropagation(); // Stop event propagation
+                        await dispatch(deleteEmail(result._id));
+                        dispatch(readEmails()); // Assuming you have a fetchEmail action
+                    }}
+                    >
+                        <i className="fa-light fa-trash icon-light"></i>
+                        <i className="fa-solid fa-trash icon-solid"></i>
+                    </button>
 
-          {searchResults.map( result => (
-             (currentUser._id === result.user) && (
-            <div key={result.id} className='pre-email-item' onClick={() => handleEmailClick(result)}>
-                <div className="email-content">
-                    <span className="email-subject">{result.subject}</span>
-                    <span className="email-body">{result.message}</span>
-                </div>
-                <button
-                  className="delete-button"
-                  onClick={async (e) => {
-                      e.stopPropagation(); // Stop event propagation
-                      await dispatch(deleteEmail(result._id));
-                      dispatch(readEmails()); // Assuming you have a fetchEmail action
-                  }}
-                >
-                    <i className="fa-light fa-trash icon-light"></i>
-                    <i className="fa-solid fa-trash icon-solid"></i>
-                </button>
-
-            </div>)
-          ))}
-
+                </div>)
+            ))}
+            </div>
         </div>
     )
 }
