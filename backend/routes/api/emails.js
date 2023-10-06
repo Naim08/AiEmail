@@ -8,13 +8,13 @@ const { requireUser, getMostRecentEmails } = require("../../config/passport");
 
 router.post('/', requireUser,async (req, res) => {
     try {
-        
+
         const { subject, message, to } = req.body;
-        const email = new Email({ 
-        subject, 
-        message, 
-        to, 
-        user: req.body.user 
+        const email = new Email({
+        subject,
+        message,
+        to,
+        user: req.body.user
         });
         await email.save();
         res.status(201).send(email);
@@ -24,8 +24,28 @@ router.post('/', requireUser,async (req, res) => {
     }
 });
 
+router.get('/search', requireUser, async (req, res) => {
+        const searchTerm = req.query.query;
+        console.log("searchTerm",searchTerm)
+        if (!searchTerm) {
+            return res.status(400).send({ error: 'Search term is required' });
+        }
+
+        try {
+            const emails = await Email.find({
+                // user: req.user,
+                subject: new RegExp(searchTerm, 'i') // This will make the search case-insensitive
+            });
+
+            res.status(200).send(emails);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    });
+
 //Read
-router.get("/", requireUser, async (req, res) => {
+
+router.get('/', requireUser, async (req, res) => {
   try {
     const emails = await Email.find({ user: req.user });
     res.status(200).send(emails);
@@ -35,6 +55,7 @@ router.get("/", requireUser, async (req, res) => {
 });
 
 //
+
 router.get("/:id", async (req, res) => {
   try {
     console.log(req);
@@ -99,5 +120,9 @@ router.get("/fetch-emails", requireUser, async (req, res) => {
     res.status(500).json({ error: "Error fetching emails" });
   }
 });
+
+
+
+
 
 module.exports = router;
