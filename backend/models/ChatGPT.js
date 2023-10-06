@@ -14,8 +14,9 @@ const chatGPTSchema = new mongoose.Schema({
     required: true,
   },
   response: {
-    type: String,
+    type: Object,
     required: true,
+    default: "",
   },
   modelUsed: {
     type: String,
@@ -60,6 +61,11 @@ const chatGPTSchema = new mongoose.Schema({
   timestamp: {
     type: Date,
     default: Date.now,
+  },
+  email: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Email", // Assuming you have an Email model
+    required: false,
   },
 });
 
