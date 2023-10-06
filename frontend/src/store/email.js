@@ -182,6 +182,18 @@ export const deleteEmail = (id) => async (dispatch) => {
   }
 };
 
+export const sendGmail = (email) => async (dispatch) => {
+  try {
+    const response = await jwtFetch("/send-email");
+    const data = await response.json();
+    dispatch(emailCreateSuccess(data));
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 // Initial State
 const initialState = {
   emails: [],

@@ -15,6 +15,7 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const { OAuth2 } = google.auth;
 const oAuth2Client = new OAuth2(gmailClientId, gmailSecret, gmailRedirectUri);
+const MailComposer = require("nodemailer/lib/mail-composer");
 
 passport.use(
   new LocalStrategy(
@@ -211,8 +212,50 @@ function findTextPlainPart(parts) {
   }
   return null;
 }
-// Assume `auth` is your authorized OAuth2 client
-// Use the workflow function like so:
-// await fetchAndDecodeEmails(auth);
 
 exports.getMostRecentEmails = getMostRecentEmails;
+
+async function sendGmail(authToken, refreshToken, email) {
+  oAuth2Client.setCredentials({
+    access_token: authToken,
+    refresh_token: refreshToken,
+  });
+  const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
+
+  const mail = new MailComposer({
+    ...email,
+    fromEmail: email.from,
+    to: email.to,
+    subject: email.subject,
+    text: email.message,
+  });
+
+  // Convert to "raw" RFC 2822 format.
+
+  mail.compile().build((err, message) => {
+    if (err) throw err;
+
+    const encodedMessage = Buffer.from(message)
+      .toString("base64")
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/, "");
+
+    const sendInfo = {
+      userId: "me",
+      resource: {
+        raw: encodedMessage,
+      },
+    };
+
+    gmail.users.messages.send(sendInfo, (err, response) => {
+      if (err) {
+        console.error("Error sending email:", err);
+        return;
+      }
+      console.log("Email sent:", response.data);
+    });
+  });
+}
+
+exports.sendGmail = sendGmail;

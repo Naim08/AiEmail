@@ -31,6 +31,7 @@ const {
   getUserEmail,
   getMostRecentEmails,
   requireUser,
+  sendGmail,
 } = require("./config/passport");
 const Email = require("./models/Email");
 
@@ -126,6 +127,34 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
   }
 });
 
+app.get("/send-email", requireUser, async (req, res) => {
+  console.log(req.user);
+  try {
+    const testEmail = new Email({
+      subject: "Meeting Reminder",
+      message:
+        "Hi Team, Just a reminder for our meeting tomorrow at 10 AM. Best, John",
+      dateSent: new Date("2023-09-30T04:00:00Z"),
+      fromEmail: "mmiah@fordham.edu",
+      snippet: "Hi Team, Just a reminder for our meeting tomorrow...",
+      threadId: "threadf1234567890",
+      responseUrl: "https://api.example.com/v1/respond-to-email",
+      emailId: "emailf1234567890",
+      to: "mmiah0890@gmail.com",
+    });
+
+    await sendGmail(
+      req.user.googleAccessToken,
+      req.user.googleRefreshToken,
+      testEmail
+    );
+
+    res.status(201).send(testEmail);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
 if (isProduction) {
   const path = require("path");
   app.get("/", (req, res) => {
