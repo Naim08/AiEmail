@@ -45,7 +45,7 @@ const emailSchema = new Schema({
     required: true,
     default: "",
   },
-  toEmail: {
+  to: {
     type: String,
     required: true,
     default: "",

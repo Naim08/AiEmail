@@ -118,8 +118,8 @@ export const createEmail = (email) => async (dispatch) => {
     const data = await response.json();
     dispatch(emailCreateSuccess(data));
   } catch (error) {
-    debugger
-    dispatch(emailCreateFailure(error.message));
+    const res = await error.json();
+    dispatch(emailCreateFailure(res.message));
   }
 };
 
@@ -131,7 +131,8 @@ export const fetchSingleEmail = (id) => async (dispatch) => {
     const data = await response.json();
     dispatch(emailFetchSingleSuccess(data));
   } catch (error) {
-    dispatch(emailFetchSingleFailure(error.message));
+    const res = await error.json();
+    dispatch(emailFetchSingleFailure(res.message));
   }
 };
 
@@ -143,7 +144,8 @@ export const readEmails = () => async (dispatch) => {
     const data = await response.json();
     dispatch(emailReadSuccess(data));
   } catch (error) {
-    dispatch(emailReadFailure(error.message));
+    const res = await error.json();
+    dispatch(emailReadFailure(res.message));
   }
 };
 
@@ -161,7 +163,8 @@ export const updateEmail = (email) => async (dispatch) => {
     const data = await response.json();
     dispatch(emailUpdateSuccess(data));
   } catch (error) {
-    dispatch(emailUpdateFailure(error.message));
+    const res = await error.json();
+    dispatch(emailUpdateFailure(res.message));
   }
 };
 
@@ -174,7 +177,8 @@ export const deleteEmail = (id) => async (dispatch) => {
     });
     dispatch(emailDeleteSuccess(id));
   } catch (error) {
-    dispatch(emailDeleteFailure(error.message));
+    const res = await error.json();
+    dispatch(emailDeleteFailure(res.message));
   }
 };
 
