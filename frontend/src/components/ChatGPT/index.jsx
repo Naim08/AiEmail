@@ -9,6 +9,7 @@ import {
   getMessages,
 } from "../../store/chatgpt";
 
+import { sendGmail } from "../../store/email";
 function ChatGPTComponent() {
   const [userMessage, setUserMessage] = useState("");
   const messages = useSelector(getMessages);
@@ -69,6 +70,10 @@ function ChatGPTComponent() {
         Fetch Models{" "}
       </button>
       <button onClick={() => dispatch(fetchEmails())}> Fetch Emails </button>
+      <button onClick={() => dispatch(sendGmail({ email: "email" }))}>
+        {" "}
+        Send Email
+      </button>
       {renderErrors()}
     </div>
   );
