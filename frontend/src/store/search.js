@@ -14,7 +14,7 @@ export const clearSearchResults = () => ({
 export const fetchSearchResults = (query) => async dispatch => {
     //res route may need to change
     const res = await jwtFetch(`/api/emails/search?query=${query}`);
-    debugger
+    // debugger
     const emails = await res.json();
     dispatch(receiveSearchResults(emails));
 }
@@ -24,7 +24,7 @@ const searchReducer = (state = {}, action) => {
     const newState = {...state}
     switch (action.type) {
         case GET_SEARCH_RESULTS:
-            debugger
+            // debugger
             return {...action.searchResults};
         case CLEAR_SEARCH_RESULTS:
             return {};

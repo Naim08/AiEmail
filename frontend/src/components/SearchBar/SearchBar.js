@@ -16,12 +16,12 @@ const  SearchBar = () => {
 
     const handleSearch = (e)=>{
         e.preventDefault();
-        debugger
+        // debugger
 
         const query = e.target.value;
         setSearchText(query);
         if (query.trim() !== "") {
-            debugger
+            // debugger
             dispatch(fetchSearchResults(query));
         }else{
             dispatch(clearSearchResults());
@@ -31,14 +31,14 @@ const  SearchBar = () => {
 
 
     const handleSubmit = (e) =>{
-        debugger
+        // debugger
         console.log("isExpanded", isExpanded)
         e.preventDefault();
         e.stopPropagation();
 
         if (searchText.trim() !== '') {
             setSearchText('');
-            history.push(`/searchResult`)
+            history.push(`/searchresult`)
         }
 
     }

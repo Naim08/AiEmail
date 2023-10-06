@@ -10,6 +10,7 @@ const DashPage = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = useState(false);
 
+
     return (
         <div className="app-container">
                 <NavBar />
