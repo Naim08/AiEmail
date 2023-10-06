@@ -34,18 +34,37 @@ router.post("/", requireUser, async (req, res) => {
   }
 
   const userPrompt = req.body.prompt;
+  const options = req.body.prompt.options || {};
+  const emailId = req.body.prompt.emailId || null;
+  // options example
+
+  // temperature: 0.65,
+  // max_tokens: 2155,
+  // top_p: 0.52,
+  // frequency_penalty: 0,
+  // presence_penalty: 0,
 
   if (!userPrompt) {
     return res.status(400).json({ error: "Prompt is required" });
   }
-  console.log(userPrompt);
+
   try {
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: userPrompt.subject + userPrompt.message,
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo-16k-0613",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a helpful assistant specialized in crafting email responses.",
+        },
+        {
+          role: "user",
+          content: userPrompt.subject,
+        },
+      ],
+      ...options,
     });
-    console.log(completion.data.choices[0].text);
-    const chatOutput = completion.data.choices[0].text;
+    const chatOutput = completion.data.choices[0].message;
 
     const chatEntry = new ChatGPT({
       userId: req.user ? req.user._id : null, // Assuming you have user authentication and req.user contains the authenticated user
@@ -54,7 +73,7 @@ router.post("/", requireUser, async (req, res) => {
         message: userPrompt.message,
       },
       response: chatOutput,
-      modelUsed: "text-davinci-003", // This is hardcoded for this example. You could also dynamically retrieve it from the completion data if it's provided.
+      modelUsed: "gpt-3.5-turbo-16k-0613", // This is hardcoded for this example. You could also dynamically retrieve it from the completion data if it's provided.
       apiParameters: {
         temperature: 0.7, // This is just a sample value. Replace with actual temperature if used.
         maxTokens: 400, // This is just a sample value. Replace with actual max tokens if used.
@@ -80,6 +99,7 @@ router.post("/", requireUser, async (req, res) => {
         modifiedPrompt: false, // Example value. Determine this based on user behavior.
       },
       timestamp: Date.now(), // This will capture the current date and time.
+      email: req.body.prompt.emailId, // Assuming you have an email model and you're passing the email ID to this endpoint.
     });
 
     try {
@@ -89,11 +109,12 @@ router.post("/", requireUser, async (req, res) => {
       return res.status(500).json({ error: "Failed to save chat entry." });
     }
     const response = {
-      response: chatEntry.response,
-      prompt: chatEntry.prompt,
+      response: chatEntry.response.content,
+      prompt: chatEntry.prompt.subject + "\n " + chatEntry.prompt.message,
       promptParams: chatEntry.apiParameters,
       modelUsed: chatEntry.modelUsed,
       responseId: chatEntry.apiResponseMetadata.responseId,
+      emailId: chatEntry.email,
     };
     res.json({ [chatEntry._id]: response });
   } catch (error) {

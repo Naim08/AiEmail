@@ -13,6 +13,7 @@ const EmailForm = ({ emailToUpdate }) => {
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const [showModal, setShowModal] = useState(false);
+    const error  = useSelector((state)=>(state.emailsReducer.error));
 
     const [email, setEmail] = useState({
         subject: emailToUpdate ? emailToUpdate.subject : "",
@@ -24,16 +25,7 @@ const EmailForm = ({ emailToUpdate }) => {
         const { name, value } = e.target;
         setEmail({ ...email, [name]: value });
 
-        const emailWithUser = {
-            ...email,
-            user: sessionUser._id,
-        };
 
-        if (emailToUpdate) {
-            dispatch(updateEmail({ ...email, id: emailToUpdate._id }));
-        } else {
-            dispatch(createEmail(emailWithUser));
-        }
     };
 
     const handleUserModalShow = (e) => {
@@ -44,10 +36,15 @@ const EmailForm = ({ emailToUpdate }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const emailWithUser = {
+            ...email,
+            user: sessionUser._id,
+        };
+
         if (emailToUpdate) {
             dispatch(updateEmail({ ...email, id: emailToUpdate._id }));
         } else {
-            dispatch(createEmail(email));
+            dispatch(createEmail(emailWithUser));
         }
     };
 
@@ -92,6 +89,7 @@ const EmailForm = ({ emailToUpdate }) => {
                 </FormModal>
             )}
             <div className="new-email-form-container">
+                <div style={{ color: 'white' }}>{error ? error : ""}</div>
                 <form onSubmit={handleSubmit} className="new-email-form">
                     {/* <label>To:</label> */}
                     <div className="new-email-to">
