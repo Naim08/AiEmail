@@ -20,6 +20,7 @@ import NotFound from "./components/404";
 import SearchResult from "./components/SearchResult/SearchResult";
 import { getCurrentUser } from "./store/session";
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

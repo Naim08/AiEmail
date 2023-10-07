@@ -22,32 +22,32 @@ const emailSchema = new Schema({
   },
   fromEmail: {
     type: String,
-    required: true,
+    // required: true,
     default: "",
   },
   snippet: {
     type: String,
-    required: true,
+    // required: true,
     default: "",
   },
   threadId: {
     type: String,
-    required: true,
+    // required: true,
     default: "",
   },
   responseUrl: {
     type: String,
-    required: true,
+    // required: true,
     default: "",
   },
   emailId: {
     type: String,
-    required: true,
+    // required: true,
     default: "",
   },
   to: {
     type: String,
-    required: true,
+    // required: true,
     default: "",
   },
 });

@@ -5,6 +5,7 @@ import ReactSlider from "react-slider";
 import "./UserPreferModal.css"
 import { FormModal } from "../../context/modal";
 import { setFormPage, setformSlide } from "../../store/ui";
+import { updateUserPreferences } from "../../store/userPreference";
 
 const UserPreferModal = () =>{
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const UserPreferModal = () =>{
             messages: userMessage
         };
         //dispatch create new user perference
+        dispatch(updateUserPreferences(formData));
     }
 
     return (
