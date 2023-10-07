@@ -14,14 +14,18 @@ const SearchBar = ({ setSearch }) => {
     const handleSearch = (e) => {
         e.preventDefault();
         // debugger
-
         const query = e.target.value;
-        setSearchText(query);
+       // alert(query);
+       setSearchText(query);
         if (query.trim() !== "") {
             // debugger
+            setSearch(true);
+
             dispatch(fetchSearchResults(query));
         } else {
+            setSearch(false);
             dispatch(clearSearchResults());
+            //dispatch(fetchSearchResults(""));
         }
     };
 
@@ -32,7 +36,7 @@ const SearchBar = ({ setSearch }) => {
         e.stopPropagation();
 
         if (searchText.trim() !== "") {
-            setSearchText("");
+            // setSearchText(searchText);
             setSearch(true);
             history.push(`/dashpage`);
         }
