@@ -23,6 +23,7 @@ const EmailDetails = () => {
     const emailPrompt = useSelector(getEmail(emailId));
     const [localEmail, setLocalEmail] = useState(email);
     const [showModal, setShowModal] = useState(false);
+    const [showChatMessage, setShowChatMessage] = useState(false);
 
     const error = useSelector((state) => state.emailsReducer.error);
 
@@ -144,11 +145,20 @@ const EmailDetails = () => {
                             />
                         </div>
                         <div className="new-email-form-btn">
-                            <button type="submit">update</button>
+                            <button
+                                type="submit"
+                                onClick={() => setShowChatMessage(true)}
+                            >
+                                update
+                            </button>
                         </div>
                     </form>
                 </div>
-                <div className="chat-message">
+                <div
+                    className={`chat-message ${
+                        showChatMessage ? "fade-in" : ""
+                    }`}
+                >
                     {emailResponse ? (
                         Object.values(emailResponse).map((message, idx) => (
                             <MessageComponent key={idx} message={message} />

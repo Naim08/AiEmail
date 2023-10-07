@@ -252,3 +252,13 @@ textarea {
         transform: scaleY(0.4);
     }
 }
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+.chat-message {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
