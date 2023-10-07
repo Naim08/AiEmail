@@ -66,6 +66,18 @@ const EmailDetails = () => {
         dispatch(setformSlide("expand"));
     };
 
+    const copyToClipboard = async () => {
+        const emailResponseId = Object.keys(emailResponse)[0];
+        const textToCopy = emailResponse[emailResponseId].response;
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+            console.log("Text successfully copied to clipboard");
+        } catch (err) {
+            console.log("Failed to copy text: ", err);
+        }
+    };
+
     return (
         <>
             <div className="exit-page-btn-div">
@@ -137,6 +149,9 @@ const EmailDetails = () => {
                     </form>
                 </div>
                 <div className="chat-message">
+                    <button className="copy-button" onClick={copyToClipboard}>
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
                     {emailResponse &&
                         Object.values(emailResponse).map((message, idx) => (
                             <MessageComponent key={idx} message={message} />

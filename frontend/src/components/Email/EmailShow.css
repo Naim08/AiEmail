@@ -74,7 +74,7 @@ textarea {
     background: #2e2e2e; /* Same as your primary text color */
     border: 0.5px solid white; /* A subtle border */
     color: white; /* Text color */
-    padding: 12px 24px;
+    padding: 10px;
     font-family: Helvetica;
     font-size: 12px;
     border-radius: 4px;
@@ -132,8 +132,11 @@ textarea {
 }
 
 .chat-message {
+    position: relative;
     width: 33%; /* same width as the email form */
-    height: 20rem; /* half the height */
+    min-height: 20rem; /* minimum height */
+    max-height: 30rem;
+    overflow-y: auto; /* make it scrollable */
     background-color: black; /* same background */
     color: white; /* same text color */
     padding: 20px; /* same padding */
@@ -199,4 +202,19 @@ textarea {
 .error.show,
 .body-error.show {
     opacity: 1;
+}
+
+.copy-button {
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    z-index: 1;
+    padding: 10px;
+    background: #2e2e2e;
+    border: 0.5px solid white;
+    color: #ccc;
+    font-family: Helvetica;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
 }
