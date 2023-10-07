@@ -173,8 +173,7 @@ textarea {
     color: #ccc;
     border: none;
     cursor: pointer;
-    top: 100px;
-    left: -200px;
+    left: 95%;
 }
 
 .user-prefer-btn:hover {

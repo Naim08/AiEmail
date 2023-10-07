@@ -85,15 +85,6 @@ const EmailForm = ({ emailToUpdate }) => {
                     <i className="fa-regular fa-arrow-left exit-icon"></i>
                     <p className="exit-text">Return to Dashboard</p>
                 </div>
-
-                <div>
-                    <button
-                        className="user-prefer-btn"
-                        onClick={handleUserModalShow}
-                    >
-                        <i class="fa-sharp fa-light fa-sliders"></i>
-                    </button>
-                </div>
             </div>
 
             {showModal && (
@@ -141,7 +132,14 @@ const EmailForm = ({ emailToUpdate }) => {
                         {errors.subject || ""}
                     </div>
                     <div className="dotted-line"></div>
-                    {/* <label>Body:</label> */}
+                    <div>
+                        <button
+                            className="user-prefer-btn"
+                            onClick={handleUserModalShow}
+                        >
+                            <i class="fa-sharp fa-light fa-sliders"></i>
+                        </button>
+                    </div>
                     <div className="new-email-body" style={{ flexGrow: 1 }}>
                         <textarea
                             name="message"
