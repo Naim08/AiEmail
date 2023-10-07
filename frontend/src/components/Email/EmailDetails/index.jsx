@@ -149,13 +149,20 @@ const EmailDetails = () => {
                     </form>
                 </div>
                 <div className="chat-message">
-                    <button className="copy-button" onClick={copyToClipboard}>
-                        <i class="fa-solid fa-copy"></i>
-                    </button>
-                    {emailResponse &&
+                    {emailResponse ? (
                         Object.values(emailResponse).map((message, idx) => (
                             <MessageComponent key={idx} message={message} />
-                        ))}
+                        ))
+                    ) : (
+                        <div className="loading-dots">
+                            <span>.</span>
+                            <span>.</span>
+                            <span>.</span>
+                        </div>
+                    )}
+                    <button className="copy-button" onClick={copyToClipboard}>
+                        <i className="fa-solid fa-copy"></i>
+                    </button>
                 </div>
             </div>
         </>
