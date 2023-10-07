@@ -102,7 +102,7 @@ textarea {
 .exit-wrapper {
     display: flex;
     cursor: pointer;
-    margin: 20px;
+    /* margin: 20px; */
     width: 16%;
     height: 10px;
 }
@@ -165,4 +165,39 @@ textarea {
 .form-modal-outer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.19);
     border-radius: 300px;
+}
+
+.user-prefer-btn {
+    position: relative;
+    background: none;
+    color: #ccc;
+    border: none;
+    cursor: pointer;
+    top: 100px;
+    left: -200px;
+}
+
+.user-prefer-btn:hover {
+    color: white;
+}
+
+.error,
+.body-error {
+    position: relative;
+    bottom: 30px;
+    left: 400px;
+    color: #ccc;
+    opacity: 0;
+    transition: opacity 1s ease;
+    font-size: 14px;
+    height: 11px;
+}
+
+.body-error {
+    bottom: 400px;
+}
+
+.error.show,
+.body-error.show {
+    opacity: 1;
 }
