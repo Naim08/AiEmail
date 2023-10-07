@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createEmail, updateEmail, readEmails } from "../../../store/email";
+import { createEmail, updateEmail } from "../../../store/email";
 import UserPreferModal from "../../UserPreferModal/UserPreferModal";
 import { FormModal } from "../../../context/modal";
-import { setFormPage, setformSlide } from "../../../store/ui";
+import { setformSlide } from "../../../store/ui";
 import "../EmailShow.css";
 
 //NEW EMAIL PAGE
@@ -13,7 +13,7 @@ const EmailForm = ({ emailToUpdate }) => {
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const [showModal, setShowModal] = useState(false);
-    const error  = useSelector((state)=>(state.emailsReducer.error));
+    const error = useSelector((state) => state.emailsReducer.error);
 
     const [email, setEmail] = useState({
         subject: emailToUpdate ? emailToUpdate.subject : "",
@@ -23,18 +23,38 @@ const EmailForm = ({ emailToUpdate }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        if (errors[name]) {
+            const newErrors = { ...errors };
+            delete newErrors[name];
+            setErrors(newErrors);
+        }
         setEmail({ ...email, [name]: value });
-
-
     };
 
     const handleUserModalShow = (e) => {
         e.preventDefault();
         setShowModal(true);
     };
+    const [errors, setErrors] = useState({});
+
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!email.to) newErrors.to = "field cannot be empty!";
+        if (!email.subject) newErrors.subject = "field cannot be empty!";
+        if (!email.message) newErrors.message = "field cannot be empty!";
+        return newErrors;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const formErrors = validateForm();
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors);
+            return;
+        }
 
         const emailWithUser = {
             ...email,
@@ -59,7 +79,6 @@ const EmailForm = ({ emailToUpdate }) => {
     };
 
     return (
-        // <div className='new-email-form-page'>
         <>
             <div className="exit-page-btn-div">
                 <div className="exit-wrapper" onClick={handleExit}>
@@ -69,10 +88,10 @@ const EmailForm = ({ emailToUpdate }) => {
 
                 <div>
                     <button
-                        className="user-perfer-btn"
+                        className="user-prefer-btn"
                         onClick={handleUserModalShow}
                     >
-                        User Preference
+                        <i class="fa-sharp fa-light fa-sliders"></i>
                     </button>
                 </div>
             </div>
@@ -91,7 +110,7 @@ const EmailForm = ({ emailToUpdate }) => {
                 </div>
             )}
             <div className="new-email-form-container">
-                <div style={{ color: 'white' }}>{error ? error : ""}</div>
+                <div style={{ color: "white" }}>{error ? error : ""}</div>
                 <form onSubmit={handleSubmit} className="new-email-form">
                     {/* <label>To:</label> */}
                     <div className="new-email-to">
@@ -100,7 +119,11 @@ const EmailForm = ({ emailToUpdate }) => {
                             id="form-input"
                             name="to"
                             placeholder="To"
+                            onChange={handleChange}
                         />
+                    </div>
+                    <div className={`error ${errors.to ? "show" : ""}`}>
+                        {errors.to || ""}
                     </div>
                     <div className="dotted-line"></div>
                     {/* <label>Subject:</label> */}
@@ -114,6 +137,9 @@ const EmailForm = ({ emailToUpdate }) => {
                             placeholder="Subject"
                         />
                     </div>
+                    <div className={`error ${errors.subject ? "show" : ""}`}>
+                        {errors.subject || ""}
+                    </div>
                     <div className="dotted-line"></div>
                     {/* <label>Body:</label> */}
                     <div className="new-email-body" style={{ flexGrow: 1 }}>
@@ -124,6 +150,11 @@ const EmailForm = ({ emailToUpdate }) => {
                             placeholder="Message"
                             style={{ height: "100%" }}
                         />
+                    </div>
+                    <div
+                        className={`body-error ${errors.message ? "show" : ""}`}
+                    >
+                        {errors.message || ""}
                     </div>
                     <div className="new-email-form-btn">
                         <button type="submit">
