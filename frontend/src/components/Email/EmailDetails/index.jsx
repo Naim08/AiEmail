@@ -14,6 +14,7 @@ import { sendMessage, getMessage } from "../../../store/chatgpt";
 //EXISTING EMAIL PAGE
 
 const EmailDetails = () => {
+
     const { emailId } = useParams();
     const isLoading = useSelector((state) => state.emailsReducer.isLoading);
     const dispatch = useDispatch();
@@ -26,21 +27,27 @@ const EmailDetails = () => {
     const [showChatMessage, setShowChatMessage] = useState(false);
 
     const error = useSelector((state) => state.emailsReducer.error);
+    const userPreferences = useSelector((state) => state.userPreferenceReducer);
 
     useEffect(() => {
-        dispatch(fetchSingleEmail(emailId));
+      dispatch(fetchSingleEmail(emailId));
     }, []);
 
     useEffect(() => {
-        if (emailPrompt) {
-            const prompt = {
-                subject: email.subject,
-                message: email.message,
-                emailId: emailId,
-            };
-            dispatch(sendMessage({ prompt: prompt }));
-            setLocalEmail(email);
-        }
+      if (emailPrompt) {
+        const prompt = {
+          subject: email.subject,
+          message: email.message,
+          emailId: emailId,
+        };
+
+        const options = {...userPreferences}
+
+        console.log(options)
+        dispatch(sendMessage({ prompt, options }));
+
+        setLocalEmail(email);
+      }
     }, [emailPrompt]);
 
     const handleChange = (e) => {
@@ -49,6 +56,7 @@ const EmailDetails = () => {
     };
 
     const handleSubmit = (e) => {
+        console.log("SubMITTING FORM");
         e.preventDefault();
         dispatch(updateEmail({ ...localEmail, id: emailId }));
     };
@@ -79,8 +87,16 @@ const EmailDetails = () => {
         }
     };
 
+    useEffect(() => {
+        // This will log the value of showChatMessage whenever it changes
+        console.log("showChatMessage is now: ", showChatMessage);
+    }, [showChatMessage]);
+
     return (
         <>
+            {console.log("showChatMessage:", showChatMessage)}
+            {console.log("emailResponse:", emailResponse)}
+            {console.log("CONSOLE LOG")}
             <div className="exit-page-btn-div">
                 <div className="exit-wrapper" onClick={handleExit}>
                     <i className="fa-regular fa-arrow-left exit-icon"></i>
@@ -154,11 +170,29 @@ const EmailDetails = () => {
                         </div>
                     </form>
                 </div>
-                <div
+                {/* <div
                     className={`chat-message ${
                         showChatMessage ? "fade-in" : ""
                     }`}
                 >
+                    {emailResponse ? (
+                        Object.values(emailResponse).map((message, idx) => (
+                            <MessageComponent key={idx} message={message} />
+                        ))
+                    ) : (
+                        <div className="loading-dots">
+                            <span>.</span>
+                            <span>.</span>
+                            <span>.</span>
+                        </div>
+                    )}
+                    <button className="copy-button" onClick={copyToClipboard}>
+                        <i className="fa-solid fa-copy"></i>
+                    </button>
+                </div> */}
+                <div className="chat-message">
+                    {console.log("emailResponse:", emailResponse)}{" "}
+                    {/* Debug line */}
                     {emailResponse ? (
                         Object.values(emailResponse).map((message, idx) => (
                             <MessageComponent key={idx} message={message} />
