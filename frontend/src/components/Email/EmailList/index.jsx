@@ -16,13 +16,10 @@ const EmailList = () => {
   const [emailId, setEmailId] = useState("");
 
   const handleOpenModal = () => {
-      //alert(id);
       setIsModalActive(true);
-      //setEmailId(id);
   };
 
   const handleCloseModal = () => {
-    console.log("clickClose")
       setIsModalActive(false);
   };
 
@@ -36,12 +33,11 @@ const EmailList = () => {
     history.push(`/email/${email._id}`);
   };
 
-  const deleteEmailById = () => {
+  const handleConfirmModal = () => {
     setIsModalActive(false);
-    // alert(emailId);
     dispatch(deleteEmail(emailId));
-    dispatch(readEmails()); // Assuming you have a fetchEmail action
-};
+    dispatch(readEmails());
+  };
 
   useEffect(() => {
     dispatch(readEmails());
@@ -71,8 +67,6 @@ const EmailList = () => {
             e.stopPropagation(); // Stop event propagation
             setEmailId(email._id)
             handleOpenModal();
-            // await dispatch(deleteEmail(email._id));
-            // dispatch(readEmails()); // Assuming you have a fetchEmail action
         }}
     >
 
@@ -85,14 +79,14 @@ const EmailList = () => {
 
           </div>
       )}
-      <div>
-            <EmailDeleteModal isActive={isModalActive} onClose={handleCloseModal}>
-                <h2>Delete Comfirmation</h2>
+        <EmailDeleteModal
+                isActive={isModalActive}
+                onClose={handleCloseModal}
+                onConfirm={handleConfirmModal}
+                header="Delete Comfirmation"
+            >
                 <p>Delete your email permanently?</p>
-                <button onClick={handleCloseModal}>Cancel</button>
-                <button onClick={deleteEmailById}>Comfirm</button>
             </EmailDeleteModal>
-        </div>
     </>
   );
 };
