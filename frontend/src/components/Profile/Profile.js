@@ -14,7 +14,7 @@ function Profile() {
     };
 
     return (
-        <div>
+        <div className="profile-container">
             <div className="exit-page-btn-div">
                 <div className="exit-wrapper" onClick={handleExit}>
                     <i className="fa-regular fa-arrow-left exit-icon"></i>
@@ -23,12 +23,12 @@ function Profile() {
             </div>
 
             <div className="profile-content">
-                <h1 className="profile-content-header">User Account Setting</h1>
+                <h1 className="profile-content-header">Account Details</h1>
                 <div className="profile-content-name-div">
-                    <h1 className="profile-content-name">Name</h1>
+                    <h1 className="profile-content-name">Username</h1>
                     <div className="profile-content-name-container">
                         <h3>{currentUser.username}</h3>
-                        <a className="profile-content-update-link">Update</a>
+                        {/* <a className="profile-content-update-link">Update</a> */}
                     </div>
                 </div>
 
@@ -36,7 +36,7 @@ function Profile() {
                     <h1 className="profile-content-email">Email</h1>
                     <div className="profile-content-email-container">
                         <h3>{currentUser.email}</h3>
-                        <a className="profile-content-update-link">Update</a>
+                        {/* <a className="profile-content-update-link">Update</a> */}
                     </div>
                 </div>
             </div>

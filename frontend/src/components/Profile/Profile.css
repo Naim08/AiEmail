@@ -15,7 +15,8 @@
     /* margin: 8px 0px; */
     padding-bottom: 5px;
     margin-bottom: 5px;
-    border-bottom: 1px solid #b4b4b3;
+    width: 50%;
+    /* border-bottom: 1px solid #b4b4b3; */
 }
 
 .profile-content {
@@ -24,6 +25,10 @@
     margin: 20px;
     color: #fff;
     /* border: 1px solid #fff; */
+    width: 50%;
+    position: relative;
+    left: 25%;
+    top: 30px;
 }
 
 .profile-content-name-div,
@@ -35,6 +40,7 @@
 .profile-content-name,
 .profile-content-email {
     margin-bottom: 8px;
+    color: #61677a;
 }
 
 .profile-content-name-container,
@@ -46,3 +52,8 @@
 .profile-content-update-link {
     margin-left: 20px;
 }
+
+/* .profile-container {
+    background-color: black;
+    min-height: 100vh;
+} */
