@@ -12,7 +12,7 @@ const UserPreferModal = () => {
     const [temperature, setTemperature] = useState(1);
     const [presencePenalty, setPresencePenalty] = useState(0);
     const [frequencyPenalty, setFrequencyPenalty] = useState(0);
-    const [maxTokens, setMaxTokens] = useState(0);
+    const [maxTokens, setMaxTokens] = useState(255);
     const [userMessage, setUserMessage] = useState("");
 
     const handleSubmit = (e) => {
@@ -142,7 +142,7 @@ const UserPreferModal = () => {
                             onChange={(e) =>
                                 setMaxTokens(Number(e.target.value))
                             }
-                            // value={maxTokens}
+                            value={maxTokens}
                             min={0}
                         />
                     </div>
