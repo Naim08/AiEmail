@@ -88,8 +88,8 @@ const EmailList = () => {
       <div>
             <EmailDeleteModal isActive={isModalActive} onClose={handleCloseModal}>
                 <h2>Delete Comfirmation</h2>
-                <p>Are you sure to delete this email?</p>
-                <button onClick={handleCloseModal}>Close</button>
+                <p>Delete your email permanently?</p>
+                <button onClick={handleCloseModal}>Cancel</button>
                 <button onClick={deleteEmailById}>Comfirm</button>
             </EmailDeleteModal>
         </div>
