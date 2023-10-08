@@ -4,7 +4,13 @@ const router = express.Router();
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 
-const { loginUser, restoreUser } = require("../../config/passport");
+const {
+  loginUser,
+  restoreUser,
+  getMostRecentEmails,
+} = require("../../config/passport");
+const Email = require("../../models/Email");
+
 const { isProduction } = require("../../config/keys");
 
 const validateRegisterInput = require("../../validations/register");
@@ -72,12 +78,38 @@ router.post("/login", validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/current", restoreUser, (req, res) => {
+router.get("/current", restoreUser, async (req, res) => {
   if (!isProduction) {
     const csrfToken = req.csrfToken();
     res.cookie("CSRF-TOKEN", csrfToken);
   }
   if (!req.user) return res.json(null);
+  console.log(req.cookies.updatedGoogle);
+  if (req.session.updatedGoogle) {
+    if (
+      req.user.googleAccessToken &&
+      req.user.googleRefreshToken &&
+      !req.session.updatedGoogle
+    ) {
+      const emails = await getMostRecentEmails(
+        req.user.googleAccessToken,
+        req.user.googleRefreshToken
+      );
+      Object.values(emails).forEach((email) => {
+        const newEmail = new Email({
+          ...email,
+          message: email.message,
+          user: req.user._id,
+        });
+        if (newEmail.message) {
+          newEmail.save();
+        }
+      });
+      console.log("updated google");
+      req.session.updatedGoogle = true;
+      res.cookie("updatedGoogle", true);
+    }
+  }
   res.json({
     _id: req.user._id,
     username: req.user.username,
@@ -85,6 +117,24 @@ router.get("/current", restoreUser, (req, res) => {
   });
 });
 
+router.delete("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Logout failed" });
+    }
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    res.session = null;
+    req.session = null;
+    res.clearCookie();
+    res.json({ message: "Logout successful" });
+  });
+});
+// router.post("/logout", (req, res) => {
+//   req.logout();
+//   res.json({ message: "Logout successful" });
+// });
 router.get("/login-demo", async (req, res, next) => {
   try {
     // Fetch the demo user from the database
