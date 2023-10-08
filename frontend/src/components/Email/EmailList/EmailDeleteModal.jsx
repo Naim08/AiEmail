@@ -1,6 +1,9 @@
 import React from 'react';
 import "./EmailList.css";
 
+
+
+
 const EmailDeleteModal = ({ isActive, onClose, onConfirm, children, header }) => {
     return (
         <div className={`modal-overlay ${isActive ? 'active' : ''}`}>

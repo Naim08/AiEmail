@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import "./SearchBar.css";
 import { fetchSearchResults, clearSearchResults } from "../../store/search";
 
-const SearchBar = ({ setSearch }) => {
+const SearchBar = ({ setSearch, searchText,setSearchText}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [isExpanded, setIsExpanded] = useState(false);
     // const searchResults = useSelector(state => Object.values(state.search));
-    const [searchText, setSearchText] = useState("");
+    // const [searchText, setSearchText] = useState("");
 
     const handleSearch = (e) => {
         e.preventDefault();
