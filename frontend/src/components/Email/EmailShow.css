@@ -145,6 +145,15 @@ textarea {
     box-shadow: 8px 8px 16px #0a0a0a, -8px -8px 16px #2e2e2e; /* same shadow */
     font-family: "Courier";
 }
+/* .chat-message {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+} */
+
+/* .fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+} */
 
 .main-container {
     display: flex;
@@ -251,14 +260,4 @@ textarea {
     60% {
         transform: scaleY(0.4);
     }
-}
-
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-}
-
-.chat-message {
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
 }
