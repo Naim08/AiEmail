@@ -34,8 +34,10 @@ router.post("/", requireUser, async (req, res) => {
   }
 
   const userPrompt = req.body.prompt;
-  const options = req.body.prompt.options || {};
+  const options = req.body.options || {};
+  const { userMessage, ...otherOptions } = options;
   const emailId = req.body.prompt.emailId || null;
+  console.log(options)
   // options example
 
   // temperature: 0.65,
@@ -49,8 +51,19 @@ router.post("/", requireUser, async (req, res) => {
   }
 
   try {
+    const integratedMessage = [
+      userMessage,
+      "The email subject is",
+      userPrompt.subject,
+      "The email body is",
+      userPrompt.message
+    ].filter(Boolean).join('. ');
+
+    console.log(integratedMessage)
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo-16k-0613",
+      // options like word limit, max token, temerpature and so on
+      ...otherOptions,
       messages: [
         {
           role: "system",
@@ -59,10 +72,10 @@ router.post("/", requireUser, async (req, res) => {
         },
         {
           role: "user",
-          content: userPrompt.subject,
+          content: integratedMessage,
         },
       ],
-      ...options,
+      
     });
     const chatOutput = completion.data.choices[0].message;
 

@@ -6,6 +6,7 @@ import chatgptReducer from "./chatgpt";
 import uiReducer from "./ui";
 import emailsReducer from "./email";
 import search from "./search";
+import userPreferenceReducer from "./userPreference";
 
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   chatgpt: chatgptReducer,
   ui: uiReducer,
   emailsReducer,
-  search
+  search,
+  userPreferenceReducer,
 });
 
 let enhancer;

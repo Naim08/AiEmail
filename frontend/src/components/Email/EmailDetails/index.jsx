@@ -14,6 +14,7 @@ import { sendMessage, getMessage } from "../../../store/chatgpt";
 //EXISTING EMAIL PAGE
 
 const EmailDetails = () => {
+
     const { emailId } = useParams();
     const isLoading = useSelector((state) => state.emailsReducer.isLoading);
     const dispatch = useDispatch();
@@ -26,21 +27,27 @@ const EmailDetails = () => {
     const [showChatMessage, setShowChatMessage] = useState(false);
 
     const error = useSelector((state) => state.emailsReducer.error);
+    const userPreferences = useSelector((state) => state.userPreferenceReducer);
 
     useEffect(() => {
-        dispatch(fetchSingleEmail(emailId));
+      dispatch(fetchSingleEmail(emailId));
     }, []);
 
     useEffect(() => {
-        if (emailPrompt) {
-            const prompt = {
-                subject: email.subject,
-                message: email.message,
-                emailId: emailId,
-            };
-            dispatch(sendMessage({ prompt: prompt }));
-            setLocalEmail(email);
-        }
+      if (emailPrompt) {
+        const prompt = {
+          subject: email.subject,
+          message: email.message,
+          emailId: emailId,
+        };
+
+        const options = {...userPreferences}
+
+        console.log(options)
+        dispatch(sendMessage({ prompt, options }));
+
+        setLocalEmail(email);
+      }
     }, [emailPrompt]);
 
     const handleChange = (e) => {
