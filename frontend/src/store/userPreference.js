@@ -8,7 +8,7 @@ export const updateUserPreferences = (formData) => ({
 
 
 const initialState = {
-    max_tokens: 400,
+    max_tokens: 255,
     presence_penalty: 0,
     frequency_penalty: 0,
     temperature: 1,
