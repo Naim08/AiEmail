@@ -19,9 +19,7 @@ const SearchResult = ({query}) =>{
     const currentUser = useSelector(state => state.session.user);
     const searchResults = useSelector((state) => Object.values(state.search));
     const searchParams = new URLSearchParams(location.search);
-    // const query = searchParams.get("query");
     const noResults = Object.keys(searchResults).length === 0;
-    // console.log("emails", emails);
     console.log("currentUser", currentUser);
     console.log("searchResults", searchResults);
     const handleEmailClick = (email) =>{
@@ -43,9 +41,7 @@ const SearchResult = ({query}) =>{
         setIsModalActive(false);
         dispatch(deleteEmail(emailId))
         .then(() => {
-            debugger
             dispatch(fetchSearchResults(query));
-
         })
         .catch((error) => {
             console.error("Failed to delete email:", error);
@@ -85,7 +81,7 @@ const SearchResult = ({query}) =>{
             <EmailDeleteModal
                 isActive={isModalActive}
                 onClose={handleCloseModal}
-                onConfirm={handleConfirmModal}
+                onConfirm={()=>handleConfirmModal(query)}
                 header="Delete Comfirmation"
             >
                 <p>Delete your email permanently?</p>
