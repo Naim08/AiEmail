@@ -1,14 +1,27 @@
 import "./EmailList.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { readEmails, deleteEmail } from "../../../store/email";
 import { fetchEmails } from "../../../store/chatgpt";
+import EmailDeleteModal from './EmailDeleteModal';
+
 
 const EmailList = () => {
   const dispatch = useDispatch();
   const emails = useSelector((state) => state.emailsReducer.emails);
   const isLoading = useSelector((state) => state.emailsReducer.isLoading);
+
+  const [isModalActive, setIsModalActive] = useState(false);
+  const [emailId, setEmailId] = useState("");
+
+  const handleOpenModal = () => {
+      setIsModalActive(true);
+  };
+
+  const handleCloseModal = () => {
+      setIsModalActive(false);
+  };
 
   const history = useHistory();
 
@@ -20,6 +33,12 @@ const EmailList = () => {
     history.push(`/email/${email._id}`);
   };
 
+  const handleConfirmModal = () => {
+    setIsModalActive(false);
+    dispatch(deleteEmail(emailId));
+    dispatch(readEmails());
+  };
+
   useEffect(() => {
     dispatch(readEmails());
   }, [dispatch]);
@@ -27,7 +46,7 @@ const EmailList = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Loading...</p >
       ) : (
         <div className="email-list-container">
           <div className="new-email-item" onClick={handleToNew}>
@@ -46,10 +65,11 @@ const EmailList = () => {
         className="delete-button"
         onClick={async (e) => {
             e.stopPropagation(); // Stop event propagation
-            await dispatch(deleteEmail(email._id));
-            dispatch(readEmails()); // Assuming you have a fetchEmail action
+            setEmailId(email._id)
+            handleOpenModal();
         }}
     >
+
     <i className="fa-light fa-trash icon-light"></i>
     <i className="fa-solid fa-trash icon-solid"></i>
 </button>
@@ -59,6 +79,14 @@ const EmailList = () => {
 
           </div>
       )}
+        <EmailDeleteModal
+                isActive={isModalActive}
+                onClose={handleCloseModal}
+                onConfirm={handleConfirmModal}
+                header="Delete Comfirmation"
+            >
+                <p>Delete your email permanently?</p>
+            </EmailDeleteModal>
     </>
   );
 };
