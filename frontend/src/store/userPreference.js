@@ -12,7 +12,7 @@ const initialState = {
     presence_penalty: 0,
     frequency_penalty: 0,
     temperature: 1,
-    messages: ""
+    userMessage: ""
 };
 
 const userPreferenceReducer = (state = initialState, action) => {

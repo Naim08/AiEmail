@@ -19,6 +19,7 @@ const EmailDetails = () => {
   const emailPrompt = useSelector(getEmail(emailId));
   const [localEmail, setLocalEmail] = useState(email);
   const error = useSelector((state) => state.emailsReducer.error);
+  const userPreferences = useSelector((state) => state.userPreferenceReducer);
 
   useEffect(() => {
     dispatch(fetchSingleEmail(emailId));
@@ -31,7 +32,12 @@ const EmailDetails = () => {
         message: email.message,
         emailId: emailId,
       };
-      dispatch(sendMessage({ prompt: prompt }));
+
+      const options = {...userPreferences}
+      
+      console.log(options)
+      dispatch(sendMessage({ prompt, options }));
+    
       setLocalEmail(email);
     }
   }, [emailPrompt]);
