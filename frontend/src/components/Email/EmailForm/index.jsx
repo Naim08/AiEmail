@@ -47,7 +47,7 @@ const EmailForm = ({ emailToUpdate }) => {
         return newErrors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         const formErrors = validateForm();
@@ -61,11 +61,12 @@ const EmailForm = ({ emailToUpdate }) => {
             user: sessionUser._id,
         };
 
-        if (emailToUpdate) {
-            dispatch(updateEmail({ ...email, id: emailToUpdate._id }));
-        } else {
-            dispatch(createEmail(emailWithUser));
+        const returnedEmail = await dispatch(createEmail(emailWithUser));
+
+        if (returnedEmail && returnedEmail._id) {  // Check if the returnedEmail object has the _id property
+        history.push(`/email/${returnedEmail._id}`);  
         }
+        
     };
 
     const handleExit = (e) => {
