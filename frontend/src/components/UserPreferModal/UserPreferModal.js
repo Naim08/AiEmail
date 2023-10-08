@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState }  from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ReactSlider from "react-slider";
-import "./UserPreferModal.css";
+import "./UserPreferModal.css"
 import { FormModal } from "../../context/modal";
 import { setFormPage, setformSlide } from "../../store/ui";
 import { updateUserPreferences } from "../../store/userPreference";
 
-const UserPreferModal = () => {
+const UserPreferModal = () =>{
     const dispatch = useDispatch();
     const temperatureFromRedux = useSelector(state => state.userPreferenceReducer.temperature);
     const presencePenaltyFromRedux = useSelector(state => state.userPreferenceReducer.temperature);
@@ -20,7 +20,7 @@ const UserPreferModal = () => {
     const [maxTokens, setMaxTokens] = useState(maxTokensFromRedux)
     const [userMessage, setUserMessage] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e)=>{
         e.preventDefault();
 
         const formData = {
@@ -34,47 +34,19 @@ const UserPreferModal = () => {
         dispatch(updateUserPreferences(formData));
     }
 
-    const closeUserPreferModal = () => {
-        setShowModal(false);
-        dispatch(setformSlide("expand"));
-    };
-
     return (
-        <form className="user-modal-content" onSubmit={handleSubmit}>
-            <div className="user-modal-header">
-                <div>
-                    <h1 style={{ fontSize: "20px" }}>Preference Selection</h1>
-                </div>
-            </div>
-            <div className="user-modal-body">
-                <div className="user-modal-body-row">
-                    <div className="tooltip">
-                        Output Randomness
-                        <span className="tooltiptext">
-                            Between 0 and 2, higher values will make the output
-                            more random
-                        </span>
+
+            <form className="user-modal-content" onSubmit={handleSubmit}>
+                <div className="user-modal-header">
+                    <div className="user-modal-header-img">
+                        <i className="fa-solid fa-bullseye fa-2xl"></i>
                     </div>
                     <div>
-                        <ReactSlider
-                            value={temperature}
-                            onAfterChange={(val) => {
-                                setTemperature(val);
-                            }}
-                            orientation="horizontal"
-                            min={0}
-                            max={2}
-                            className="horizontal-slider"
-                            thumbClassName="temperature-thumb"
-                            trackClassName="temperature-track"
-                            renderThumb={(props, state) => (
-                                <div {...props}>{state.valueNow}</div>
-                            )}
-                            step={0.1}
-                        />
+                        <h1>Set Your preference</h1>
                     </div>
-                </div>
 
+                </div>
+                <div className="user-modal-body">
 
                     <div className="user-modal-body-row">
                         <div className="tooltip">Output Randomness
@@ -120,10 +92,7 @@ const UserPreferModal = () => {
                                     step={0.1}
                                 />
                         </div>
-
                     </div>
-                </div>
-
 
                     <div className="user-modal-body-row">
                         <div className="tooltip">Word Repeatability
@@ -163,46 +132,27 @@ const UserPreferModal = () => {
                             />
                         </div>
                     </div>
-                </div>
 
-                <div className="user-modal-body-row">
-                    <div className="user-token-label tooltip">
-                        Words Length Limit
-                        <span className="tooltiptext">
-                            The maximum number of words to generate in the AI
-                            response
-                        </span>
+                    <div className="user-modal-body-row">
+                        <div className="user-messgae-label">
+                            <h3>User Message</h3>
+                        </div>
+                        <div className="user-messgae-input">
+                            <input
+                                type="text"
+                                onChange={(e)=>setUserMessage(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <input
-                            type="number"
-                            className="max-tokens-input"
-                            onChange={(e) =>
-                                setMaxTokens(Number(e.target.value))
-                            }
-                            // value={maxTokens}
-                            min={0}
-                        />
-                    </div>
-                </div>
 
-                <div className="user-modal-body-row">
-                    <div className="user-message-label">
-                        <h3>User Message</h3>
-                    </div>
-                    <div className="user-message-input">
-                        <input
-                            type="text"
-                            onChange={(e) => setUserMessage(e.target.value)}
-                        />
-                    </div>
                 </div>
-            </div>
-            <div className="user-modal-submit-btn-container">
-                <button className="user-modal-submit-btn">Submit</button>
-            </div>
-        </form>
-    );
-};
+                <div className="user-modal-submit-btn-container">
+                    <button className="user-modal-submit-btn">Done</button>
+                </div>
+            </form>
+    )
+
+
+}
 
 export default UserPreferModal;
