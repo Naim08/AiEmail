@@ -117,6 +117,8 @@ export const createEmail = (email) => async (dispatch) => {
     });
     const data = await response.json();
     dispatch(emailCreateSuccess(data));
+    
+    return data;
   } catch (error) {
     const res = await error.json();
     dispatch(emailCreateFailure(res.message));
