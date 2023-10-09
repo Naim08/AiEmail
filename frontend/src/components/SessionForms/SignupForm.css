@@ -39,8 +39,8 @@ h2 {
 /* Input Fields */
 input[type="text"],
 input[type="password"] {
-    width: 320px;
-    height: 50px;
+    width: 320px !important;
+    height: 50px !important;
     border: none;
     border-radius: 0.5rem;
     background: #e0e0e0;
@@ -105,4 +105,12 @@ Link:hover {
 
 .login-link:hover {
     text-decoration: underline;
+}
+
+.login-button {
+    background-color: #aaa !important;
+}
+
+.signup-btn {
+    background-color: #aaa !important;
 }
