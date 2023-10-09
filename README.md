@@ -25,14 +25,15 @@ In our digital era, professionals often find their inboxes flooded. Keeping up w
 
 - [ ] User authorization: sign up and log in
 <p align="center">
-  <img src="/Users/huangyinyin/Desktop/AA/AiEmail/AiEmail/frontend/src/assets/homepage.gif" />
+  <img src="./frontend/src/assets/homepage.gif" />
 </p>
 
 - [ ] CRUD Email Session: Users can set and customize their preferences for email interactions, initiate a new email session, view existing ones, edit email contents or settings, and delete emails no longer needed.
 - [ ] AI-Generated Response: Based on the incoming email content and user preferences, the system will generate an appropriate email response, which users can choose to use, modify, or discard.
 <p align="center">
-  <img src="/Users/huangyinyin/Desktop/AA/AiEmail/AiEmail/frontend/src/assets/AiResp.gif" />
+  <img src="./frontend/src/assets/AiResp.gif" />
 </p>
+
 - [ ] Search Previous Email: Allows users to search through their past emails using keywords, user can edit or delete these emails.
 - [ ] Sending Email: Once the user is satisfied with the email content, they can send it directly from the platform.
 
@@ -72,12 +73,12 @@ MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The tec
 *   Implement user authorization on database backend - Naim(completed on Sunday)
 *   Wrote Project Proposal and planned work for the week.
 
-## Group Members and Work Breakdown
+## Meet the Team
 
--   Fanyi Tang - Team Lead
+-   Fanyi Tang -  Steering the ship as the Team Lead.
 
--   Sanjid Dewan - Frontend
+-   Sanjid Dewan - Perfecting user experiences on the Frontend.
 
--   Naim Miah - Backend
+-   Naim Miah - Ensuring robust operations with Backend responsibilities.
 
--   Yinyin Huang - Flex
+-   Yinyin Huang - The versatile Flex member, bridging gaps wherever required.
