@@ -23,6 +23,10 @@ export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
 });
 
+export const currentUser = (state) => {
+  return state.session.user;
+};
+
 export const signup = (user) => startSession(user, "api/users/register");
 export const login = (user) => startSession(user, "api/users/login");
 
@@ -34,7 +38,7 @@ const startSession = (userInfo, route) => async (dispatch) => {
     });
     const { user, token } = await res.json();
     localStorage.setItem("jwtToken", token);
-    //Redirect 
+    //Redirect
     return dispatch(receiveCurrentUser(user));
   } catch (err) {
     const res = await err.json();
@@ -44,7 +48,12 @@ const startSession = (userInfo, route) => async (dispatch) => {
   }
 };
 
-export const logout = () => (dispatch) => {
+export const logout = () => async (dispatch) => {
+  const res = await jwtFetch("/api/users/logout", {
+    method: "DELETE",
+  });
+
+  const { user } = await res.json();
   localStorage.removeItem("jwtToken");
   dispatch(logoutUser());
 };
