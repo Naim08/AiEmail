@@ -1,20 +1,46 @@
 # MailTo
 
-MailTo is a website that uses AI technology to assist users in crafting appropriate email responses.
+MailTo is an AI-driven platform aimed at bridging the gap between instant electronic communication and the time-consuming process of crafting apt email responses. By leveraging state-of-the-art AI technology, MailTo provides users with contextually relevant and linguistically appropriate email suggestions, streamlining the communication process without sacrificing quality.
+
+# Live Site
+[MailTo](https://mailto.naimmiah.com/)
 
 ## Background and Overview
 
-In today's fast-paced digital world, communication has become both instantaneous and voluminous. With the rise in electronic communication, businesses and professionals face an overwhelming number of emails on a daily basis. While timely responses enhance customer satisfaction and professionalism, crafting thoughtful and appropriate responses requires time and effort. Many businesses face a challenge: how to maintain efficient communication without compromising on quality.
+In our digital era, professionals often find their inboxes flooded. Keeping up with the demand for quick yet considerate replies is challenging. Enter MailTo: an application that not only assists in drafting responses but also manages email sessions, keeps track of user preferences, and ensures a user-friendly experience. The goals for our project:
 
-Recognizing the need for efficient, consistent, and high-quality email responses, a team of engineers came together to conceptualize MailTo. "MailTo" is an innovative AI-driven platform designed to assist users in crafting appropriate and effective email responses.
+- Enhance Communication Efficiency:
+    *   Provide users with AI-generated email responses that are contextually relevant and linguistically appropriate.
+    *   Reduce the time and cognitive load on users to craft responses for every email, especially for repetitive and common queries.
+- User-Centric Design:
+    *   Develop a user-friendly interface that allows users to easily navigate through various functionalities like initiating new email sessions, customizing preferences, and more.
+    *   Ensure that the AI-generated responses can be easily modified, approved, or discarded by the user, providing them with control over the communication.
+- Intelligent Email Management:
+    *   Enable users to search through their past emails efficiently using keywords or phrases.
+    *   Implement smart categorization and prioritization of emails to assist users in managing their inbox effectively.
+- Customizable User Preferences:
+    *   Allow users to set and modify their preferences for email interactions, ensuring that the AI-generated responses are aligned with their communication style and requirements.
 
 ## Functionality and MVP
 
 - [ ] User authorization: sign up and log in
-- [ ] CRUD Email Session: Users can set and customize their preferences for email interactions, initiate a new email session, view existing ones, edit email contents or settings, and delete sessions no longer needed.
+<p align="center">
+  <img src="./frontend/src/assets/homepage.gif" />
+</p>
+
+- [ ] CRUD Email Session: Users can set and customize their preferences for email interactions, initiate a new email session, view existing ones, edit email contents or settings, and delete emails no longer needed.
+
 - [ ] AI-Generated Response: Based on the incoming email content and user preferences, the system will generate an appropriate email response, which users can choose to use, modify, or discard.
-- [ ] Search Previous Email: Allows users to search through their past emails (sent or received) using keywords.
-- [ ] Sending Email: Once the user is satisfied with the email content, they can send it directly from the platform.
+    * Challenges: Crafting responses that consistently matched the user's style and the email's context was a significant challenge. By incorporating user preferences into the AI's decision-making process, we were able to refine and enhance the quality of generated responses.
+
+<p align="center">
+  <img src="./frontend/src/assets/AiResp.gif" />
+</p>
+
+- [ ] Search Previous Email: Allows users to search through their past emails using keywords, user can edit or delete these emails.
+
+- [ ] Sending Email: Once users finalize their email content, they can dispatch it directly from our platform. Furthermore, we offer seamless integration with Gmail, allowing users to fetch and send emails directly through their Gmail accounts.
+    * Challenges: Integrating our app with Gmail brought forth authentication and security concerns, requiring utmost caution to protect user data. Efficiently syncing emails in real-time without overwhelming Gmail's API rate limits posed a delicate balancing act. Additionally, maintaining the integrity of varied email formats, attachments, and inline images during fetching and dispatching was a nuanced task.
 
 ## Technologies and Technical Challenges
 
@@ -46,120 +72,12 @@ MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The tec
 -   Authentication: JWT
     *   Token Security: Ensuring JWT tokens are stored securely (e.g., not in local storage due to XSS attacks).
 
-## Accomplished over the Weekend
+## Meet the Team
 
-*   All members of the team finished the MERN tutorials
-*   Implement user authorization on database backend - Naim(completed on Sunday)
-*   Wrote Project Proposal and planned work for the week.
+-   Fanyi Tang -  Steering the ship as the Team Lead.
 
-## Group Members and Work Breakdown
+-   Sanjid Dewan - Perfecting user experiences on the Frontend.
 
--   Fanyi Tang - Team Lead
+-   Naim Miah - Ensuring robust operations with Backend responsibilities.
 
--   Sanjid Dewan - Frontend
-
--   Naim Miah - Backend
-
--   Yinyin Huang - Flex
-
-### Day 1
-- **Fanyi Tang (Team Lead):**
-    * Coordinate the initial team meeting to discuss and finalize the week's objectives.
-    * Review the technical architecture with the team.
-
-- **Sanjid Dewan (Frontend):**
-    * Set up the React app with a basic folder structure.
-    * Start designing the layout and user interface mockups.
-
-- **Naim Miah (Backend):**
-    * Set up the basic Express server with Node.js.
-    * Establish initial routes and controllers.
-    * Working on the ChatGPT API
-
-- **Yinyin Huang (Flex):**
-    * Collaborate with Naim to set up MongoDB, create initial models.
-    * Assist Sanjid with basic component creation in React.
-
-### Day 2:
-- **Fanyi Tang:**
-    * Review progress from Day 1.
-    * Coordinate a check-in meeting to address any blockers.
-
-- **Sanjid Dewan:**
-    * Begin coding essential React components, starting with user authorization (login/signup forms).
-    * Integrate Redux for state management.
-
-- **Naim Miah:**
-    * Implement ChatGPT API in the backend.
-
-- **Yinyin Huang:**
-    * Assist in setting up JWT authentication.
-    * Begin work on the email session models in MongoDB.
-
-### Day 3:
-- **Fanyi Tang:**
-    * Review progress from Day 2.
-    * Facilitate a meeting for feedback and adjustments.
-
-- **Sanjid Dewan:**
-    * Work on the User Preference Input interface in React.
-    * Test user authentication flow from the frontend.
-
-- **Naim Miah:**
-    * Implement API endpoints related to email CRUD operations.
-    * Set up initial API endpoint for AI-Generated Response.
-
-- **Yinyin Huang:**
-    * Integrate OpenAI GPT for the email response suggestion.
-    * Assist with frontend tasks, specifically connecting React to backend API endpoints.
-
-### Day 4:
-- **Fanyi Tang:**
-    * Coordinate a halfway-checkpoint meeting.
-    * Assist team members in any roadblocks or challenges.
-
-- **Sanjid Dewan:**
-    * Implement the Search Previous Email feature on the frontend.
-    * Test and refine the user interface.
-
-- **Naim Miah:**
-    * Implement backend logic for searching previous emails.
-    * Test and ensure smooth integration with the frontend.
-
-- **Yinyin Huang:**
-    * Work on integrating email services like Gmail API.
-    * Refine AI-generated response mechanics based on test results.
-
-### Day 5:
-- **Fanyi Tang:**
-    * Facilitate a review meeting for what's been accomplished.
-    * Plan the weekend's goals.
-
-- **Sanjid Dewan:**
-    * Implement any bonus features or further refine the user interface.
-    * Focus on debugging and testing the frontend components.
-
-- **Naim Miah:**
-    * Further optimize the backend, address any lag or performance issues.
-    * Work on refining and securing the JWT authentication process.
-
-- **Yinyin Huang:**
-    * Test the email integration thoroughly to ensure reliable email sends.
-    * Assist with either frontend or backend based on where there's a need.
-
-### Weekend (Optional Work/Refinement):
-- **Fanyi Tang:**
-    * Organize a team check-in, if needed.
-    * Assist in any area that requires attention.
-
-- **Sanjid Dewan:**
-    * Optimize the frontend
-    * Documentation for frontend components.
-
-- **Naim Miah:**
-    * Backup database and ensure all data flows are functional.
-    * Documentation for API endpoints.
-
-- **Yinyin Huang:**
-    * Finalize any pending tasks, be it on the AI integration or email systems.
-    * Help with documentation or testing as required.
+-   Yinyin Huang - The versatile Flex member, bridging gaps wherever required.

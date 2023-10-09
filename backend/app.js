@@ -101,6 +101,7 @@ app.get(
         googleRefreshToken: req.user.refreshToken,
       }
     ).exec();
+    console.log(req);
     res.redirect("http://localhost:3000/dashpage");
   }
 );
@@ -117,8 +118,9 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
         message: email.message,
         user: req.user._id,
       });
-      console.log(newEmail);
-      newEmail.save();
+      if (newEmail.message) {
+        newEmail.save();
+      }
     });
     res.json({ emails: Object.values(emails) });
   } catch (error) {

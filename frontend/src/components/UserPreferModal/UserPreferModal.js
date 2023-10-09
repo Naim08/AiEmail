@@ -8,12 +8,13 @@ import { setFormPage, setformSlide } from "../../store/ui";
 import { updateUserPreferences } from "../../store/userPreference";
 
 const UserPreferModal = () =>{
+    // alert(typeof closeUserPreferModal);  // Debugging line
+
     const dispatch = useDispatch();
     const temperatureFromRedux = useSelector(state => state.userPreferenceReducer.temperature);
     const presencePenaltyFromRedux = useSelector(state => state.userPreferenceReducer.presence_penalty);
     const frequencyPenaltyFromRedux = useSelector(state => state.userPreferenceReducer.frequency_penalty);
     const maxTokensFromRedux = useSelector(state => state.userPreferenceReducer.max_tokens);
-    const [showModal, setShowModal] = useState(false);
     const [temperature, setTemperature] = useState(temperatureFromRedux);
     const [presencePenalty, setPresencePenalty] = useState(presencePenaltyFromRedux);
     const [frequencyPenalty, setFrequencyPenalty] = useState(frequencyPenaltyFromRedux);
@@ -33,7 +34,9 @@ const UserPreferModal = () =>{
             userMessage: userMessage
         };
         //dispatch create new user perference
+
         dispatch(updateUserPreferences(formData));
+
     }
 
     return (
@@ -148,7 +151,7 @@ const UserPreferModal = () =>{
 
                 </div>
                 <div className="user-modal-submit-btn-container">
-                    <button className="user-modal-submit-btn">Done</button>
+                    <button className="user-modal-submit-btn" >Done</button>
                 </div>
             </form>
     )
