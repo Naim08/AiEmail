@@ -21,6 +21,11 @@ const EMAIL_FETCH_SINGLE_REQUEST = "EMAIL_FETCH_SINGLE_REQUEST";
 const EMAIL_FETCH_SINGLE_SUCCESS = "EMAIL_FETCH_SINGLE_SUCCESS";
 const EMAIL_FETCH_SINGLE_FAILURE = "EMAIL_FETCH_SINGLE_FAILURE";
 
+//Email Trash
+const EMAIL_TRASH = "EMAIL_TRASH";
+const EMAIL_RESTORE = "EMAIL_RESTORE";
+const EMAIL_EMPTY_TRASH = "EMAIL_EMPTY_TRASH";
+
 // Action Creators for CRUD operations
 
 // Create
@@ -97,6 +102,25 @@ export const emailDeleteFailure = (error) => ({
   type: EMAIL_DELETE_FAILURE,
   payload: error,
 });
+
+
+// Trash an email
+export const trashEmail = (id) => ({
+  type: EMAIL_TRASH,
+  payload: id,
+});
+
+// Restore an email from the trash
+export const restoreEmail = (id) => ({
+  type: EMAIL_RESTORE,
+  payload: id,
+});
+
+// Empty the trash
+export const emptyTrash = () => ({
+  type: EMAIL_EMPTY_TRASH,
+});
+
 
 export const getEmail = (emailId) => (state) => {
   return state.emailsReducer.emails.find((email) => email._id === emailId);
@@ -196,9 +220,79 @@ export const sendGmail = (email) => async (dispatch) => {
   }
 };
 
+//trash email thunk action
+// Thunk action for moving an email to trash
+export const moveToTrash = (emailId) => async (dispatch) => {
+  
+
+    try {
+        const response = await jwtFetch(`/api/emails/trash/${emailId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        if (response.ok) {
+            dispatch(trashEmail(emailId));
+        } else {
+            const data = await response.json();
+            throw new Error(data.message || "Failed to move to trash");
+        }
+    } catch (error) {
+        dispatch(emailDeleteFailure(error.message));
+    }
+};
+
+// Thunk action for restoring an email from the trash
+export const restoreFromTrash = (emailId) => async (dispatch) => {
+    
+
+    try {
+        const response = await jwtFetch(`/api/emails/restore/${emailId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        if (response.ok) {
+            dispatch(restoreEmail(emailId));
+        } else {
+            const data = await response.json();
+            throw new Error(data.message || "Failed to restore from trash");
+        }
+    } catch (error) {
+        dispatch(emailUpdateFailure(error.message));
+    }
+};
+
+// Thunk action for emptying the trash
+export const emptyEmailTrash = () => async (dispatch) => {
+   
+
+    try {
+        const response = await jwtFetch("/api/emails//trash/emptytrash", {
+            method: "DELETE"
+        });
+
+        if (response.ok) {
+            dispatch(emptyTrash());
+            
+        } else {
+            const data = await response.json();
+            throw new Error(data.message || "Failed to empty trash");
+        }
+    } catch (error) {
+        dispatch(emailDeleteFailure(error.message));
+    }
+};
+
+
 // Initial State
 const initialState = {
   emails: [],
+  trash: [],
   isLoading: false,
   error: null,
 };
@@ -322,6 +416,29 @@ const emailsReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    
+    //trash reducer
+    case EMAIL_TRASH:
+      const trashedEmail = state.emails.find((email) => email._id === action.payload);
+      return {
+        ...state,
+        emails: state.emails.filter((email) => email._id !== action.payload),
+        trash: [...state.trash, trashedEmail],
+      };
+
+    case EMAIL_RESTORE:
+      const restoredEmail = state.trash.find((email) => email._id === action.payload);
+      return {
+        ...state,
+        emails: [...state.emails, restoredEmail],
+        trash: state.trash.filter((email) => email._id !== action.payload),
+      };
+
+    case EMAIL_EMPTY_TRASH:
+      return {
+        ...state,
+        trash: [],
       };
 
     default:

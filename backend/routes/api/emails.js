@@ -122,6 +122,51 @@ router.get("/fetch-emails", requireUser, async (req, res) => {
 });
 
 
+// Trash an email
+router.patch("/trash/:id", async (req, res) => {
+    try {
+        const email = await Email.findByIdAndUpdate(req.params.id, { isTrashed: true }, {
+            new: true,
+            runValidators: true
+        });
+
+        if (!email) {
+            return res.status(404).send();
+        }
+        res.status(200).send(email);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
+// Delete all trashed emails
+router.delete("/trash/emptytrash", requireUser, async (req, res) => {
+    try {
+        await Email.deleteMany({ user: req.user, isTrashed: true });
+        res.status(200).send({ message: "Trashed emails deleted successfully." });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+// Restore a trashed email
+router.patch("/restore/:id", async (req, res) => {
+    try {
+        const email = await Email.findByIdAndUpdate(req.params.id, { isTrashed: false }, {
+            new: true,
+            runValidators: true
+        });
+        if (!email) {
+            return res.status(404).send();
+        }
+        res.status(200).send(email);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
+
+
 
 
 
