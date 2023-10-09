@@ -2,18 +2,40 @@
 
 MailTo is a website that uses AI technology to assist users in crafting appropriate email responses.
 
+# Live Site
+[MailTo](https://mailto.naimmiah.com/)
+
 ## Background and Overview
 
 In today's fast-paced digital world, communication has become both instantaneous and voluminous. With the rise in electronic communication, businesses and professionals face an overwhelming number of emails on a daily basis. While timely responses enhance customer satisfaction and professionalism, crafting thoughtful and appropriate responses requires time and effort. Many businesses face a challenge: how to maintain efficient communication without compromising on quality.
 
-Recognizing the need for efficient, consistent, and high-quality email responses, a team of engineers came together to conceptualize MailTo. "MailTo" is an innovative AI-driven platform designed to assist users in crafting appropriate and effective email responses.
+Recognizing the need for efficient, consistent, and high-quality email responses, a team of engineers came together to conceptualize MailTo. "MailTo" is an innovative AI-driven platform designed to assist users in crafting appropriate and effective email responses. The goals for our project:
+
+- Enhance Communication Efficiency:
+    *   Provide users with AI-generated email responses that are contextually relevant and linguistically appropriate.
+    *   Reduce the time and cognitive load on users to craft responses for every email, especially for repetitive and common queries.
+- User-Centric Design:
+    *   Develop a user-friendly interface that allows users to easily navigate through various functionalities like initiating new email sessions, customizing preferences, and more.
+    *   Ensure that the AI-generated responses can be easily modified, approved, or discarded by the user, providing them with control over the communication.
+- Intelligent Email Management:
+    *   Enable users to search through their past emails efficiently using keywords or phrases.
+    *   Implement smart categorization and prioritization of emails to assist users in managing their inbox effectively.
+- Customizable User Preferences:
+    *   Allow users to set and modify their preferences for email interactions, ensuring that the AI-generated responses are aligned with their communication style and requirements.
 
 ## Functionality and MVP
 
 - [ ] User authorization: sign up and log in
-- [ ] CRUD Email Session: Users can set and customize their preferences for email interactions, initiate a new email session, view existing ones, edit email contents or settings, and delete sessions no longer needed.
+<p align="center">
+  <img src="/Users/huangyinyin/Desktop/AA/AiEmail/AiEmail/frontend/src/assets/homepage.gif" />
+</p>
+
+- [ ] CRUD Email Session: Users can set and customize their preferences for email interactions, initiate a new email session, view existing ones, edit email contents or settings, and delete emails no longer needed.
 - [ ] AI-Generated Response: Based on the incoming email content and user preferences, the system will generate an appropriate email response, which users can choose to use, modify, or discard.
-- [ ] Search Previous Email: Allows users to search through their past emails (sent or received) using keywords.
+<p align="center">
+  <img src="/Users/huangyinyin/Desktop/AA/AiEmail/AiEmail/frontend/src/assets/homepage.gif" />
+</p>
+- [ ] Search Previous Email: Allows users to search through their past emails using keywords, user can edit or delete these emails.
 - [ ] Sending Email: Once the user is satisfied with the email content, they can send it directly from the platform.
 
 ## Technologies and Technical Challenges

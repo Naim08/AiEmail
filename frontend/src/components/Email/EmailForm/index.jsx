@@ -73,10 +73,14 @@ const EmailForm = ({ emailToUpdate }) => {
         history.push(`/dashpage`);
     };
 
-    const closeUserPreferModal = () => {
+    const closeUserPreferModal = (e) => {
+        // debugger
+        e.preventDefault();
         setShowModal(false);
         dispatch(setformSlide("expand"));
     };
+
+
 
     return (
         <>
