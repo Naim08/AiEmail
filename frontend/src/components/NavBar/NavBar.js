@@ -5,6 +5,7 @@ import { logout } from "../../store/session";
 import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import TrashEmailsPage from "../Email/EmailTrash";
 
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
@@ -23,6 +24,12 @@ function NavBar() {
     setSelectedLink('logout');
     history.push("/")
   }
+  
+  const handleTrash = (e) =>{
+    setSelectedLink('trash');
+    history.push("/email/trash")
+  }
+
 
   const getLinks = () => {
     if (loggedIn) {
@@ -39,10 +46,11 @@ function NavBar() {
             </div>
 
             <div className="nav-trash nav-link">
-              <a href="/"
-                 className={`nav-trash-link ${selectedLink === 'trash' ? 'selected' : ''}`}
-                 onClick={() => setSelectedLink('trash')}>
-                  <i className="fa-solid fa-trash"></i> Trash</a>
+                <button 
+                    className={`nav-trash-link ${selectedLink === 'trash' ? 'selected' : ''}`}
+                    onClick={handleTrash}>
+                    <i className="fa-solid fa-trash"></i> Trash
+                </button>
             </div>
 
             <div className="nav-profile nav-link">

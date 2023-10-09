@@ -50,6 +50,10 @@ const emailSchema = new Schema({
     // required: true,
     default: "",
   },
+  isTrashed: {
+        type: Boolean,
+        default: false
+    },
 });
 
 module.exports = mongoose.model("Email", emailSchema);

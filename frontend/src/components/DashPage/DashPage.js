@@ -5,6 +5,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import EmailList from "../Email/EmailList";
 import { useDispatch } from 'react-redux';
 import SearchResult from "../SearchResult/SearchResult";
+import TrashEmailsPage from "../Email/EmailTrash";
 
 
 const DashPage = () => {

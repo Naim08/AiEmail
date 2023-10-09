@@ -4,11 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { readEmails, deleteEmail } from "../../../store/email";
 import { fetchEmails } from "../../../store/chatgpt";
-import EmailDeleteModal from "./EmailDeleteModal";
+
+import EmailDeleteModal from './EmailDeleteModal';
+import { moveToTrash } from "../../../store/email";
+
+
 
 const EmailList = () => {
   const dispatch = useDispatch();
-  const emails = useSelector((state) => state.emailsReducer.emails);
+  const emails = useSelector((state) => state.emailsReducer.emails.filter(email => email.isTrashed===false));
   const isLoading = useSelector((state) => state.emailsReducer.isLoading);
 
   const [isModalActive, setIsModalActive] = useState(false);
@@ -34,7 +38,7 @@ const EmailList = () => {
 
   const handleConfirmModal = () => {
     setIsModalActive(false);
-    dispatch(deleteEmail(emailId));
+    dispatch(moveToTrash(emailId));
     dispatch(readEmails());
   };
 
