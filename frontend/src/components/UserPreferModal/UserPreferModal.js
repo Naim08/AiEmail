@@ -7,6 +7,7 @@ import { FormModal } from "../../context/modal";
 import { setFormPage, setformSlide } from "../../store/ui";
 import { updateUserPreferences } from "../../store/userPreference";
 
+
 const UserPreferModal = () => {
     const dispatch = useDispatch();
     const temperatureFromRedux = useSelector(
@@ -22,6 +23,7 @@ const UserPreferModal = () => {
         (state) => state.userPreferenceReducer.max_tokens
     );
     const [showModal, setShowModal] = useState(false);
+
     const [temperature, setTemperature] = useState(temperatureFromRedux);
     const [presencePenalty, setPresencePenalty] = useState(
         presencePenaltyFromRedux
@@ -43,8 +45,9 @@ const UserPreferModal = () => {
             userMessage: userMessage,
         };
         //dispatch create new user perference
+
         dispatch(updateUserPreferences(formData));
-    };
+    }
 
     return (
         <form className="user-modal-content" onSubmit={handleSubmit}>

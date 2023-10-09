@@ -17,7 +17,6 @@ require("./models/Email");
 require("./models/ChatGPT");
 require("./models/GPTModel");
 
-
 require("./config/passport");
 
 const passport = require("passport");
@@ -102,6 +101,7 @@ app.get(
         googleRefreshToken: req.user.refreshToken,
       }
     ).exec();
+    console.log(req);
     res.redirect("http://localhost:3000/dashpage");
   }
 );
@@ -118,8 +118,9 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
         message: email.message,
         user: req.user._id,
       });
-      console.log(newEmail);
-      newEmail.save();
+      if (newEmail.message) {
+        newEmail.save();
+      }
     });
     res.json({ emails: Object.values(emails) });
   } catch (error) {
@@ -128,29 +129,40 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
   }
 });
 
-app.get("/send-email", requireUser, async (req, res) => {
-  console.log(req.user);
+app.post("/send-email", requireUser, async (req, res) => {
   try {
-    const testEmail = new Email({
-      subject: "Meeting Reminder",
-      message:
-        "Hi Team, Just a reminder for our meeting tomorrow at 10 AM. Best, John",
-      dateSent: new Date("2023-09-30T04:00:00Z"),
-      fromEmail: "mmiah@fordham.edu",
-      snippet: "Hi Team, Just a reminder for our meeting tomorrow...",
-      threadId: "threadf1234567890",
+    const emailId = req.body.emailId;
+    const currEmail = Email.findById(emailId);
+    const email = {
+      subject: req.body.subject,
+      message: req.body.message,
+      dateSent: new Date(),
+      fromEmail: req.user.email,
+      threadId: currEmail.threadId,
       responseUrl: "https://api.example.com/v1/respond-to-email",
-      emailId: "emailf1234567890",
-      to: "mmiah0890@gmail.com",
-    });
+      emailId: emailId,
+      to: req.body.to,
+    };
+    // const testEmail = new Email({
+    //   subject: "Meeting Reminder",
+    //   message:
+    //     "Hi Team, Just a reminder for our meeting tomorrow at 10 AM. Best, John",
+    //   dateSent: new Date("2023-09-30T04:00:00Z"),
+    //   fromEmail: "mmiah@fordham.edu",
+    //   snippet: "Hi Team, Just a reminder for our meeting tomorrow...",
+    //   threadId: "threadf1234567890",
+    //   responseUrl: "https://api.example.com/v1/respond-to-email",
+    //   emailId: "emailf1234567890",
+    //   to: "mmiah0890@gmail.com",
+    // });
 
     await sendGmail(
       req.user.googleAccessToken,
       req.user.googleRefreshToken,
-      testEmail
+      email
     );
 
-    res.status(201).send(testEmail);
+    res.status(201).send(email);
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
