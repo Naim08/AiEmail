@@ -103,7 +103,6 @@ export const emailDeleteFailure = (error) => ({
   payload: error,
 });
 
-
 // Trash an email
 export const trashEmail = (id) => ({
   type: EMAIL_TRASH,
@@ -120,7 +119,6 @@ export const restoreEmail = (id) => ({
 export const emptyTrash = () => ({
   type: EMAIL_EMPTY_TRASH,
 });
-
 
 export const getEmail = (emailId) => (state) => {
   return state.emailsReducer.emails.find((email) => email._id === emailId);
@@ -141,7 +139,7 @@ export const createEmail = (email) => async (dispatch) => {
     });
     const data = await response.json();
     dispatch(emailCreateSuccess(data));
-    
+
     return data;
   } catch (error) {
     const res = await error.json();
@@ -210,7 +208,14 @@ export const deleteEmail = (id) => async (dispatch) => {
 
 export const sendGmail = (email) => async (dispatch) => {
   try {
-    const response = await jwtFetch("/send-email");
+    const response = await jwtFetch("/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    });
+
     const data = await response.json();
     dispatch(emailCreateSuccess(data));
     return data;
@@ -223,71 +228,63 @@ export const sendGmail = (email) => async (dispatch) => {
 //trash email thunk action
 // Thunk action for moving an email to trash
 export const moveToTrash = (emailId) => async (dispatch) => {
-  
+  try {
+    const response = await jwtFetch(`/api/emails/trash/${emailId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    try {
-        const response = await jwtFetch(`/api/emails/trash/${emailId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-
-        if (response.ok) {
-            dispatch(trashEmail(emailId));
-        } else {
-            const data = await response.json();
-            throw new Error(data.message || "Failed to move to trash");
-        }
-    } catch (error) {
-        dispatch(emailDeleteFailure(error.message));
+    if (response.ok) {
+      dispatch(trashEmail(emailId));
+    } else {
+      const data = await response.json();
+      throw new Error(data.message || "Failed to move to trash");
     }
+  } catch (error) {
+    dispatch(emailDeleteFailure(error.message));
+  }
 };
 
 // Thunk action for restoring an email from the trash
 export const restoreFromTrash = (emailId) => async (dispatch) => {
-    
+  try {
+    const response = await jwtFetch(`/api/emails/restore/${emailId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    try {
-        const response = await jwtFetch(`/api/emails/restore/${emailId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-
-        if (response.ok) {
-            dispatch(restoreEmail(emailId));
-        } else {
-            const data = await response.json();
-            throw new Error(data.message || "Failed to restore from trash");
-        }
-    } catch (error) {
-        dispatch(emailUpdateFailure(error.message));
+    if (response.ok) {
+      dispatch(restoreEmail(emailId));
+    } else {
+      const data = await response.json();
+      throw new Error(data.message || "Failed to restore from trash");
     }
+  } catch (error) {
+    dispatch(emailUpdateFailure(error.message));
+  }
 };
 
 // Thunk action for emptying the trash
 export const emptyEmailTrash = () => async (dispatch) => {
-   
+  try {
+    const response = await jwtFetch("/api/emails//trash/emptytrash", {
+      method: "DELETE",
+    });
 
-    try {
-        const response = await jwtFetch("/api/emails//trash/emptytrash", {
-            method: "DELETE"
-        });
-
-        if (response.ok) {
-            dispatch(emptyTrash());
-            
-        } else {
-            const data = await response.json();
-            throw new Error(data.message || "Failed to empty trash");
-        }
-    } catch (error) {
-        dispatch(emailDeleteFailure(error.message));
+    if (response.ok) {
+      dispatch(emptyTrash());
+    } else {
+      const data = await response.json();
+      throw new Error(data.message || "Failed to empty trash");
     }
+  } catch (error) {
+    dispatch(emailDeleteFailure(error.message));
+  }
 };
-
 
 // Initial State
 const initialState = {
@@ -417,10 +414,12 @@ const emailsReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
-    
+
     //trash reducer
     case EMAIL_TRASH:
-      const trashedEmail = state.emails.find((email) => email._id === action.payload);
+      const trashedEmail = state.emails.find(
+        (email) => email._id === action.payload
+      );
       return {
         ...state,
         emails: state.emails.filter((email) => email._id !== action.payload),
@@ -428,7 +427,9 @@ const emailsReducer = (state = initialState, action) => {
       };
 
     case EMAIL_RESTORE:
-      const restoredEmail = state.trash.find((email) => email._id === action.payload);
+      const restoredEmail = state.trash.find(
+        (email) => email._id === action.payload
+      );
       return {
         ...state,
         emails: [...state.emails, restoredEmail],
