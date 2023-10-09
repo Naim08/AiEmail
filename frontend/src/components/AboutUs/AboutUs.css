@@ -5,15 +5,15 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 80px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 .member-box{
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 350px;
     height: 400px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     margin: 20px 0px;
     justify-content: space-around;
     align-items: center;
@@ -21,8 +21,8 @@
 }
 
 .member-pic{
-    width: 230px;
-    height: 300px;
+    width: 260px;
+    height: 320px;
     border: 1px solid white;
 
 
