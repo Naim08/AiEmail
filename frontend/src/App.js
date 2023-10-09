@@ -17,8 +17,10 @@ import DashPage from "./components/DashPage/DashPage";
 import Profile from "./components/Profile/Profile";
 import UserPreferModal from "./components/UserPreferModal/UserPreferModal";
 import NotFound from "./components/404";
-
+import SearchResult from "./components/SearchResult/SearchResult";
 import { getCurrentUser } from "./store/session";
+import TrashEmailsPage from "./components/Email/EmailTrash";
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,8 +41,10 @@ function App() {
           <Route path="/auth/google" component={GoogleAuthRedirect} />
           <Route path="/email/list" component={EmailList} />
           <Route path="/email/form" component={EmailForm} />
+          <Route path="/email/trash" component={TrashEmailsPage} />
           <Route path="/email/:emailId" component={EmailDetails} />
           <Route path="/usermodal" component={UserPreferModal} />
+          {/* <Route path="/searchresult" component={SearchResult} /> */}
           <AuthRoute exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />

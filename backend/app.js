@@ -31,7 +31,9 @@ const {
   getUserEmail,
   getMostRecentEmails,
   requireUser,
+  sendGmail,
 } = require("./config/passport");
+const Email = require("./models/Email");
 
 const app = express();
 
@@ -70,21 +72,6 @@ app.use("/api/csrf", csrfRouter);
 app.use("/api/chatgpt", chatGPTRouter);
 app.use("/api/emails", emailRouter);
 
-if (isProduction) {
-  const path = require("path");
-  app.get("/", (req, res) => {
-    res.cookie("CSRF-TOKEN", req.csrfToken());
-    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-  });
-
-  app.use(express.static(path.resolve("../frontend/build")));
-
-  app.get(/^(?!\/?api).*/, (req, res) => {
-    res.cookie("CSRF-TOKEN", req.csrfToken());
-    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-  });
-}
-
 app.get(
   "/auth/google",
   passport.authenticate("google", {
@@ -106,8 +93,6 @@ app.get(
   },
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    console.log("user", req.user);
-
     //save req.accessToken and req.refreshToken to your database, user model
     User.findOneAndUpdate(
       { email: req.user.email },
@@ -116,6 +101,7 @@ app.get(
         googleRefreshToken: req.user.refreshToken,
       }
     ).exec();
+    console.log(req);
     res.redirect("http://localhost:3000/dashpage");
   }
 );
@@ -126,13 +112,76 @@ app.get("/fetch-emails", requireUser, async (req, res) => {
       req.user.googleAccessToken,
       req.user.googleRefreshToken
     );
-
-    res.json({ emails });
+    Object.values(emails).forEach((email) => {
+      const newEmail = new Email({
+        ...email,
+        message: email.message,
+        user: req.user._id,
+      });
+      if (newEmail.message) {
+        newEmail.save();
+      }
+    });
+    res.json({ emails: Object.values(emails) });
   } catch (error) {
     console.error("Error fetching emails:", error);
     res.status(500).json({ error: "Error fetching emails" });
   }
 });
+
+app.post("/send-email", requireUser, async (req, res) => {
+  try {
+    const emailId = req.body.emailId;
+    const currEmail = Email.findById(emailId);
+    const email = {
+      subject: req.body.subject,
+      message: req.body.message,
+      dateSent: new Date(),
+      fromEmail: req.user.email,
+      threadId: currEmail.threadId,
+      responseUrl: "https://api.example.com/v1/respond-to-email",
+      emailId: emailId,
+      to: req.body.to,
+    };
+    // const testEmail = new Email({
+    //   subject: "Meeting Reminder",
+    //   message:
+    //     "Hi Team, Just a reminder for our meeting tomorrow at 10 AM. Best, John",
+    //   dateSent: new Date("2023-09-30T04:00:00Z"),
+    //   fromEmail: "mmiah@fordham.edu",
+    //   snippet: "Hi Team, Just a reminder for our meeting tomorrow...",
+    //   threadId: "threadf1234567890",
+    //   responseUrl: "https://api.example.com/v1/respond-to-email",
+    //   emailId: "emailf1234567890",
+    //   to: "mmiah0890@gmail.com",
+    // });
+
+    await sendGmail(
+      req.user.googleAccessToken,
+      req.user.googleRefreshToken,
+      email
+    );
+
+    res.status(201).send(email);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
+if (isProduction) {
+  const path = require("path");
+  app.get("/", (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+
+  app.use(express.static(path.resolve("../frontend/build")));
+
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+}
 
 app.use((req, res, next) => {
   const err = new Error("Not Found");

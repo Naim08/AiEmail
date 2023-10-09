@@ -1,133 +1,135 @@
 div {
-  /* border: 1px solid white; */
+    /* border: 1px solid white; */
 }
 
-
 .navi-container {
-  color: #61677A;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  width: 255px;
-  box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
-  position: relative;
-
+    color: #61677a;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 255px;
+    box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .navi-header h1 {
-  font-size: 40px;
-  font-family: 'Times';
-  margin-left: -50px;
-  margin-top: 20px;
+    font-size: 40px;
+    font-family: "Times";
+    margin-left: -50px;
+    margin-top: 20px;
 }
 
 .links-nav {
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 30px 0px;
-  font-size: 20px;
-  /* border: 4px dotted cyan; */
-  flex: 1;
-  flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30px 0px;
+    font-size: 20px;
+    /* border: 4px dotted cyan; */
+    flex: 1;
+    flex-grow: 1;
 }
 
-.nav-link {  /* New generic class */
-  display: flex;
-  flex-direction: row;
-  margin: 15px 0;
+.nav-link {
+    /* New generic class */
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
 }
 
 .nav-link a {
-  font-family: 'Helvetica'; 
-  font-weight: 300;
-  text-decoration: none;
-  color: #c3c3c3;
+    font-family: "Helvetica";
+    font-weight: 300;
+    text-decoration: none;
+    color: #c3c3c3;
+}
+
+.nav-link button {
+    font-family: "Helvetica";
+    font-weight: 300;
+    text-decoration: none;
+    color: #c3c3c3;
+    border: none;
+    background: none;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link a:hover {
-color: #fafafa;
+    color: #fafafa;
 }
 .selected {
-  color: #fafafa;
+    color: #fafafa;
 }
 
-
-
 .left-sideBar {
-  display: flex;
-  flex: 0 0 255px;
-  flex-direction: column;
-  height: 100%;
-  /* background-color: #323439; */
-  /* color: #61677A; */
-  margin-left: 20px;
-  
-  /* border: 4px dotted magenta; */
+    display: flex;
+    flex: 0 0 255px;
+    flex-direction: column;
+    height: 100%;
+    /* background-color: #323439; */
+    /* color: #61677A; */
+    margin-left: 20px;
+
+    /* border: 4px dotted magenta; */
 }
 
 .bottom-links {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;  /* Align child elements to the start */
-  font-size: 18px;
-  /* border: 4px solid blue; */
-  flex: 0;
-
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align child elements to the start */
+    font-size: 18px;
+    /* border: 4px solid blue; */
+    flex: 0;
 }
 
 .nav-logout {
-  margin-top: 20px;  /* Add space above the Logout link */
+    margin-top: 20px; /* Add space above the Logout link */
 }
-
 
 .nav-link i {
-  margin-right: 10px;  /* Adjust this value to add more or less space */
+    margin-right: 10px; /* Adjust this value to add more or less space */
 }
 
-
 .nav-google-login-btn {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .nav-google-login-btn button {
-  background-color: #4285f4;
-  color: white;
-  border-radius: 4px;
-  padding: 10px 20px;
-  border: none;
-  background: none;
-  color: #61677A;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
+    background-color: #4285f4;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    color: #61677a;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 .nav-google-login-btn button:hover {
-  color: #357ae8;
+    color: #357ae8;
 }
 
-
 .nav-google-login-btn i {
-  margin-right: 5px;  /* Adjust this value to add more or less space */
+    margin-right: 5px; /* Adjust this value to add more or less space */
 }
 
 .user-email {
-  font-size: 12px;  /* Adjust as needed */
-  color: #aaa;  /* Adjust as needed */
-  margin-left: 30px;
-  margin-top: 5px;
+    font-size: 12px; /* Adjust as needed */
+    color: #aaa; /* Adjust as needed */
+    margin-left: 30px;
+    margin-top: 5px;
 }
 
-
-
 .logout-container {
-  flex-direction: column;
-  align-items: flex-start;  /* Optional, to align items to the start */
+    flex-direction: column;
+    align-items: flex-start; /* Optional, to align items to the start */
 }
 
 /* 
