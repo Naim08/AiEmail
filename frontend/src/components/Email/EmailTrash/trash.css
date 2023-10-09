@@ -1,16 +1,17 @@
 .emptyEmailTrash {
     width: 40px;
-    height: 30px;
+    height: 27px;
     font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    margin-left: 30px;
+    margin-left: 35px;
+    margin-top: 25px;
 }
 
 .trash-header {
-    font-size: 20px;
+    font-size: 27px;
     margin-left: 30px;
     color: #ccc;
 }
@@ -23,7 +24,7 @@
 }
 
 .header-container {
-    display: flex;
+    /* display: flex; */
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 20px;
@@ -41,4 +42,14 @@
 
 .pre-email-item:hover .restore-button {
     display: flex; /* or "block" depending on your layout */
+}
+
+.emailx-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.trash.pre-email-item {
+    margin-top: 0px;
 }

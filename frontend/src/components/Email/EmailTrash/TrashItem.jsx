@@ -63,11 +63,11 @@ const TrashItemList = () => {
                             Empty
                         </button>
                     </div>
-                    <div className="email-container">
+                    <div className="emailx-container">
                         {trashedEmails.map((email) => (
                             <div
                                 key={email.id}
-                                className="pre-email-item"
+                                className="trash pre-email-item"
                                 onClick={() => handleEmailClick(email)}
                             >
                                 <div className="email-content">
