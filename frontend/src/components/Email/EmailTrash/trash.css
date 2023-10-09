@@ -53,3 +53,8 @@
 .trash.pre-email-item {
     margin-top: 0px;
 }
+
+.restore-button {
+    position: absolute;
+    margin-top: 100px;
+}
