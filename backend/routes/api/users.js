@@ -85,7 +85,8 @@ router.get("/current", restoreUser, async (req, res) => {
   }
   if (!req.user) return res.json(null);
   console.log(req.cookies.updatedGoogle);
-  if (req.session.updatedGoogle) {
+  console.log(req.session)
+  if (!req.session.updatedGoogle) {
     if (
       req.user.googleAccessToken &&
       req.user.googleRefreshToken &&
