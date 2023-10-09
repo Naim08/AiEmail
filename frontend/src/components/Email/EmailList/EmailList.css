@@ -177,3 +177,7 @@ button.confirm {
 background-color: #007bff;
 color: #fff;
 }
+
+#email-delete-modal p{
+  color: black;
+}

@@ -14,6 +14,9 @@ const EmailList = () => {
   const dispatch = useDispatch();
   const emails = useSelector((state) => state.emailsReducer.emails.filter(email => email.isTrashed===false));
   const isLoading = useSelector((state) => state.emailsReducer.isLoading);
+  const style = {
+    color: "black",
+  };
 
   const [isModalActive, setIsModalActive] = useState(false);
   const [emailId, setEmailId] = useState("");
@@ -85,13 +88,14 @@ const EmailList = () => {
           ))}
         </div>
       )}
-      <EmailDeleteModal
+      <EmailDeleteModal 
         isActive={isModalActive}
         onClose={handleCloseModal}
         onConfirm={handleConfirmModal}
         header="Delete Comfirmation"
+       
       >
-        <p>Delete your email permanently?</p>
+        <p style={style}>Delete your email to trash bin?</p>
       </EmailDeleteModal>
     </>
   );
