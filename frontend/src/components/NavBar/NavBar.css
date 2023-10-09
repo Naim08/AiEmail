@@ -36,6 +36,7 @@ div {
     display: flex;
     flex-direction: row;
     margin: 15px 0;
+    position: relative;
 }
 
 .nav-link a {
@@ -62,6 +63,7 @@ div {
 }
 .selected {
     color: #fafafa;
+    border-bottom: 1px solid #ccc;
 }
 
 .left-sideBar {
@@ -143,3 +145,32 @@ div {
   background-color: white;
 }
  */
+
+.nav-aboutus {
+    margin-top: 250%;
+    margin-left: 10%;
+}
+
+.selected::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: calc(
+        100% - Xpx
+    ); /* Replace X with the right offset you want from the text */
+    height: 2px; /* Height of the line */
+    background-color: white; /* The color you want for the line */
+    transform: translateY(-50%);
+}
+
+/* Hide the restore button by default */
+.restore-button {
+    display: none;
+}
+
+/* Show the restore button when the parent div is hovered */
+.pre-email-item:hover .restore-button {
+    display: inline-block; /* or "block" depending on your layout */
+}
