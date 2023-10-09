@@ -43,7 +43,9 @@ function NavBar() {
                                         ? "selected"
                                         : ""
                                 }`}
-                                onClick={() => setSelectedLink("dashboard")}
+                                onClick={() => {
+                                    setSelectedLink("dashboard");
+                                }}
                             >
                                 <i className="fa-sharp fa-solid fa-house"></i>
                                 Dashboard

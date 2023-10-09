@@ -86,10 +86,7 @@ const TrashItemList = () => {
                                         dispatch(deleteEmail(email._id));
                                         dispatch(readEmails());
                                     }}
-                                >
-                                    <i className="fa-light fa-trash icon-light"></i>
-                                    <i className="fa-solid fa-trash icon-solid"></i>
-                                </button>
+                                ></button>
 
                                 <button
                                     className="restore-button"
@@ -100,9 +97,7 @@ const TrashItemList = () => {
                                     }}
                                 >
                                     {" "}
-                                    restore
-                                    <i className="fa-light fa-trash icon-light"></i>
-                                    <i className="fa-solid fa-trash icon-solid"></i>
+                                    Restore
                                 </button>
                             </div>
                         ))}
