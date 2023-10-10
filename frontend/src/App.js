@@ -49,7 +49,7 @@ function App() {
           <AuthRoute exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
-          <Route exact path="/dashpage" component={DashPage} />
+          <ProtectedRoute exact path="/dashpage" component={DashPage} />
           <ProtectedRoute exact path="/profile" component={Profile} />
           <ProtectedRoute exact path="/chatgpt" component={ChatGPTComponent} />;
           <Route path="*" component={NotFound} />

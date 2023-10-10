@@ -8,6 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import configureStore from "./store/store";
 import { getAxiosCurrentUser } from "./store/session";
 import { ModalProvider } from "./context/modal";
+import { createRoot } from 'react-dom';
+
 
 let store = configureStore({});
 window.getAxiosCurrentUser = getAxiosCurrentUser;
@@ -24,9 +26,10 @@ function Root() {
   );
 }
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <React.StrictMode>
     <Root />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
