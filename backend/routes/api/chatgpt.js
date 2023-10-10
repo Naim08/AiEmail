@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const passport = require("passport");
 const { Configuration, OpenAIApi } = require("openai");
 const mongoose = require("mongoose");
 const ChatGPT = mongoose.model("ChatGPT");
@@ -13,6 +13,7 @@ const {
   openAPIURL,
   openAPIOrganizationId,
 } = require("../../config/keys");
+const User = require("../../models/User");
 
 const configuration = new Configuration({
   organization: openAPIOrganizationId,
@@ -75,7 +76,7 @@ router.post("/", requireUser, async (req, res) => {
           content: integratedMessage,
         },
       ],
-      
+
     });
     const chatOutput = completion.data.choices[0].message;
 
@@ -179,4 +180,41 @@ router.get("/models", requireUser, async (req, res) => {
     }
   }
 });
+
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/plus.login",
+      "https://mail.google.com/",
+    ],
+    accessType: "offline",
+    prompt: "consent",
+
+  })
+);
+
+router.get(
+  "/oauth2/redirect/google",
+  (req, res, next) => {
+    next();
+  },
+  passport.authenticate("google", { failureRedirect: "https://mailto.naimmiah.com/dashpage" }),
+  (req, res) => {
+    //save req.accessToken and req.refreshToken to your database, user model
+    User.findOneAndUpdate(
+      { email: req.user.email },
+      {
+        googleAccessToken: req.user.accessToken,
+        googleRefreshToken: req.user.refreshToken,
+      }
+    ).exec();
+    console.log(req);
+    res.redirect("https://mailto.naimmiah.com/dashpage");
+  }
+);
+
+
 module.exports = router; // Using CommonJS export here
