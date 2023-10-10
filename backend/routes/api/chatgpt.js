@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
 const { Configuration, OpenAIApi } = require("openai");
 const mongoose = require("mongoose");
 const ChatGPT = mongoose.model("ChatGPT");
 const GPTModel = mongoose.model("GPTModel");
-const { requireUser } = require("../../config/passport");
+const { requireUser, restoreUser } = require("../../config/passport");
+const { Hercai } = require("hercai");
 // If you're using ES6 imports elsewhere, ensure your setup supports it
 // For the sake of this example, I'm using CommonJS for all imports
 const {
@@ -37,7 +39,7 @@ router.post("/", requireUser, async (req, res) => {
   const options = req.body.options || {};
   const { userMessage, ...otherOptions } = options;
   const emailId = req.body.prompt.emailId || null;
-  console.log(options)
+  console.log(options);
   // options example
 
   // temperature: 0.65,
@@ -56,10 +58,12 @@ router.post("/", requireUser, async (req, res) => {
       "The email subject is",
       userPrompt.subject,
       "The email body is",
-      userPrompt.message
-    ].filter(Boolean).join('. ');
+      userPrompt.message,
+    ]
+      .filter(Boolean)
+      .join(". ");
 
-    console.log(integratedMessage)
+    console.log(integratedMessage);
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo-16k-0613",
       // options like word limit, max token, temerpature and so on
@@ -75,7 +79,6 @@ router.post("/", requireUser, async (req, res) => {
           content: integratedMessage,
         },
       ],
-      
     });
     const chatOutput = completion.data.choices[0].message;
 
@@ -179,4 +182,144 @@ router.get("/models", requireUser, async (req, res) => {
     }
   }
 });
+
+router.get("/", requireUser, async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const chatEntries = await ChatGPT.find({ userId: req.user._id });
+    res.json({ chatEntries });
+  } catch (error) {
+    console.error("Failed to get chat entries:", error);
+    res.status(500).json({ error: "Failed to get chat entries." });
+  }
+});
+
+router.get("/:id", requireUser, async (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const chatEntry = await ChatGPT.findById(req.params.id);
+    if (!chatEntry) {
+      return res.status(404).json({ error: "Chat entry not found." });
+    }
+    res.json({ chatEntry });
+  } catch (error) {
+    console.error("Failed to get chat entry:", error);
+    res.status(500).json({ error: "Failed to get chat entry." });
+  }
+});
+
+router.post("/huggingface", restoreUser, async (req, res) => {
+  try {
+    console.log(req.body);
+    const userPrompt = req.body.prompt;
+    const model = req.body.model;
+    if (!userPrompt) {
+      return res.status(400).json({ error: "Prompt is required" });
+    }
+
+    // Replace 'your_api_key_here' with your actual API key
+    const huggingFaceApiKey = "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";
+
+    // Set up the API request
+    const headers = {
+      Authorization: `Bearer ${huggingFaceApiKey}`,
+    };
+    const payload = {
+      inputs: {
+        past_user_inputs: [
+          "You are a helpful assistant specialized in crafting email responses!",
+        ],
+        text: userPrompt,
+      },
+      // Add any other necessary parameters here
+    };
+
+    huggingFaceURLS = {
+      bloom: "https://api-inference.huggingface.co/models/bigscience/bloom",
+      facebook:
+        "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill",
+    };
+
+    // Make the API request to Hugging Face API
+    const huggingFaceResponse = await axios.post(
+      huggingFaceURLS[model],
+      JSON.stringify(payload),
+      { headers: headers }
+    );
+
+    // Handle the API response
+    res.json({ response: huggingFaceResponse.data });
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      // If the API request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      res
+        .status(error.response.status)
+        .json({ error: error.response.data.error });
+    } else if (error.request) {
+      // If the API request was made but no response was received
+      console.log(error.request);
+      res
+        .status(500)
+        .json({ error: "No response received from Hugging Face API." });
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      res
+        .status(500)
+        .json({ error: "Error in setting up request to Hugging Face API." });
+    }
+  }
+});
+
+router.post("/bard", restoreUser, async (req, res) => {
+  try {
+    const herc = new Hercai();
+    const userPrompt = req.body.prompt;
+    /* Available Models */
+    /* "v2" , "beta" , "v3-beta" */
+    /* Default Model; "v2" */
+    const prompt =
+      "You are a helpful assistant specialized in crafting email responses.";
+    herc
+      .question({ model: "v2", content: prompt + userPrompt })
+      .then((response) => {
+        res.json({ response: response.reply });
+        /* The module will reply based on the message! */
+      });
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      // If the API request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      res
+        .status(error.response.status)
+        .json({ error: error.response.data.error });
+    } else if (error.request) {
+      // If the API request was made but no response was received
+      console.log(error.request);
+      res
+        .status(500)
+        .json({ error: "No response received from Hugging Face API." });
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      res
+        .status(500)
+        .json({ error: "Error in setting up request to Hugging Face API." });
+    }
+  }
+});
+
 module.exports = router; // Using CommonJS export here
