@@ -7,13 +7,13 @@ import { FormModal } from "../../context/modal";
 import { setFormPage, setformSlide } from "../../store/ui";
 import { updateUserPreferences } from "../../store/userPreference";
 
-const UserPreferModal = () =>{
+const UserPreferModal = ({setShowModal}) =>{
     const dispatch = useDispatch();
     const temperatureFromRedux = useSelector(state => state.userPreferenceReducer.temperature);
     const presencePenaltyFromRedux = useSelector(state => state.userPreferenceReducer.temperature);
     const frequencyPenaltyFromRedux = useSelector(state => state.userPreferenceReducer.temperature);
     const maxTokensFromRedux = useSelector(state => state.userPreferenceReducer.temperature);
-    const [showModal, setShowModal] = useState(false);
+    // const [showModal, setShowModal] = useState(false);
     const [temperature, setTemperature] = useState(temperatureFromRedux);
     const [presencePenalty, setPresencePenalty] = useState(presencePenaltyFromRedux);
     const [frequencyPenalty, setFrequencyPenalty] = useState(frequencyPenaltyFromRedux);
@@ -32,6 +32,7 @@ const UserPreferModal = () =>{
         };
         //dispatch create new user perference
         dispatch(updateUserPreferences(formData));
+        setShowModal(false);
     }
 
     return (
@@ -54,7 +55,7 @@ const UserPreferModal = () =>{
                         </div>
                         <div >
                             <ReactSlider
-                                
+
                                 value={temperature}
                                 onAfterChange={(val) => {
                                     setTemperature(val);
@@ -77,7 +78,7 @@ const UserPreferModal = () =>{
                         </div>
                         <div>
                             <ReactSlider
-                                    
+
                                     value={presencePenalty}
                                     onAfterChange={(val) => {
                                         setPresencePenalty(val);
@@ -100,7 +101,7 @@ const UserPreferModal = () =>{
                         </div>
                         <div>
                             <ReactSlider
-                                    
+
                                     value={frequencyPenalty}
                                     onAfterChange={(val) => {
                                         setFrequencyPenalty(val);

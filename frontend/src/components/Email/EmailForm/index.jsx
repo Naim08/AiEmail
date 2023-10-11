@@ -87,7 +87,7 @@ const EmailForm = ({ emailToUpdate }) => {
                 </div>
             </div>
 
-            {showModal && (
+            {/* {showModal && (
                 <div className="form-modal-outer">
                     <FormModal onClose={closeUserPreferModal}>
                         <button
@@ -99,7 +99,7 @@ const EmailForm = ({ emailToUpdate }) => {
                         <UserPreferModal />
                     </FormModal>
                 </div>
-            )}
+            )} */}
             <div className="new-email-form-container">
                 <div style={{ color: "white" }}>{error ? error : ""}</div>
                 <form onSubmit={handleSubmit} className="new-email-form">

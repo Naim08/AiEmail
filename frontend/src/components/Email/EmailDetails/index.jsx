@@ -113,7 +113,7 @@ const EmailDetails = () => {
                         >
                             X
                         </button>
-                        <UserPreferModal />
+                        <UserPreferModal setShowModal={setShowModal}/>
                     </FormModal>
                 </div>
             )}
