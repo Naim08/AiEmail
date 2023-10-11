@@ -114,7 +114,7 @@ const EmailDetails = () => {
             <button className="close-modal-btn" onClick={closeUserPreferModal}>
               X
             </button>
-            <UserPreferModal />
+            <UserPreferModal setShowModal={setShowModal}/>
           </FormModal>
         </div>
       )}

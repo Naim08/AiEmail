@@ -8,7 +8,7 @@ import { setFormPage, setformSlide } from "../../store/ui";
 import { updateUserPreferences } from "../../store/userPreference";
 
 
-const UserPreferModal = () => {
+const UserPreferModal = ({setShowModal}) => {
     const dispatch = useDispatch();
     const temperatureFromRedux = useSelector(
         (state) => state.userPreferenceReducer.temperature
@@ -22,7 +22,7 @@ const UserPreferModal = () => {
     const maxTokensFromRedux = useSelector(
         (state) => state.userPreferenceReducer.max_tokens
     );
-    const [showModal, setShowModal] = useState(false);
+    // const [showModal, setShowModal] = useState(false);
 
     const [temperature, setTemperature] = useState(temperatureFromRedux);
     const [presencePenalty, setPresencePenalty] = useState(
@@ -47,6 +47,7 @@ const UserPreferModal = () => {
         //dispatch create new user perference
 
         dispatch(updateUserPreferences(formData));
+        setShowModal(false);
     }
 
     return (
