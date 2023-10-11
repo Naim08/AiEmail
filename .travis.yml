@@ -1,2 +1,2 @@
 before_install:
-  - npm i -g npm@18.0
+  - npm run build
