@@ -1,8 +1,15 @@
 language: node_js
-os: linux
-dist: bionic
 node_js:
   - "18.18"
+
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 
 cache:
   directories:
