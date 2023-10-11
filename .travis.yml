@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "stable"
+
+cache:
+  directories:
+    - "backend/node_modules"
+    - "frontend/node_modules"
+
+install:
+  - npm run backend-install
+  - npm run frontend-install
+
+script:
+  - npm run build
+  - npm run run-all
