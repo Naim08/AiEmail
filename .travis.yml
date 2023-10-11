@@ -1,25 +1,2 @@
-language: node_js
-node_js:
-  - "18.18"
-
-env:
-  - CXX=g++-4.8
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-
-cache:
-  directories:
-    - "backend/node_modules"
-    - "frontend/node_modules"
-
-install:
-  - npm run backend-install
-  - npm run frontend-install
-
-script:
-  - npm run build
-  - npm run run-all
+before_install:
+  - npm i -g npm@18.0
