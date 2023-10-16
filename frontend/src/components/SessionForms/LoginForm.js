@@ -29,6 +29,12 @@ const LoginForm = () => {
         dispatch(login({ email, password }));
     };
 
+    const loginDemo = e =>{
+        e.preventDefault();
+        dispatch(login( {email: 'demoyy@email.com', password: 'password'}));
+        history.push("/dashpage");
+    };
+
     return (
         <div className="center-container">
             <div className="form-container">
@@ -57,6 +63,14 @@ const LoginForm = () => {
                         value="Log In"
                         disabled={!email || !password}
                     />
+
+                    <input
+                        type="submit"
+                        className="login-button"
+                        value="Demo LogIn"
+                        onClick={loginDemo}
+                    />
+
                 </form>
                 <div>
                     <span style={{ marginLeft: "75px" }}>
