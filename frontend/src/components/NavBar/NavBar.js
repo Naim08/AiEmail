@@ -100,6 +100,7 @@ function NavBar() {
                                 href="/aboutus"
                                 onClick={() => setSelectedLink("aboutus")}
                             >
+                                <i class="fa-sharp fa-light fa-circle-info"></i>
                                 About Us
                             </a>
                         </div>
