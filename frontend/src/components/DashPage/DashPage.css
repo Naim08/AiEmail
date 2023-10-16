@@ -5,13 +5,13 @@ body, html, #root {
     width: 100%;
 
 }
-  
+
 
 .email-container {
   flex: 1; /* Takes up all remaining space */
-  /* background-color: #323439;  */
-  background-color: #2D2F33; 
-  padding-top: 20px; 
+  z-index: 0;
+  background-color: #2D2F33;
+  padding-top: 20px;
 }
 
 .search-bar-container {
@@ -29,6 +29,7 @@ body, html, #root {
 
 .app-container {
   display: flex;
+  z-index: 0;
 }
 .email-container {
   flex-grow: 1;

@@ -6,6 +6,7 @@ import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TrashEmailsPage from "../Email/EmailTrash";
+import InstructionModal from "../InstructionModal/InstructionModal";
 
 function NavBar() {
     const loggedIn = useSelector((state) => !!state.session.user);
@@ -13,6 +14,7 @@ function NavBar() {
     const [selectedLink, setSelectedLink] = useState(null);
     const userEmail = useSelector((state) => state.session.user.email);
     const history = useHistory();
+    const [instructionModal, setInstructionModal] = useState(false);
 
     const logoutUser = (e) => {
         e.preventDefault();
@@ -29,6 +31,12 @@ function NavBar() {
         setSelectedLink("trash");
         history.push("/email/trash");
     };
+    const handleOpenModal = e =>{
+        setInstructionModal(true);
+    }
+    const handleCloseModal = e =>{
+        setInstructionModal(false);
+    }
 
     const getLinks = () => {
         if (loggedIn) {
@@ -74,6 +82,26 @@ function NavBar() {
                                 <i className="fa-solid fa-user"></i> Account
                             </a>
                         </div>
+
+                        <div className="nav-link">
+                            <button
+                                className={`nav-trash-link ${
+                                    selectedLink === "trash" ? "selected" : ""
+                                }`}
+                                onClick={handleOpenModal}
+                            >
+                                <i className="fa-sharp fa-solid fa-circle-question"></i> Instruction
+                            </button>
+                        </div>
+
+                        <InstructionModal
+                            isActive={instructionModal}
+                            onClose={handleCloseModal}
+                            header="Welcome to MailTo!"
+                            />
+
+
+
                     </div>{" "}
                     {/*end links-nav*/}
                     <div className="bottom-links">
@@ -113,14 +141,21 @@ function NavBar() {
     };
 
     return (
-        <div className="navi-container">
-            <div className="navi-header">
-                <h1>
-                    <i className="fa-sharp fa-solid fa-envelope"></i> MailTo
-                </h1>
+        <div>
+            <div className="navi-container">
+                <div className="navi-header">
+                    <h1>
+                        <i className="fa-sharp fa-solid fa-envelope"></i> MailTo
+                    </h1>
+
+                </div>
+                {getLinks()}
+
             </div>
-            {getLinks()}
+
+            {/* <InstructionModal onClose={handleCloseModal}/> */}
         </div>
+
     );
 }
 
