@@ -11,6 +11,7 @@ div {
     width: 255px;
     box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
     position: relative;
+    border: 1px dotted white;
 }
 
 .navi-header h1 {
@@ -79,7 +80,7 @@ div {
 }
 
 .bottom-links {
-    margin-top: auto;
+    /* margin-top: auto; */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align child elements to the start */
@@ -147,8 +148,8 @@ div {
  */
 
 .nav-aboutus {
-    margin-top: 250%;
     margin-left: 10%;
+    top: 50vh;
 }
 
 .selected::after {
