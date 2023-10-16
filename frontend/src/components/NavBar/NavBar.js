@@ -80,7 +80,6 @@ function NavBar() {
                         {" "}
                         {/* New wrapper div for bottom links */}
                         <div className="nav-google-login-btn">
-                            <i className="fab fa-google"></i>{" "}
                             <GoogleLoginButton />
                         </div>
                         <div className="nav-logout nav-link logout-container">
@@ -104,7 +103,7 @@ function NavBar() {
                                 About Us
                             </a>
                         </div>
-                    </div>{" "}
+                    </div>
                     {/*end bottom-links*/}
                 </div>
             );

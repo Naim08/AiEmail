@@ -11,7 +11,7 @@ div {
     width: 255px;
     box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
     position: relative;
-    border: 1px dotted white;
+    /* border: 1px dotted white; */
 }
 
 .navi-header h1 {
@@ -72,21 +72,16 @@ div {
     flex: 0 0 255px;
     flex-direction: column;
     height: 100%;
-    /* background-color: #323439; */
-    /* color: #61677A; */
     margin-left: 20px;
-
-    /* border: 4px dotted magenta; */
 }
 
 .bottom-links {
-    /* margin-top: auto; */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align child elements to the start */
     font-size: 18px;
-    /* border: 4px solid blue; */
     flex: 0;
+    /* border: 1px dotted white;i */
 }
 
 .nav-logout {
@@ -134,24 +129,6 @@ div {
     flex-direction: column;
     align-items: flex-start; /* Optional, to align items to the start */
 }
-
-/* 
-.navi-container::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 230px;
-  bottom: 20px;
-  width: 2px;
-  background-color: white;
-}
- */
-
-.nav-aboutus {
-    margin-left: 10%;
-    top: 50vh;
-}
-
 .selected::after {
     content: "";
     display: block;
@@ -174,4 +151,8 @@ div {
 /* Show the restore button when the parent div is hovered */
 .pre-email-item:hover .restore-button {
     display: inline-block; /* or "block" depending on your layout */
+}
+
+.nav-aboutus {
+    font-size: 14px;
 }
