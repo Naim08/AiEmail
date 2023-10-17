@@ -81,7 +81,7 @@ div {
     align-items: flex-start; /* Align child elements to the start */
     font-size: 18px;
     flex: 0;
-    /* border: 1px dotted white;i */
+    border: 1px dotted white;
 }
 
 .nav-logout {
