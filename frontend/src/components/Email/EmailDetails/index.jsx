@@ -41,8 +41,6 @@ const EmailDetails = () => {
       };
 
       const options = { ...userPreferences };
-
-      console.log(options);
       dispatch(sendMessage({ prompt, options }));
 
       setLocalEmail(email);
@@ -55,7 +53,6 @@ const EmailDetails = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log("SubMITTING FORM");
     e.preventDefault();
     dispatch(updateEmail({ ...localEmail, id: emailId }));
   };
