@@ -51,7 +51,7 @@ import { Route } from "react-router-dom";
 
 function GoogleAuthRedirect() {
   useEffect(() => {
-    window.location.href = "https://mailto.naimmiah.com/api/auth/google";
+    window.location.href = "https://mailto.naimmiah.com/auth/google";
   }, []);
 
   return null; // This component doesn't render anything

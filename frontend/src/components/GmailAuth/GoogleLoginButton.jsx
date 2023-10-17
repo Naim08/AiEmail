@@ -4,7 +4,7 @@ import { currentUser } from "../../store/session";
 
 function LoginButton(props) {
     const handleLogin = () => {
-        props.history.push(`api/chatgpt/auth/google`);
+        props.history.push(`auth/google`);
     };
 
     return (
