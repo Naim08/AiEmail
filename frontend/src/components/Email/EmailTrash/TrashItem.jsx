@@ -92,7 +92,7 @@ const TrashItemList = () => {
                                     className="restore-button"
                                     onClick={async (e) => {
                                         e.stopPropagation(); // Stop event propagation
-                                        dispatch(restoreFromTrash(email._id));
+                                        await dispatch(restoreFromTrash(email._id));
                                         dispatch(readEmails());
                                     }}
                                 >

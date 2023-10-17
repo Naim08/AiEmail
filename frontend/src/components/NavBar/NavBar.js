@@ -4,12 +4,15 @@ import { logout } from "../../store/session";
 import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import InstructionModal from "../InstructionModal/InstructionModal";
+
 
 function NavBar() {
     const loggedIn = useSelector((state) => !!state.session.user);
     const dispatch = useDispatch();
     const userEmail = useSelector((state) => state.session.user.email);
     const history = useHistory();
+    const [instructionModal, setInstructionModal] = useState(false);
 
     const logoutUser = (e) => {
         e.preventDefault();
@@ -24,6 +27,12 @@ function NavBar() {
     const handleTrash = (e) => {
         history.push("/email/trash");
     };
+    const handleOpenModal = e =>{
+        setInstructionModal(true);
+    }
+    const handleCloseModal = e =>{
+        setInstructionModal(false);
+    }
 
     const getLinks = () => {
         if (loggedIn) {
@@ -48,7 +57,31 @@ function NavBar() {
                                 <i className="fa-solid fa-user"></i> Account
                             </a>
                         </div>
+
                     </div>
+
+
+                        <div className="nav-link">
+                            <button
+                                className={`nav-trash-link ${
+                                    selectedLink === "trash" ? "selected" : ""
+                                }`}
+                                onClick={handleOpenModal}
+                            >
+                                <i className="fa-sharp fa-solid fa-circle-question"></i> Instruction
+                            </button>
+                        </div>
+
+                        <InstructionModal
+                            isActive={instructionModal}
+                            onClose={handleCloseModal}
+                            header="Welcome to MailTo!"
+                            />
+
+
+
+
+
                     <div className="spacer"></div>
                     <div className="bottom-links">
                         <div className="nav-google-login-btn">
@@ -76,14 +109,20 @@ function NavBar() {
     };
 
     return (
+
         <div className="nav-container">
             <div className="nav-header">
                 <h1>
                     <i className="fa-sharp fa-solid fa-envelope"></i> MailTo
                 </h1>
+
             </div>
-            {getLinks()}
+                {getLinks()}
+
+
         </div>
+
+
     );
 }
 
