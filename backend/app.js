@@ -102,7 +102,7 @@ app.get(
       }
     ).exec();
     console.log(req);
-    res.redirect("http://localhost:3000/dashpage");
+    res.redirect("https://mailto2.naimmiah.com/dashpage");
   }
 );
 
