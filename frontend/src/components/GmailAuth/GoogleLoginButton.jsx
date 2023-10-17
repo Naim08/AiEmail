@@ -7,7 +7,11 @@ function LoginButton(props) {
         props.history.push(`api/chatgpt/auth/google`);
     };
 
-    return <button onClick={handleLogin}>Link Gmail</button>;
+    return (
+        <button className="google-button" onClick={handleLogin}>
+            <i className="fab fa-google"> </i> Link Gmail
+        </button>
+    );
 }
 
 export default withRouter(LoginButton);

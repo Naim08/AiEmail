@@ -28,7 +28,7 @@ html,
 
 .app-container {
     display: flex;
-    border: 1px dotted white;
+    /* border: 1px dotted white; */
 }
 .email-container {
     flex-grow: 1;

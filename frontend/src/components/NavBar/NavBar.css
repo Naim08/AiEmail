@@ -4,14 +4,14 @@ div {
 
 .navi-container {
     color: #61677a;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
     width: 255px;
     box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
     position: relative;
-    border: 1px dotted white;
+    /* border: 1px dotted green; */
 }
 
 .navi-header h1 {
@@ -19,17 +19,6 @@ div {
     font-family: "Times";
     margin-left: -50px;
     margin-top: 20px;
-}
-
-.links-nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 30px 0px;
-    font-size: 20px;
-    /* border: 4px dotted cyan; */
-    flex: 1;
-    flex-grow: 1;
 }
 
 .nav-link {
@@ -62,31 +51,44 @@ div {
 .nav-link a:hover {
     color: #fafafa;
 }
+
+.nav-trash-link .trash:hover {
+    color: #fafafa;
+}
 .selected {
     color: #fafafa;
     border-bottom: 1px solid #ccc;
 }
 
 .left-sideBar {
+    /* height: 100%; */
     display: flex;
-    flex: 0 0 255px;
+    /* flex: 0 0 255px; */
     flex-direction: column;
     height: 100%;
-    /* background-color: #323439; */
-    /* color: #61677A; */
     margin-left: 20px;
-
-    /* border: 4px dotted magenta; */
+    /* border: 1px dotted red; */
 }
-
-.bottom-links {
-    /* margin-top: auto; */
+.links-nav {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align child elements to the start */
+    justify-content: space-around;
+    padding: 30px 0px;
+    font-size: 20px;
+    /* border: 1px dotted cyan; */
+    /* flex: 1; */
+    /* flex-grow: 1; */
+}
+.spacer {
+    flex-grow: 1;
+}
+.bottom-links {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-size: 18px;
-    /* border: 4px solid blue; */
-    flex: 0;
+    /* border: 1px dotted white; */
 }
 
 .nav-logout {
@@ -123,6 +125,10 @@ div {
     margin-right: 5px; /* Adjust this value to add more or less space */
 }
 
+.nav-aboutus {
+    font-size: 14px;
+}
+
 .user-email {
     font-size: 12px; /* Adjust as needed */
     color: #aaa; /* Adjust as needed */
@@ -134,24 +140,6 @@ div {
     flex-direction: column;
     align-items: flex-start; /* Optional, to align items to the start */
 }
-
-/* 
-.navi-container::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 230px;
-  bottom: 20px;
-  width: 2px;
-  background-color: white;
-}
- */
-
-.nav-aboutus {
-    margin-left: 10%;
-    top: 50vh;
-}
-
 .selected::after {
     content: "";
     display: block;
