@@ -88,12 +88,12 @@ const EmailList = () => {
           ))}
         </div>
       )}
-      <EmailDeleteModal 
+      <EmailDeleteModal
         isActive={isModalActive}
         onClose={handleCloseModal}
         onConfirm={handleConfirmModal}
         header="Delete Comfirmation"
-       
+
       >
         <p style={style}>Delete your email to trash bin?</p>
       </EmailDeleteModal>
