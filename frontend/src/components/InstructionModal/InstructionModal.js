@@ -22,29 +22,29 @@ const InstructionModal = ({isActive, onClose, header}) =>{
                         <br />
 
                         <div>Feature 2: Create Email Responses
-                            <li>Click on the "+" button on the dash page, you can create a new email input page. </li>
-                            <li>Edit the corresponding position, and click the right bottom button {">"}, and you will send your content to AI API.</li>
-                            <li>Wait for a while, you will receive the response from AI API. You can copy the response by clicking the copy button at the right bottom of the response.</li>
-                            <li>You can open up a user preference modal by clicking the adjust button at the right-top of the message field.</li>
-                            <li>Through the user preference modal, you can adjust the content of the AI responses.</li>
+                            <li>Initiate a new email response by clicking the "+" icon on the dashboard, ushering you into a blank slate for your message composition.</li>
+                            <li>Craft your message in the appropriate fields, then use the '>' button at the bottom right to submit your content to the AI API.</li>
+                            <li>After a brief processing pause, the AI API delivers a response, with an option to effortlessly copy the text via a button at the response's lower right.</li>
+                            <li>Enhance your control over response content by selecting the adjustment feature in the message field's upper right, opening a dedicated user preference modal.</li>
+                            <li>This modal window serves as a command center for personalizing AI responses, enabling users to fine-tune content parameters to their liking.</li>
                         </div>
                         <br />
 
                         <div>Feature 3: Edit and Delete Previous Email Responses
-                            <li>In the dash page, you can find your previous emails.</li>
-                            <li>You can edit your previous emails to get the new AI responses by click into th email body, and edit the content, then click the update button.</li>
-                            <li>You can delete them by click on th trash button on each email's right bottom.</li>
+                            <li>On the dash page, you can find all your previous emails.</li>
+                            <li>You can edit your previous emails to get the new AI responses by clicking into the email body, editing the content, and then clicking the update button.</li>
+                            <li>You can delete them by clicking on the trash button on each email's right bottom.</li>
                         </div>
                         <br />
 
                         <div>Feature 4: Find your Delete Emails
-                            <li>You can find all the emails deleted when you click the trash button in the Navigation Bar.</li>
-                            <li>You can delete all the emails in the trash or restore them one by one.</li>
+                            <li>Click the trash icon in the Navigation Bar to access all your deleted emails, offering a comprehensive view of your discarded items.</li>
+                            <li>Within this trash section, you have the flexibility to either permanently clear all emails or selectively restore them individually.</li>
                         </div>
                         <br />
 
                         <div>Feature 5: Send your email
-                            <li>Once you get the response from the AI, you will have two options: update your message to get a new response or copy the current response and send it to someone</li>
+                            <li>After receiving the AI's drafted message, you can either refine it or immediately dispatch it.</li>
                             <li>You can use the "update" button at the right bottom of the message body to get a new response.</li>
                             <li>Or you can use the "send" button at the right bottom of the message body to send out your email.</li>
                         </div>
