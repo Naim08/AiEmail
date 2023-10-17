@@ -22,7 +22,6 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import { getCurrentUser } from "./store/session";
 import TrashEmailsPage from "./components/Email/EmailTrash";
 
-
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

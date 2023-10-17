@@ -102,7 +102,11 @@ app.get(
       }
     ).exec();
     console.log(req);
-    res.redirect("https://mailto2.naimmiah.com/dashpage");
+    res.redirect(
+      req.hostname === "localhost"
+        ? "http://localhost:3000/dashpage"
+        : req.hostname + "/dashpage"
+    );
   }
 );
 
