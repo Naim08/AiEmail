@@ -58,26 +58,21 @@ function NavBar() {
                         </div>
                     </div>
 
-                    <div className="nav-link">
-                        <button
-                            className={`nav-trash-link`}
-                            onClick={handleOpenModal}
-                        >
-                            <i className="fa-sharp fa-solid fa-circle-question"></i>{" "}
-                            Instruction
-                        </button>
-                    </div>
-
-                    <InstructionModal
-                        isActive={instructionModal}
-                        onClose={handleCloseModal}
-                        header="Welcome to MailTo!"
-                    />
-
                     <div className="spacer"></div>
                     <div className="bottom-links">
                         <div className="nav-google-login-btn">
                             <GoogleLoginButton />
+                        </div>
+                        <div className="nav-link help">
+                            <button onClick={handleOpenModal}>
+                                <i className="fa-sharp fa-solid fa-circle-question"></i>
+                                Help
+                            </button>
+                            <InstructionModal
+                                isActive={instructionModal}
+                                onClose={handleCloseModal}
+                                header="Welcome to MailTo!"
+                            />
                         </div>
                         <div className="nav-logout nav-link logout-container">
                             <button onClick={handleLogOut}>
