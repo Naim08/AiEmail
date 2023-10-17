@@ -1,9 +1,18 @@
 # MailTo
 
-MailTo is an AI-driven platform aimed at bridging the gap between instant electronic communication and the time-consuming process of crafting apt email responses. By leveraging state-of-the-art AI technology, MailTo provides users with contextually relevant and linguistically appropriate email suggestions, streamlining the communication process without sacrificing quality.
+MailTo is an innovative AI-driven platform designed to revolutionize the way we handle email communication. With MailTo, you can effortlessly edit and send emails, simplifying the process of crafting perfect responses. It harnesses cutting-edge AI technology to provide you with contextually relevant and linguistically appropriate email suggestions. This means you can communicate faster without compromising the quality and effectiveness of your messages, making MailTo the ultimate tool for bridging the gap between instant electronic communication and the often time-consuming task of composing suitable email responses.
 
 # Live Site
 [MailTo](https://mailto.naimmiah.com/)
+
+## Table of Contents
+1. [MailTo](#mailto)
+2. [Live Site](#live-site)
+3. [Background and Overview](#background-and-overview)
+4. [Technologies and Technical Challenges](#technologies-and-technical-challenges)
+5. [Functionality and MVP](#functionality-and-mvp)
+6. [Meet the Team](#meet-the-team)
+
 
 ## Background and Overview
 
@@ -20,6 +29,35 @@ In our digital era, professionals often find their inboxes flooded. Keeping up w
     *   Implement smart categorization and prioritization of emails to assist users in managing their inbox effectively.
 - Customizable User Preferences:
     *   Allow users to set and modify their preferences for email interactions, ensuring that the AI-generated responses are aligned with their communication style and requirements.
+
+## Technologies and Technical Challenges
+
+MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The technologies we will use:
+
+- Backend: Express with Node.js
+- Frontend: React, Redux
+- Database: MongoDB
+- AI and Machine Learning: OpenAI GPT
+- Authentication: JWT
+- Email Integration: Gmail API.
+
+#### Technical Challenges:
+
+-   Backend: Express with Node.js
+    *   Performance: Node.js runs on a single-threaded event loop. CPU-bound tasks can block the event loop and degrade performance.
+    *   Error Handling: Proper handling of synchronous and asynchronous errors in Express routes and middleware.
+-   Frontend: React, Redux
+    *   Component Optimization: Ensuring that React components don't re-render unnecessarily. Techniques like memoization can help.
+    *   State Management: Handling complex application state with Redux requires a good understanding of actions, reducers, and store.
+-   Database: MongoDB
+    *   Data Consistency: MongoDB uses eventual consistency, which might cause issues in situations where strict consistency is required.
+    *   Query Performance: Without proper indexing, query performance can degrade, especially with large datasets.
+-   AI and Machine Learning: OpenAI GPT
+    *   Integrating OpenAI's GPT with your backend to generate responses in real-time.
+    *   Model Tuning: Ensuring the AI model gives relevant and appropriate email responses.
+    *   Cost Management: AI inference can be expensive. Monitoring and managing API call costs.
+-   Authentication: JWT
+    *   Token Security: Ensuring JWT tokens are stored securely (e.g., not in local storage due to XSS attacks).
 
 ## Functionality and MVP
 
@@ -42,35 +80,6 @@ In our digital era, professionals often find their inboxes flooded. Keeping up w
 - [ ] Sending Email: Once users finalize their email content, they can dispatch it directly from our platform. Furthermore, we offer seamless integration with Gmail, allowing users to fetch and send emails directly through their Gmail accounts.
     * Challenges: Integrating our app with Gmail brought forth authentication and security concerns, requiring utmost caution to protect user data. Efficiently syncing emails in real-time without overwhelming Gmail's API rate limits posed a delicate balancing act. Additionally, maintaining the integrity of varied email formats, attachments, and inline images during fetching and dispatching was a nuanced task.
 
-## Technologies and Technical Challenges
-
-MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The technologies we will use:
-
-- Backend: Express with Node.js
-- Frontend: React, Redux
-- Database: MongoDB
-- AI and Machine Learning: OpenAI GPT
-- Authentication: JWT
-- Email Integration: Gmail API.
-
-#### Technical Challenges:
-
--   Backend: Express with Node.js
-
-    *   Performance: Node.js runs on a single-threaded event loop. CPU-bound tasks can block the event loop and degrade performance.
-    *   Error Handling: Proper handling of synchronous and asynchronous errors in Express routes and middleware.
--   Frontend: React, Redux
-    *   Component Optimization: Ensuring that React components don't re-render unnecessarily. Techniques like memoization can help.
-    *   State Management: Handling complex application state with Redux requires a good understanding of actions, reducers, and store.
--   Database: MongoDB
-    *   Data Consistency: MongoDB uses eventual consistency, which might cause issues in situations where strict consistency is required.
-    *   Query Performance: Without proper indexing, query performance can degrade, especially with large datasets.
--   AI and Machine Learning: OpenAI GPT
-    *   Integrating OpenAI's GPT with your backend to generate responses in real-time.
-    *   Model Tuning: Ensuring the AI model gives relevant and appropriate email responses.
-    *   Cost Management: AI inference can be expensive. Monitoring and managing API call costs.
--   Authentication: JWT
-    *   Token Security: Ensuring JWT tokens are stored securely (e.g., not in local storage due to XSS attacks).
 
 ## Meet the Team
 
