@@ -105,7 +105,7 @@ app.get(
     res.redirect(
       req.hostname === "localhost"
         ? "http://localhost:3000/dashpage"
-        : req.hostname + "/dashpage"
+        : "/dashpage"
     );
   }
 );
