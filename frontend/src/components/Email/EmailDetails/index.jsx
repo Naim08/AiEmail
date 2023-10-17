@@ -25,6 +25,16 @@ const EmailDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [showChatMessage, setShowChatMessage] = useState(false);
 
+  const [copyCompleted, setCopyCompleted] = useState(false);
+  const [updateCompleted, setUpdateCompleted] = useState(false);
+  const [sendCompleted, setSendCompleted] = useState(false);
+
+  // Add states for icon reset timers
+  const [copyResetTimer, setCopyResetTimer] = useState(null);
+  const [updateResetTimer, setUpdateResetTimer] = useState(null);
+  const [sendResetTimer, setSendResetTimer] = useState(null);
+
+
   const error = useSelector((state) => state.emailsReducer.error);
   const userPreferences = useSelector((state) => state.userPreferenceReducer);
 
@@ -55,6 +65,15 @@ const EmailDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateEmail({ ...localEmail, id: emailId }));
+    setUpdateCompleted(true); // Set updateCompleted to true
+
+    // Start a timer to reset the icon state after 2000 milliseconds (2 seconds)
+    const timer = setTimeout(() => {
+      setUpdateCompleted(false); // Reset updateCompleted to false
+    }, 2000);
+
+    // Store the timer reference
+    setUpdateResetTimer(timer);
   };
 
   const handleExit = (e) => {
@@ -78,6 +97,16 @@ const EmailDetails = () => {
     try {
       await navigator.clipboard.writeText(textToCopy);
       console.log("Text successfully copied to clipboard");
+
+      setCopyCompleted(true); // Set copyCompleted to true
+
+      // Start a timer to reset the icon state after 2000 milliseconds (2 seconds)
+      const timer = setTimeout(() => {
+        setCopyCompleted(false); // Reset copyCompleted to false
+      }, 2000);
+
+      // Store the timer reference
+      setCopyResetTimer(timer);
     } catch (err) {
       console.log("Failed to copy text: ", err);
     }
@@ -91,6 +120,15 @@ const EmailDetails = () => {
   const sendEmailHandler = async (e) => {
     e.preventDefault();
     dispatch(sendGmail({ ...localEmail, id: emailId }));
+    setSendCompleted(true); // Set sendCompleted to true
+
+    // Start a timer to reset the icon state after 2000 milliseconds (2 seconds)
+    const timer = setTimeout(() => {
+      setSendCompleted(false); // Reset sendCompleted to false
+    }, 2000);
+
+    // Store the timer reference
+    setSendResetTimer(timer);
   };
 
   return (
@@ -157,10 +195,18 @@ const EmailDetails = () => {
             </div>
             <div className="new-email-form-btn">
               <button type="submit" onClick={() => setShowChatMessage(true)}>
-                update
+                {updateCompleted ? (
+                  <i className="fa-solid fa-check"></i> // Checkmark icon
+                ) : (
+                  "update"
+                )}
               </button>
               <button type="submit" onClick={sendEmailHandler}>
-                send
+                {sendCompleted ? (
+                  <i className="fa-solid fa-check"></i> // Checkmark icon
+                ) : (
+                  "send"
+                )}
               </button>
             </div>
           </form>
@@ -199,7 +245,11 @@ const EmailDetails = () => {
             </div>
           )}
           <button className="copy-button" onClick={copyToClipboard}>
-            <i className="fa-solid fa-copy"></i>
+            {copyCompleted ? (
+              <i className="fa-solid fa-check"></i> // Checkmark icon
+            ) : (
+              <i className="fa-solid fa-copy"></i> // Original copy icon
+            )}
           </button>
         </div>
       </div>
