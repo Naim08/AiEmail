@@ -1,17 +1,15 @@
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css"; // Assuming you've updated this CSS file based on previous suggestions
 import { logout } from "../../store/session";
 import GoogleLoginButton from "../GmailAuth/GoogleLoginButton";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import TrashEmailsPage from "../Email/EmailTrash";
 import InstructionModal from "../InstructionModal/InstructionModal";
+
 
 function NavBar() {
     const loggedIn = useSelector((state) => !!state.session.user);
     const dispatch = useDispatch();
-    const [selectedLink, setSelectedLink] = useState(null);
     const userEmail = useSelector((state) => state.session.user.email);
     const history = useHistory();
     const [instructionModal, setInstructionModal] = useState(false);
@@ -23,12 +21,10 @@ function NavBar() {
 
     const handleLogOut = (e) => {
         logoutUser(e);
-        setSelectedLink("logout");
         history.push("/");
     };
 
     const handleTrash = (e) => {
-        setSelectedLink("trash");
         history.push("/email/trash");
     };
     const handleOpenModal = e =>{
@@ -41,47 +37,29 @@ function NavBar() {
     const getLinks = () => {
         if (loggedIn) {
             return (
-                <div className="left-sideBar">
-                    <div className="links-nav">
-                        <div className="nav-dashboard nav-link">
-                            <a
-                                href="/"
-                                className={`nav-dashboard-link ${
-                                    selectedLink === "dashboard"
-                                        ? "selected"
-                                        : ""
-                                }`}
-                                onClick={() => {
-                                    setSelectedLink("dashboard");
-                                }}
-                            >
+                <div className="nav-links-container">
+                    <div className="top-links">
+                        <div className="nav-link">
+                            <a href="/" className={`nav-dashboard-link`}>
                                 <i className="fa-sharp fa-solid fa-house"></i>
                                 Dashboard
                             </a>
                         </div>
 
-                        <div className="nav-trash nav-link">
-                            <button
-                                className={`nav-trash-link ${
-                                    selectedLink === "trash" ? "selected" : ""
-                                }`}
-                                onClick={handleTrash}
-                            >
+                        <div className="nav-link">
+                            <button onClick={handleTrash}>
                                 <i className="fa-solid fa-trash"></i> Trash
                             </button>
                         </div>
 
-                        <div className="nav-profile nav-link">
-                            <a
-                                href="/profile"
-                                className={`nav-profile-link ${
-                                    selectedLink === "account" ? "selected" : ""
-                                }`}
-                                onClick={() => setSelectedLink("account")}
-                            >
+                        <div className="nav-link">
+                            <a href="/profile" className={`nav-profile-link`}>
                                 <i className="fa-solid fa-user"></i> Account
                             </a>
                         </div>
+
+                    </div>
+
 
                         <div className="nav-link">
                             <button
@@ -102,38 +80,27 @@ function NavBar() {
 
 
 
-                    </div>{" "}
-                    {/*end links-nav*/}
+
+
                     <div className="spacer"></div>
                     <div className="bottom-links">
-                        {" "}
-                        {/* New wrapper div for bottom links */}
                         <div className="nav-google-login-btn">
                             <GoogleLoginButton />
                         </div>
                         <div className="nav-logout nav-link logout-container">
-                            <a
-                                className={`${
-                                    selectedLink === "logout" ? "selected" : ""
-                                }`}
-                                onClick={handleLogOut}
-                            >
+                            <button onClick={handleLogOut}>
                                 <i className="fa-sharp fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i>{" "}
                                 Logout
-                            </a>
+                            </button>
                             <small className="user-email">{userEmail}</small>
                         </div>
                         <div className="nav-aboutus nav-link">
-                            <a
-                                href="/aboutus"
-                                onClick={() => setSelectedLink("aboutus")}
-                            >
+                            <a href="/aboutus">
                                 <i class="fa-sharp fa-light fa-circle-info"></i>
                                 About Us
                             </a>
                         </div>
                     </div>
-                    {/*end bottom-links*/}
                 </div>
             );
         } else {
@@ -142,20 +109,19 @@ function NavBar() {
     };
 
     return (
-        <div>
-            <div className="navi-container">
-                <div className="navi-header">
-                    <h1>
-                        <i className="fa-sharp fa-solid fa-envelope"></i> MailTo
-                    </h1>
 
-                </div>
-                {getLinks()}
+        <div className="nav-container">
+            <div className="nav-header">
+                <h1>
+                    <i className="fa-sharp fa-solid fa-envelope"></i> MailTo
+                </h1>
 
             </div>
+                {getLinks()}
 
-            {/* <InstructionModal onClose={handleCloseModal}/> */}
+
         </div>
+
 
     );
 }

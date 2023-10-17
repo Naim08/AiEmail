@@ -55,7 +55,7 @@ const TrashItemList = () => {
             ) : (
                 <div className="emailpage-list-container">
                     <div className="header-container">
-                        <p className="trash-header">Trash</p>
+                        {/* <p className="trash-header">Trash</p> */}
                         <button
                             className="emptyEmailTrash"
                             onClick={hanleEmptyTrash}
