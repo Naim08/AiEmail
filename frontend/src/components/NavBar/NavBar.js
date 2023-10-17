@@ -76,6 +76,7 @@ function NavBar() {
                         </div>
                     </div>{" "}
                     {/*end links-nav*/}
+                    <div className="spacer"></div>
                     <div className="bottom-links">
                         {" "}
                         {/* New wrapper div for bottom links */}
