@@ -9,7 +9,8 @@
     "frontend": "npm start --prefix frontend watch",
     "frontend-build": "npm run build --prefix frontend",
     "build": "npm run backend-install && npm run frontend-install && npm run frontend-build",
-    "run-all": "npm run backend & npm run frontend"
+    "run-all": "npm run backend & npm run frontend",
+    "start": "npm start --prefix backend"
   },
   "repository": {
     "type": "git"
