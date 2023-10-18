@@ -30,9 +30,9 @@ const SignupForm = () => {
         await dispatch(signup(user));
 
         // Check if there are no errors and redirect
-        if (!errors) {
-            history.push("/dashpage");
-        }
+        // if (!errors) {
+        //     history.push("/dashpage");
+        // }
     };
 
     return (
