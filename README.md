@@ -67,6 +67,10 @@ MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The tec
 </p>
 
 - [ ] CRUD Email Session: Users can set and customize their preferences for email interactions, initiate a new email session, view existing ones, edit email contents or settings, and delete emails no longer needed.
+<p align="center">
+  <img src="./frontend/src/assets/email.gif" />
+</p>
+
 
 - [ ] AI-Generated Response: Based on the incoming email content and user preferences, the system will generate an appropriate email response, which users can choose to use, modify, or discard.
     * Challenges: Crafting responses that consistently matched the user's style and the email's context was a significant challenge. By incorporating user preferences into the AI's decision-making process, we were able to refine and enhance the quality of generated responses.
@@ -75,7 +79,16 @@ MailTo is built with the MERN stack (MongoDB, Express, React, and Node). The tec
   <img src="./frontend/src/assets/AiResp.gif" />
 </p>
 
+- [ ] Customization of AI Models: Empower users to fine-tune AI model settings within your system, granting them the flexibility to customize AI behavior according to their preferences. For instance, users can adjust AI model parameters to influence the tone and style of generated responses, allowing them to switch between formal and informal communication styles.
+<p align="center">
+  <img src="./frontend/src/assets/response.png" />
+</p>
+
 - [ ] Search Previous Email: Allows users to search through their past emails using keywords, user can edit or delete these emails.
+
+<p align="center">
+  <img src="./frontend/src/assets/search.gif" />
+</p>
 
 - [ ] Sending Email: Once users finalize their email content, they can dispatch it directly from our platform. Furthermore, we offer seamless integration with Gmail, allowing users to fetch and send emails directly through their Gmail accounts.
     * Challenges: Integrating our app with Gmail brought forth authentication and security concerns, requiring utmost caution to protect user data. Efficiently syncing emails in real-time without overwhelming Gmail's API rate limits posed a delicate balancing act. Additionally, maintaining the integrity of varied email formats, attachments, and inline images during fetching and dispatching was a nuanced task.
