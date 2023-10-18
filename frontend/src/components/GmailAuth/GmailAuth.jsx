@@ -19,7 +19,7 @@
 //     })
 //       .then((response) => response.json())
 //       .then((data) => {
-//         console.log(data);
+//
 //       })
 //       .catch((error) => {
 //         console.error("Error fetching protected data:", error);
@@ -50,11 +50,11 @@ import { useEffect } from "react";
 import { Route } from "react-router-dom";
 
 function GoogleAuthRedirect() {
-  useEffect(() => {
-    window.location.href = "https://mailto.naimmiah.com/auth/google";
-  }, []);
+    useEffect(() => {
+        window.location.href = "https://mailto.naimmiah.com/auth/google";
+    }, []);
 
-  return null; // This component doesn't render anything
+    return null; // This component doesn't render anything
 }
 
 export default GoogleAuthRedirect;

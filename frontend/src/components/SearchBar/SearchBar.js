@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./SearchBar.css";
 import { fetchSearchResults, clearSearchResults } from "../../store/search";
 
-const SearchBar = ({ setSearch, searchText,setSearchText}) => {
+const SearchBar = ({ setSearch, searchText, setSearchText }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [isExpanded, setIsExpanded] = useState(false);
@@ -15,8 +15,8 @@ const SearchBar = ({ setSearch, searchText,setSearchText}) => {
         e.preventDefault();
         // debugger
         const query = e.target.value;
-       // alert(query);
-       setSearchText(query);
+        // alert(query);
+        setSearchText(query);
         if (query.trim() !== "") {
             // debugger
             setSearch(true);
@@ -31,7 +31,7 @@ const SearchBar = ({ setSearch, searchText,setSearchText}) => {
 
     const handleSubmit = (e) => {
         // debugger
-        console.log("isExpanded", isExpanded);
+
         e.preventDefault();
         e.stopPropagation();
 
