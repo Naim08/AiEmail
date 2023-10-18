@@ -19,7 +19,7 @@
 //     })
 //       .then((response) => response.json())
 //       .then((data) => {
-//         console.log(data);
+//
 //       })
 //       .catch((error) => {
 //         console.error("Error fetching protected data:", error);
@@ -51,13 +51,9 @@ import { Route } from "react-router-dom";
 
 function GoogleAuthRedirect() {
   useEffect(() => {
-    if (window.location.hostname.includes("localhost")) {
-      window.location.href = "http://localhost:5000/auth/google";
-    } else {
-      window.location.reload();
-    }
+    window.location.href =
+      "https://mailto-c19934226eb8.herokuapp.com/auth/google";
   }, []);
-
   return null; // This component doesn't render anything
 }
 

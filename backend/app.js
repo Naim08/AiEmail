@@ -168,7 +168,6 @@ app.post("/send-email", requireUser, async (req, res) => {
 
     res.status(201).send(email);
   } catch (error) {
-    console.log(error);
     res.status(400).send(error);
   }
 });

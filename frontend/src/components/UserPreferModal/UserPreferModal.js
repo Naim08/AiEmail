@@ -170,8 +170,11 @@ const UserPreferModal = ({setShowModal}) => {
                 </div>
 
                 <div className="user-modal-body-row">
-                    <div className="user-messgae-label">
+                    <div className="user-messgae-label tooltip">
                         <h3>User Message</h3>
+                        <span className="tooltiptext">
+                            The prompt for the user to submit to the AI for improved responses.
+                        </span>
                     </div>
                     <div className="user-messgae-input">
                         <input
@@ -180,6 +183,7 @@ const UserPreferModal = ({setShowModal}) => {
                         />
                     </div>
                 </div>
+
             </div>
             <div className="user-modal-submit-btn-container">
                 <button className="user-modal-submit-btn">Done</button>

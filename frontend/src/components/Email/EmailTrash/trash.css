@@ -58,3 +58,8 @@
     position: absolute;
     margin-top: 100px;
 }
+
+/* Hide the restore button by default */
+.restore-button {
+    display: none;
+}

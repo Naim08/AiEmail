@@ -55,7 +55,7 @@ const TrashItemList = () => {
             ) : (
                 <div className="emailpage-list-container">
                     <div className="header-container">
-                        <p className="trash-header">Trash</p>
+                        {/* <p className="trash-header">Trash</p> */}
                         <button
                             className="emptyEmailTrash"
                             onClick={hanleEmptyTrash}
@@ -92,7 +92,7 @@ const TrashItemList = () => {
                                     className="restore-button"
                                     onClick={async (e) => {
                                         e.stopPropagation(); // Stop event propagation
-                                        dispatch(restoreFromTrash(email._id));
+                                        await dispatch(restoreFromTrash(email._id));
                                         dispatch(readEmails());
                                     }}
                                 >

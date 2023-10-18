@@ -5,18 +5,15 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { readEmails, deleteEmail } from "../../../store/email";
 import { fetchEmails } from "../../../store/chatgpt";
 
-import EmailDeleteModal from './EmailDeleteModal';
+import EmailDeleteModal from "./EmailDeleteModal";
 import { moveToTrash } from "../../../store/email";
-
-
 
 const EmailList = () => {
   const dispatch = useDispatch();
-  const emails = useSelector((state) => state.emailsReducer.emails.filter(email => email.isTrashed===false));
+  const emails = useSelector((state) =>
+    state.emailsReducer.emails.filter((email) => email.isTrashed === false)
+  );
   const isLoading = useSelector((state) => state.emailsReducer.isLoading);
-  const style = {
-    color: "black",
-  };
 
   const [isModalActive, setIsModalActive] = useState(false);
   const [emailId, setEmailId] = useState("");
@@ -92,10 +89,9 @@ const EmailList = () => {
         isActive={isModalActive}
         onClose={handleCloseModal}
         onConfirm={handleConfirmModal}
-        header="Delete Comfirmation"
-
+        header="Delete Confirmation"
       >
-        <p style={style}>Delete your email to trash bin?</p>
+        <p>Move your email to the trash?</p>
       </EmailDeleteModal>
     </>
   );

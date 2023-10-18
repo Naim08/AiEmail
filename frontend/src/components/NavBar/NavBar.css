@@ -1,8 +1,4 @@
-div {
-    /* border: 1px solid white; */
-}
-
-.navi-container {
+.nav-container {
     color: #61677a;
     height: 100%;
     display: flex;
@@ -11,18 +7,17 @@ div {
     width: 255px;
     box-shadow: 8px 0px 15px rgba(0, 0, 0, 0.2);
     position: relative;
-    /* border: 1px dotted green; */
+    z-index: 100;
 }
 
-.navi-header h1 {
+.nav-header {
     font-size: 40px;
     font-family: "Times";
-    margin-left: -50px;
     margin-top: 20px;
+    margin-left: -10px;
 }
 
 .nav-link {
-    /* New generic class */
     display: flex;
     flex-direction: row;
     margin: 15px 0;
@@ -37,6 +32,7 @@ div {
 }
 
 .nav-link button {
+    /* for the trash/logout buttons */
     font-family: "Helvetica";
     font-weight: 300;
     text-decoration: none;
@@ -48,40 +44,37 @@ div {
     padding: 0;
 }
 
+.nav-logout .fa-sharp.fa-solid.fa-arrow-right-from-bracket {
+    font-size: 0.8em;
+    margin-left: 2px;
+}
+
 .nav-link a:hover {
     color: #fafafa;
 }
 
-.nav-trash-link .trash:hover {
-    color: #fafafa;
-}
 .selected {
     color: #fafafa;
-    border-bottom: 1px solid #ccc;
 }
 
-.left-sideBar {
-    /* height: 100%; */
+.nav-links-container {
     display: flex;
-    /* flex: 0 0 255px; */
     flex-direction: column;
     height: 100%;
-    margin-left: 20px;
-    /* border: 1px dotted red; */
+    margin-left: 40px;
 }
-.links-nav {
+.top-links {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 30px 0px;
     font-size: 20px;
-    /* border: 1px dotted cyan; */
-    /* flex: 1; */
-    /* flex-grow: 1; */
 }
+
 .spacer {
     flex-grow: 1;
 }
+
 .bottom-links {
     position: relative;
     display: flex;
@@ -91,30 +84,14 @@ div {
     /* border: 1px dotted white; */
 }
 
-.nav-logout {
-    margin-top: 20px; /* Add space above the Logout link */
-}
-
 .nav-link i {
-    margin-right: 10px; /* Adjust this value to add more or less space */
-}
-
-.nav-google-login-btn {
-    margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .nav-google-login-btn button {
-    background-color: #4285f4;
-    color: white;
-    border-radius: 4px;
-    padding: 10px 20px;
-    border: none;
     background: none;
     color: #61677a;
-    border: none;
-    padding: 0;
     font: inherit;
-    cursor: pointer;
 }
 
 .nav-google-login-btn button:hover {
@@ -126,40 +103,24 @@ div {
 }
 
 .nav-aboutus {
-    font-size: 14px;
+    font-size: 13px;
+    margin-left: 14px;
 }
 
+/* under Logout*/
 .user-email {
-    font-size: 12px; /* Adjust as needed */
-    color: #aaa; /* Adjust as needed */
-    margin-left: 30px;
+    font-size: 10px;
+    margin-left: 35px;
     margin-top: 5px;
 }
 
 .logout-container {
     flex-direction: column;
-    align-items: flex-start; /* Optional, to align items to the start */
-}
-.selected::after {
-    content: "";
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: calc(
-        100% - Xpx
-    ); /* Replace X with the right offset you want from the text */
-    height: 2px; /* Height of the line */
-    background-color: white; /* The color you want for the line */
-    transform: translateY(-50%);
+    align-items: flex-start;
+    margin-left: 8px;
 }
 
-/* Hide the restore button by default */
-.restore-button {
-    display: none;
-}
-
-/* Show the restore button when the parent div is hovered */
-.pre-email-item:hover .restore-button {
-    display: inline-block; /* or "block" depending on your layout */
+.nav-link.help {
+    margin-left: 10px;
+    margin-top: 25px;
 }
