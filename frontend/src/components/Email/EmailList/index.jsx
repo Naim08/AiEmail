@@ -5,100 +5,98 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { readEmails, deleteEmail } from "../../../store/email";
 import { fetchEmails } from "../../../store/chatgpt";
 
-import EmailDeleteModal from './EmailDeleteModal';
+import EmailDeleteModal from "./EmailDeleteModal";
 import { moveToTrash } from "../../../store/email";
 
-
-
 const EmailList = () => {
-  const dispatch = useDispatch();
-  const emails = useSelector((state) => state.emailsReducer.emails.filter(email => email.isTrashed===false));
-  const isLoading = useSelector((state) => state.emailsReducer.isLoading);
-  const style = {
-    color: "black",
-  };
+    const dispatch = useDispatch();
+    const emails = useSelector((state) =>
+        state.emailsReducer.emails.filter((email) => email.isTrashed === false)
+    );
+    const isLoading = useSelector((state) => state.emailsReducer.isLoading);
 
-  const [isModalActive, setIsModalActive] = useState(false);
-  const [emailId, setEmailId] = useState("");
+    const [isModalActive, setIsModalActive] = useState(false);
+    const [emailId, setEmailId] = useState("");
 
-  const handleOpenModal = () => {
-    setIsModalActive(true);
-  };
+    const handleOpenModal = () => {
+        setIsModalActive(true);
+    };
 
-  const handleCloseModal = () => {
-    setIsModalActive(false);
-  };
+    const handleCloseModal = () => {
+        setIsModalActive(false);
+    };
 
-  const history = useHistory();
+    const history = useHistory();
 
-  const handleToNew = () => {
-    history.push("/email/form");
-  };
+    const handleToNew = () => {
+        history.push("/email/form");
+    };
 
-  const handleEmailClick = (email) => {
-    history.push(`/email/${email._id}`);
-  };
+    const handleEmailClick = (email) => {
+        history.push(`/email/${email._id}`);
+    };
 
-  const handleConfirmModal = () => {
-    setIsModalActive(false);
-    dispatch(moveToTrash(emailId));
-    dispatch(readEmails());
-  };
+    const handleConfirmModal = () => {
+        setIsModalActive(false);
+        dispatch(moveToTrash(emailId));
+        dispatch(readEmails());
+    };
 
-  useEffect(() => {
-    dispatch(readEmails());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(readEmails());
+    }, [dispatch]);
 
-  return (
-    <>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="email-list-container">
-          <div className="new-email-item" onClick={handleToNew}>
-            <div className="new-item-img">
-              <i className="fa-sharp fa-light fa-plus fa-2xl"></i>
-            </div>
-          </div>
+    return (
+        <>
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : (
+                <div className="email-list-container">
+                    <div className="new-email-item" onClick={handleToNew}>
+                        <div className="new-item-img">
+                            <i className="fa-sharp fa-light fa-plus fa-2xl"></i>
+                        </div>
+                    </div>
 
-          {emails.map((email) => (
-            <div
-              key={email.id}
-              className="pre-email-item"
-              onClick={() => handleEmailClick(email)}
+                    {emails.map((email) => (
+                        <div
+                            key={email.id}
+                            className="pre-email-item"
+                            onClick={() => handleEmailClick(email)}
+                        >
+                            <div className="email-content">
+                                <span className="email-subject">
+                                    {email.subject}
+                                </span>
+                                <span className="email-body">
+                                    {email.snippet || email.message}
+                                </span>
+                            </div>
+                            <button
+                                className="delete-button"
+                                onClick={async (e) => {
+                                    e.stopPropagation(); // Stop event propagation
+                                    setEmailId(email._id);
+                                    handleOpenModal();
+                                }}
+                            >
+                                <i className="fa-light fa-trash icon-light"></i>
+                                <i className="fa-solid fa-trash icon-solid"></i>
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
+            <EmailDeleteModal
+                isActive={isModalActive}
+                onClose={handleCloseModal}
+                onConfirm={handleConfirmModal}
+                header="Delete Confirmation"
             >
-              <div className="email-content">
-                <span className="email-subject">{email.subject}</span>
-                <span className="email-body">
-                  {email.snippet || email.message}
-                </span>
-              </div>
-              <button
-                className="delete-button"
-                onClick={async (e) => {
-                  e.stopPropagation(); // Stop event propagation
-                  setEmailId(email._id);
-                  handleOpenModal();
-                }}
-              >
-                <i className="fa-light fa-trash icon-light"></i>
-                <i className="fa-solid fa-trash icon-solid"></i>
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-      <EmailDeleteModal
-        isActive={isModalActive}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirmModal}
-        header="Delete Comfirmation"
-
-      >
-        <p style={style}>Delete your email to trash bin?</p>
-      </EmailDeleteModal>
-    </>
-  );
+                <p>Move your email to the trash?</p>
+            </EmailDeleteModal>
+        </>
+    );
 };
 
 export default EmailList;
