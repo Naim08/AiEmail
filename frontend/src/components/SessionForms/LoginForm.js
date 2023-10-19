@@ -29,9 +29,9 @@ const LoginForm = () => {
         dispatch(login({ email, password }));
     };
 
-    const loginDemo = e =>{
+    const loginDemo = (e) => {
         e.preventDefault();
-        dispatch(login( {email: 'demoyy@email.com', password: 'password'}));
+        dispatch(login({ email: "demoyy@email.com", password: "password" }));
         history.push("/dashpage");
     };
 
@@ -46,6 +46,7 @@ const LoginForm = () => {
                         type="text"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        style={{ marginBottom: "-5px" }}
                         placeholder="Email address"
                     />
 
@@ -67,10 +68,9 @@ const LoginForm = () => {
                     <input
                         type="submit"
                         className="login-button"
-                        value="Demo LogIn"
+                        value="Demo Log In"
                         onClick={loginDemo}
                     />
-
                 </form>
                 <div>
                     <span style={{ marginLeft: "75px" }}>
