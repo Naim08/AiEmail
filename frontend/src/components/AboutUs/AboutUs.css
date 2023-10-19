@@ -23,6 +23,7 @@
     width: 250px;
     margin-bottom: 10px;
     object-fit: contain;
+    box-shadow: 8px 8px 18px rgba(0, 0, 0, 0.5);
 }
 
 .links-container {
