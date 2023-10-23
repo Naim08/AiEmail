@@ -155,7 +155,7 @@ const EmailDetails = () => {
                         <div className="new-email-to">
                             <input
                                 type="text"
-                                id="form-input"
+                                className="form-input"
                                 name="to"
                                 placeholder="To"
                                 value={localEmail ? localEmail.to : ""}
@@ -166,7 +166,7 @@ const EmailDetails = () => {
                         <div className="new-email-subject">
                             <input
                                 type="text"
-                                id="form-input"
+                                className="form-input"
                                 name="subject"
                                 value={localEmail ? localEmail.subject : ""}
                                 onChange={handleChange}
@@ -212,26 +212,6 @@ const EmailDetails = () => {
                         </div>
                     </form>
                 </div>
-                {/* <div
-                    className={`chat-message ${
-                        showChatMessage ? "fade-in" : ""
-                    }`}
-                >
-                    {emailResponse ? (
-                        Object.values(emailResponse).map((message, idx) => (
-                            <MessageComponent key={idx} message={message} />
-                        ))
-                    ) : (
-                        <div className="loading-dots">
-                            <span>.</span>
-                            <span>.</span>
-                            <span>.</span>
-                        </div>
-                    )}
-                    <button className="copy-button" onClick={copyToClipboard}>
-                        <i className="fa-solid fa-copy"></i>
-                    </button>
-                </div> */}
                 <div className="chat-message">
                     {/* Debug line */}
                     {emailResponse ? (

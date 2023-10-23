@@ -47,7 +47,7 @@ const EmailForm = ({ emailToUpdate }) => {
         return newErrors;
     };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formErrors = validateForm();
@@ -63,10 +63,10 @@ const EmailForm = ({ emailToUpdate }) => {
 
         const returnedEmail = await dispatch(createEmail(emailWithUser));
 
-        if (returnedEmail && returnedEmail._id) {  // Check if the returnedEmail object has the _id property
-        history.push(`/email/${returnedEmail._id}`);  
+        if (returnedEmail && returnedEmail._id) {
+            // Check if the returnedEmail object has the _id property
+            history.push(`/email/${returnedEmail._id}`);
         }
-        
     };
 
     const handleExit = (e) => {
@@ -80,8 +80,6 @@ const EmailForm = ({ emailToUpdate }) => {
         setShowModal(false);
         dispatch(setformSlide("expand"));
     };
-
-
 
     return (
         <>
