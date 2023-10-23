@@ -12,7 +12,6 @@
     margin-left: 5%;
     background-color: black;
     padding: 20px;
-    border: 1px dotted white;
 }
 
 /* Input fields */
@@ -178,18 +177,11 @@ textarea {
 
 .error,
 .body-error {
-    position: relative;
-    bottom: 30px;
-    left: 400px;
     color: #ccc;
     opacity: 0;
     transition: opacity 1s ease;
     font-size: 14px;
-    height: 11px;
-}
-
-.body-error {
-    bottom: 400px;
+    margin-left: 60%;
 }
 
 .error.show,
