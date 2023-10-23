@@ -29,7 +29,7 @@ router.get("/search", requireUser, async (req, res) => {
 
     try {
         const emails = await Email.find({
-            // user: req.user,
+            user: req.user._id,
             subject: new RegExp(searchTerm, "i"), // This will make the search case-insensitive
         });
 
