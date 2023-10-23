@@ -39,8 +39,8 @@ h2 {
 /* Input Fields */
 input[type="text"],
 input[type="password"] {
-    width: 300px !important;
-    height: 50px !important;
+    /* width: 300px !important; */
+    /* height: 50px !important; */
     border: none;
     border-radius: 0.5rem;
     margin: 5px;

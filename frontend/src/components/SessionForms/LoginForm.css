@@ -35,7 +35,7 @@ h2 {
 }
 
 /* Input Fields */
-input[type="text"],
+/* input[type="text"],
 input[type="password"] {
     width: 320px;
     height: 50px;
@@ -44,7 +44,7 @@ input[type="password"] {
     background: #e0e0e0;
     padding-left: 10px;
     color: black;
-}
+} */
 
 /* Error Messages */
 .errors {

@@ -7,8 +7,7 @@ import { FormModal } from "../../context/modal";
 import { setFormPage, setformSlide } from "../../store/ui";
 import { updateUserPreferences } from "../../store/userPreference";
 
-
-const UserPreferModal = ({setShowModal}) => {
+const UserPreferModal = ({ setShowModal }) => {
     const dispatch = useDispatch();
     const temperatureFromRedux = useSelector(
         (state) => state.userPreferenceReducer.temperature
@@ -48,7 +47,7 @@ const UserPreferModal = ({setShowModal}) => {
 
         dispatch(updateUserPreferences(formData));
         setShowModal(false);
-    }
+    };
 
     return (
         <form className="user-modal-content" onSubmit={handleSubmit}>
@@ -170,20 +169,21 @@ const UserPreferModal = ({setShowModal}) => {
                 </div>
 
                 <div className="user-modal-body-row">
-                    <div className="user-messgae-label tooltip">
+                    <div className="user-message-label tooltip">
                         <h3>User Message</h3>
                         <span className="tooltiptext">
-                            The prompt for the user to submit to the AI for improved responses.
+                            The prompt for the user to submit to the AI for
+                            improved responses.
                         </span>
                     </div>
-                    <div className="user-messgae-input">
+                    <div className="user-message-input">
                         <input
+                            id="preference-user-message"
                             type="text"
                             onChange={(e) => setUserMessage(e.target.value)}
                         />
                     </div>
                 </div>
-
             </div>
             <div className="user-modal-submit-btn-container">
                 <button className="user-modal-submit-btn">Done</button>

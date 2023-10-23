@@ -12,6 +12,7 @@
     margin-left: 5%;
     background-color: black;
     padding: 20px;
+    border: 1px dotted white;
 }
 
 /* Input fields */
@@ -25,9 +26,12 @@ textarea {
     border-radius: 4px;
 }
 
-#form-input {
-    width: 100%;
+.form-input {
+    width: 50%;
     height: 100%;
+    box-sizing: border-box;
+    resize: none;
+    border: 1px dotted white;
 }
 
 /* The form itself */
@@ -78,31 +82,20 @@ textarea {
     font-family: Helvetica;
     font-size: 12px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .new-email-form-btn button:hover {
-    background: white; /* Inverted colors on hover */
+    background: white;
     color: #61677a;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.vertical-line {
-    position: absolute; /* or 'fixed' depending on your needs */
-    left: 50%; /* centers the line */
-    top: 10%; /* starts the line 10% from the top */
-    height: 80%; /* ends the line 10% from the bottom */
-    width: 1px; /* width of the line */
-    background-color: white; /* color of the line */
-    z-index: 1; /* so that it appears above other elements */
 }
 
 .exit-wrapper {
     display: flex;
     cursor: pointer;
-    /* margin: 20px; */
     width: 16%;
     height: 10px;
 }
@@ -145,15 +138,6 @@ textarea {
     box-shadow: 8px 8px 16px #0a0a0a, -8px -8px 16px #2e2e2e; /* same shadow */
     font-family: "Courier";
 }
-/* .chat-message {
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
-} */
-
-/* .fade-in {
-    opacity: 1;
-    transition: opacity 0.5s ease-in;
-} */
 
 .main-container {
     display: flex;
