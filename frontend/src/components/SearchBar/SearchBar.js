@@ -32,17 +32,15 @@ const SearchBar = ({ setSearch, searchText, setSearchText }) => {
     };
 
     return (
-        <div className="search-bar">
-            <button className="search-btn" onClick={handleSubmit}>
-                <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
-            </button>
+        <div className="search-bar-container">
             <input
                 type="text"
-                className="search-box"
+                className="search-bar"
                 placeholder="search emails.."
                 value={searchText}
                 onChange={handleSearch}
             />
+            <i className="fa-sharp fa-regular fa-magnifying-glass search-icon"></i>
         </div>
     );
 };
