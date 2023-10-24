@@ -220,6 +220,7 @@ const EmailDetails = () => {
                         ))
                     ) : (
                         <div className="loading-dots">
+                            <span>Loading</span>
                             <span>.</span>
                             <span>.</span>
                             <span>.</span>

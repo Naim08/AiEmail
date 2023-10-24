@@ -279,3 +279,18 @@ textarea {
     margin: 0 15px;
     padding: 5px;
 }
+
+.email-list-container {
+    width: 95%;
+    margin-left: 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}

@@ -16,13 +16,6 @@
     color: #ccc;
 }
 
-.email-list-container {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
-
 .header-container {
     /* display: flex; */
     justify-content: flex-start;
