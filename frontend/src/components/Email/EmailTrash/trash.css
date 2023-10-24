@@ -16,13 +16,6 @@
     color: #ccc;
 }
 
-.email-list-container {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
-
 .header-container {
     /* display: flex; */
     justify-content: flex-start;
@@ -48,6 +41,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-left: 40px;
 }
 
 .trash.pre-email-item {
@@ -62,4 +56,9 @@
 /* Hide the restore button by default */
 .restore-button {
     display: none;
+}
+
+.emptyEmailTrash {
+    margin-left: 69px;
+    margin-top: 40px;
 }

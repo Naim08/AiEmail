@@ -43,7 +43,7 @@ const TrashItemList = () => {
         dispatch(readEmails());
     }, [dispatch]);
 
-    const hanleEmptyTrash = () => {
+    const handleEmptyTrash = () => {
         dispatch(emptyEmailTrash());
         dispatch(readEmails());
     };
@@ -58,7 +58,7 @@ const TrashItemList = () => {
                         {/* <p className="trash-header">Trash</p> */}
                         <button
                             className="emptyEmailTrash"
-                            onClick={hanleEmptyTrash}
+                            onClick={handleEmptyTrash}
                         >
                             Empty
                         </button>
@@ -92,7 +92,9 @@ const TrashItemList = () => {
                                     className="restore-button"
                                     onClick={async (e) => {
                                         e.stopPropagation(); // Stop event propagation
-                                        await dispatch(restoreFromTrash(email._id));
+                                        await dispatch(
+                                            restoreFromTrash(email._id)
+                                        );
                                         dispatch(readEmails());
                                     }}
                                 >
