@@ -1,7 +1,5 @@
 .search-bar {
     display: flex;
-    /* flex-direction: row; */
-    align-items: center; /* Add this to vertically align the elements */
     position: relative;
     width: 50%;
     max-width: 800px;
@@ -37,9 +35,8 @@
     top: 0;
     height: 30px;
     width: 100px;
-    cursor: pointer; /* Change cursor to pointer on hover */
+    cursor: pointer;
     background: none;
-    /* border: none; */
     padding: 0;
     font: inherit;
     cursor: pointer;
@@ -50,11 +47,8 @@
     justify-content: center;
 }
 
-.search-btn span {
-    margin-right: 6px !important;
-    font-size: 18px;
-}
-
-.icon-expanded {
-    color: #2d2f33; /* Color to match the email-container */
+.fa-sharp.fa-regular.fa-magnifying-glass {
+    color: black;
+    margin-top: 8px;
+    margin-left: 30px;
 }
