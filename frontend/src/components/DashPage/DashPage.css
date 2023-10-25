@@ -15,13 +15,6 @@ html,
     /* padding-top: 20px; */
 }
 
-.search-bar-container {
-    width: 100%;
-    height: 40px;
-    padding: 5px; /* Add some padding around the container */
-    margin-bottom: 10px;
-}
-
 .app-container,
 .email-container {
     height: 100%;

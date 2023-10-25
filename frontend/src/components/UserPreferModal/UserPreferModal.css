@@ -74,10 +74,6 @@
     height: 5px;
 }
 
-input[type="text"] {
-    width: 120%;
-    height: 120%;
-}
 .user-message-label {
     padding-top: 15px;
 }
@@ -169,4 +165,9 @@ input[type="text"] {
 .frequencyPenalty-label {
     margin-top: 10px;
     font-size: 14px;
+}
+
+#preference-user-message {
+    background-color: white;
+    color: black;
 }

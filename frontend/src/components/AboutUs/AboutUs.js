@@ -2,7 +2,7 @@ import "./AboutUs.css";
 import { useHistory } from "react-router-dom";
 import Sanjid from "./pics/sanjidBW.jpg";
 import Fanyi from "./pics/Fanyi.png";
-import Naim from "./pics/Naim.jpeg";
+import Naim from "./pics/Naim.png";
 import Yinyin from "./pics/Yinyin.png";
 
 const AboutUs = () => {

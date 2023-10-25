@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { clearSessionErrors, signup } from "../../store/session";
+import { clearSessionErrors, signup, login } from "../../store/session";
 import "./SignupForm.css";
 
 const SignupForm = () => {
@@ -33,6 +33,12 @@ const SignupForm = () => {
         // if (!errors) {
         //     history.push("/dashpage");
         // }
+    };
+
+    const loginDemo = (e) => {
+        e.preventDefault();
+        dispatch(login({ email: "demoyy@email.com", password: "password" }));
+        history.push("/dashpage");
     };
 
     return (
@@ -96,6 +102,12 @@ const SignupForm = () => {
                             disabled={
                                 !email || !password || password !== password2
                             }
+                        />
+                        <input
+                            type="submit"
+                            className="login-button"
+                            value="Demo Log In"
+                            onClick={loginDemo}
                         />
                     </form>
                     <div>

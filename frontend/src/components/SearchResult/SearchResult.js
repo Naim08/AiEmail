@@ -14,11 +14,15 @@ const SearchResult = ({ query }) => {
     const location = useLocation();
     const history = useHistory();
     const emails = useSelector((state) => state.emailsReducer.emails);
-    const isLoading = useSelector((state) => state.emailsReducer.isLoading);
+    const isLoading = useSelector((state) => state.search.isLoading);
     const currentUser = useSelector((state) => state.session.user);
     const searchResults = useSelector((state) => Object.values(state.search));
     const searchParams = new URLSearchParams(location.search);
-    const noResults = Object.keys(searchResults).length === 0;
+    const noResults = Object.keys(searchResults).length === 1;
+
+    console.log("searchResults", searchResults);
+    console.log("isLoading", isLoading);
+    console.log("noResults", noResults);
 
     const handleEmailClick = (email) => {
         history.push(`/email/${email._id}`);
@@ -48,39 +52,43 @@ const SearchResult = ({ query }) => {
 
     return (
         <div>
-            {noResults && <div>No results containing "{query}"</div>}
-            <div className="email-list-container">
-                {searchResults.map(
-                    (result) =>
-                        currentUser._id === result.user && (
-                            <div
-                                key={result.id}
-                                className="pre-email-item"
-                                onClick={() => handleEmailClick(result)}
-                            >
-                                <div className="email-content">
-                                    <span className="email-subject">
-                                        {result.subject}
-                                    </span>
-                                    <span className="email-body">
-                                        {result.message}
-                                    </span>
-                                </div>
-                                <button
-                                    className="delete-button"
-                                    onClick={async (e) => {
-                                        e.stopPropagation(); // Stop event propagation
-                                        setEmailId(result._id);
-                                        handleOpenModal();
-                                    }}
+            {isLoading && <div>Loading...</div>}
+            {!isLoading && noResults && <div>No results containing "{query}"</div>}
+
+            {!isLoading && !noResults && (
+                <div className="email-list-container">
+                    {searchResults.map(
+                        (result) =>
+                            currentUser._id === result.user && (
+                                <div
+                                    key={result.id}
+                                    className="pre-email-item"
+                                    onClick={() => handleEmailClick(result)}
                                 >
-                                    <i className="fa-light fa-trash icon-light"></i>
-                                    <i className="fa-solid fa-trash icon-solid"></i>
-                                </button>
-                            </div>
-                        )
-                )}
-            </div>
+                                    <div className="email-content">
+                                        <span className="email-subject">
+                                            {result.subject}
+                                        </span>
+                                        <span className="email-body">
+                                            {result.message}
+                                        </span>
+                                    </div>
+                                    <button
+                                        className="delete-button"
+                                        onClick={async (e) => {
+                                            e.stopPropagation(); // Stop event propagation
+                                            setEmailId(result._id);
+                                            handleOpenModal();
+                                        }}
+                                    >
+                                        <i className="fa-light fa-trash icon-light"></i>
+                                        <i className="fa-solid fa-trash icon-solid"></i>
+                                    </button>
+                                </div>
+                            )
+                    )}
+                </div>
+            )}
 
             <EmailDeleteModal
                 isActive={isModalActive}

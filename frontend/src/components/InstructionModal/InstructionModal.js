@@ -1,13 +1,37 @@
+import React, { useEffect, useRef } from "react";
 import "./InstructionModal.css";
 
 const InstructionModal = ({ isActive, onClose, header }) => {
-  const style = {
-    color: "white",
+  const modalRef = useRef();
+
+  // Function to handle outside click
+  const handleOutsideClick = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      onClose();
+    }
   };
+
+  // Register the outside click event when the modal is active
+  useEffect(() => {
+    if (isActive) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isActive]);
 
   return (
     <dialog className={`instr-modal modal-overlay ${isActive ? "active" : ""}`}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal-content"
+        ref={modalRef}
+        onClick={(e) => e.stopPropagation()}
+      >
         {header && (
           <div className="modal-header">
             <h1>Welcome to MailTo!</h1>
