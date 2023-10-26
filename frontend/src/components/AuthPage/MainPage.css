@@ -117,3 +117,8 @@ footer {
         display: none;
     }
 }
+
+.modal-content{
+    max-width: 1000px !important;
+    max-height: 650px !important;
+}

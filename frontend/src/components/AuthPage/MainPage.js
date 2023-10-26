@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { FormModal } from "../../context/modal";
+import { setformSlide } from "../../store/ui";
 import "./MainPage.css";
+import TutorialModal from "../TutorialModal/TutorialModal";
 
 function MainPage() {
     const [text, setText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
     const [loopNum, setLoopNum] = useState(0);
     const typingSpeed = 100; // Constant typing speed
+    const [tutorialModal, setTutorialModal] = useState(false);
+    const dispatch = useDispatch();
+
+    const openModal = e =>{
+        e.preventDefault();
+        setTutorialModal(true);
+    }
+
+    const closeModal = e =>{
+        e.preventDefault();
+        setTutorialModal(false);
+    }
 
     const phrases = [
         "your boss",
@@ -60,9 +76,17 @@ function MainPage() {
                         <Link to="/login" className="neumorphic">
                             Log In
                         </Link>
+                        <button onClick={openModal}>
+                            Tutorial
+                        </button>
                     </div>
                 </div>
             </div>
+            {tutorialModal && (
+                <FormModal onClose={closeModal} style={{height: "500px", width: "500px"}}>
+                    <TutorialModal />
+                </FormModal>
+            )}
             <footer>PRBC &copy; 2023</footer>
         </>
     );
