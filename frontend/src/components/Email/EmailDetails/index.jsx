@@ -92,9 +92,15 @@ const EmailDetails = () => {
     const copyToClipboard = async () => {
         const emailResponseId = Object.keys(emailResponse)[0];
         const textToCopy = emailResponse[emailResponseId].response;
-
+       
+        
         try {
             await navigator.clipboard.writeText(textToCopy);
+
+            setLocalEmail(prevEmail => ({
+                ...prevEmail,
+                message: textToCopy
+            }));
 
             setCopyCompleted(true); // Set copyCompleted to true
 
