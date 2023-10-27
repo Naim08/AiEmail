@@ -3,7 +3,7 @@
 MailTo is an innovative AI-driven platform designed to revolutionize the way we handle email communication. With MailTo, you can effortlessly edit and send emails, simplifying the process of crafting perfect responses. It harnesses cutting-edge AI technology to provide you with contextually relevant and linguistically appropriate email suggestions. This means you can communicate faster without compromising the quality and effectiveness of your messages, making MailTo the ultimate tool for bridging the gap between instant electronic communication and the often time-consuming task of composing suitable email responses.
 
 # Live Site
-[MailTo](https://mailto.naimmiah.com/)
+[MailTo](https://mailto-c19934226eb8.herokuapp.com/)
 
 ## Table of Contents
 1. [MailTo](#mailto)

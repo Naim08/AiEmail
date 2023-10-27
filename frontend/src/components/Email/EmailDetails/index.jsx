@@ -15,7 +15,7 @@ import { sendGmail } from "../../../store/email";
 
 const EmailDetails = () => {
     const { emailId } = useParams();
-    const isLoading = useSelector((state) => state.emailsReducer.isLoading);
+    const isLoading = useSelector((state) => state.chatgpt.loading);
     const dispatch = useDispatch();
     const history = useHistory();
     const email = useSelector(getEmail(emailId));
@@ -33,6 +33,8 @@ const EmailDetails = () => {
     const [copyResetTimer, setCopyResetTimer] = useState(null);
     const [updateResetTimer, setUpdateResetTimer] = useState(null);
     const [sendResetTimer, setSendResetTimer] = useState(null);
+    const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
 
     const error = useSelector((state) => state.emailsReducer.error);
     const userPreferences = useSelector((state) => state.userPreferenceReducer);
@@ -42,19 +44,20 @@ const EmailDetails = () => {
     }, []);
 
     useEffect(() => {
-        if (emailPrompt) {
+        if (isFormSubmitted) {
             const prompt = {
-                subject: email.subject,
-                message: email.message,
+                subject: localEmail.subject,
+                message: localEmail.message,
                 emailId: emailId,
             };
 
             const options = { ...userPreferences };
             dispatch(sendMessage({ prompt, options }));
-
-            setLocalEmail(email);
+            
+            // setLocalEmail(email);
+            setIsFormSubmitted(false);
         }
-    }, [emailPrompt]);
+    }, [isFormSubmitted]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -73,6 +76,7 @@ const EmailDetails = () => {
 
         // Store the timer reference
         setUpdateResetTimer(timer);
+        setIsFormSubmitted(true);
     };
 
     const handleExit = (e) => {
@@ -92,9 +96,15 @@ const EmailDetails = () => {
     const copyToClipboard = async () => {
         const emailResponseId = Object.keys(emailResponse)[0];
         const textToCopy = emailResponse[emailResponseId].response;
-
+       
+        
         try {
             await navigator.clipboard.writeText(textToCopy);
+
+            setLocalEmail(prevEmail => ({
+                ...prevEmail,
+                message: textToCopy
+            }));
 
             setCopyCompleted(true); // Set copyCompleted to true
 
@@ -105,6 +115,7 @@ const EmailDetails = () => {
 
             // Store the timer reference
             setCopyResetTimer(timer);
+           
         } catch (err) {}
     };
 
@@ -213,18 +224,22 @@ const EmailDetails = () => {
                     </form>
                 </div>
                 <div className="chat-message">
-                    {/* Debug line */}
-                    {emailResponse ? (
-                        Object.values(emailResponse).map((message, idx) => (
-                            <MessageComponent key={idx} message={message} />
-                        ))
-                    ) : (
+
+                    {isLoading ? (
                         <div className="loading-dots">
                             <span>Loading</span>
                             <span>.</span>
                             <span>.</span>
                             <span>.</span>
                         </div>
+                    ) : (
+                        emailResponse ? ( // Check if emailResponse is truthy
+                            Object.values(emailResponse).map((message, idx) => (
+                                <MessageComponent key={idx} message={message} />
+                            ))
+                        ) : (
+                            <div></div> // Default message or component when emailResponse is falsy
+                        )
                     )}
                     <button className="copy-button" onClick={copyToClipboard}>
                         {copyCompleted ? (
