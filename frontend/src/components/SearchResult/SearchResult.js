@@ -20,9 +20,9 @@ const SearchResult = ({ query }) => {
     const searchParams = new URLSearchParams(location.search);
     const noResults = Object.keys(searchResults).length === 1;
 
-    console.log("searchResults", searchResults);
-    console.log("isLoading", isLoading);
-    console.log("noResults", noResults);
+    // console.log("searchResults", searchResults);
+    // console.log("isLoading", isLoading);
+    // console.log("noResults", noResults);
 
     const handleEmailClick = (email) => {
         history.push(`/email/${email._id}`);
