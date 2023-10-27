@@ -5,23 +5,21 @@ import { FormModal } from "../../context/modal";
 import { setformSlide } from "../../store/ui";
 import "./MainPage.css";
 import TutorialModal from "../TutorialModal/TutorialModal";
+import Modal from 'react-bootstrap/Modal';
 
 function MainPage() {
     const [text, setText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
     const [loopNum, setLoopNum] = useState(0);
     const typingSpeed = 100; // Constant typing speed
-    const [tutorialModal, setTutorialModal] = useState(false);
     const dispatch = useDispatch();
 
-    const openModal = e =>{
-        e.preventDefault();
-        setTutorialModal(true);
-    }
+    const [show, setShow] = useState(false);
 
-    const closeModal = e =>{
+    const handleModal = () => setShow(!show);
+    const closerModal = e => {
         e.preventDefault();
-        setTutorialModal(false);
+        setShow(false);
     }
 
     const phrases = [
@@ -76,16 +74,31 @@ function MainPage() {
                         <Link to="/login" className="neumorphic">
                             Log In
                         </Link>
-                        <button onClick={openModal}>
+                        <button onClick={handleModal}>
                             Tutorial
                         </button>
                     </div>
                 </div>
             </div>
-            {tutorialModal && (
-                <FormModal onClose={closeModal} style={{height: "500px", width: "500px"}}>
+            {show && (
+                // <Modal centered show={show} onHide={handleModal} style={{height: "650px !important", width: "1000px !important"}} dialogClassName="custom-modal-content">
+                <div className="tutorialModal">
+
                     <TutorialModal />
-                </FormModal>
+                    <div className="close-modal-btn">
+                        <button
+
+                            onClick={closerModal}
+                        >
+                            Close
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                //    </Modal>
             )}
             <footer>PRBC &copy; 2023</footer>
         </>

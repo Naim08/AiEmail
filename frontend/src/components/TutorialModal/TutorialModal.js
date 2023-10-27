@@ -3,7 +3,10 @@ import homepage from "../../assets/homepage.gif";
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import banana from '../Profile/banana.png';
-import sendReqAndEmail from './Gif/sendReqAndEmail.gif'
+import sendAiReq from './Gif/sendAiReq.gif';
+import updateReq from './Gif/updateReq.gif';
+import sendEmail from './Gif/sendEmail.gif';
+import linkGmail from './Gif/linkGmail.gif';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const TutorialModal = ()=>{
@@ -13,38 +16,52 @@ const TutorialModal = ()=>{
       setIndex(selectedIndex);
     };
 
+    const imgStyle = {
+      width: '100%',
+      height: '100%',
+      objectFit: 'contain',
+  };
+
     return (
-        <Carousel activeIndex={index} onSelect={handleSelect} style={{ display: 'block', width: 850, height: 500, padding: 5, border:'1px solid white'}}>
-                  <Carousel.Item >
-                      <div className="w1000">
+        <Carousel className="carousel-modal"activeIndex={index} onSelect={handleSelect} style={{ display: 'block', width: 850, height: 500, padding: 5}}>
+                  <Carousel.Item  className="carousel-item">
                           <img
-                            alt="bannerText1"
-                            src={ sendReqAndEmail }
-                            style={{ width: "100%", height: "100%", objectFit: 'contain' }}
+                            alt="send Ai Req"
+                            src={ sendAiReq }
+                            style={imgStyle}
                           />
-                      </div>
-                      <h1>banana 1 </h1>
+
+                      <h4 className="carousel-modal-font">Create new email and Send AI response request</h4>
                   </Carousel.Item>
 
                   <Carousel.Item >
-                      <div className="w1000">
                           <img
-                            alt="bannerText1"
-                            src={ banana }
+                            alt="update Req"
+                            src={ updateReq }
+                            style={imgStyle}
                           />
-                      </div>
-                      <h1>banana 2 </h1>
+                      <h4 className="carousel-modal-font">Update AI response request</h4>
                   </Carousel.Item>
 
-                  {/* <Carousel.Item interval={1000}>
-                      <div className="w1000">
+                  <Carousel.Item >
                           <img
-                            alt="bannerText1"
-                            src={ banana }
+                            alt="send Email"
+                            src={ sendEmail }
+                            style={imgStyle}
                           />
-                      </div>
-                      <h1>banana 3 </h1>
-                  </Carousel.Item> */}
+                      <h4 className="carousel-modal-font">Sending email</h4>
+                  </Carousel.Item>
+
+                  <Carousel.Item >
+                          <img
+                            alt="link Gmail"
+                            src={ linkGmail }
+                            style={imgStyle}
+                          />
+
+                      <h4 className="carousel-modal-font">Link with Gmail(Our app is still under the verification process from Google)</h4>
+
+                  </Carousel.Item>
         </Carousel>
     )
 }
