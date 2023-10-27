@@ -7,6 +7,20 @@ const RECEIVE_MESSAGES = "chatgpt/RECEIVE_MESSAGES";
 const RECEIVE_MESSAGE_ERRORS = "chatgpt/RECEIVE_MESSAGE_ERRORS";
 const CLEAR_MESSAGE_ERRORS = "chatgpt/CLEAR_MESSAGE_ERRORS";
 
+const SET_LOADING = "chatgpt/SET_LOADING";
+const SET_FAILURE = "chatgpt/SET_FAILURE";
+
+const setLoading = (isLoading) => ({
+    type: SET_LOADING,
+    payload: isLoading,
+});
+
+const setFailure = (isFailed) => ({
+    type: SET_FAILURE,
+    payload: isFailed,
+});
+
+
 const receiveMessage = (message) => ({
     type: RECEIVE_MESSAGE,
     message,
@@ -34,6 +48,7 @@ export const getMessage = (state) => {
     return state.chatgpt.message;
 };
 export const sendMessage = (message) => async (dispatch) => {
+    dispatch(setLoading(true)); 
     try {
         const res = await jwtFetch("/api/chatgpt", {
             method: "POST",
@@ -44,7 +59,10 @@ export const sendMessage = (message) => async (dispatch) => {
         });
         const responseData = await res.json(); // Renamed the constant
         dispatch(receiveMessage(responseData));
+        dispatch(setLoading(false));
     } catch (err) {
+        dispatch(setLoading(false)); // Set loading to false on error
+        dispatch(setFailure(true));
         if (err.response) {
             // Check if response exists in error (it might not for network errors)
             const statusCode = err.response.status;
@@ -110,6 +128,8 @@ export const fetchChatGptModels = () => async (dispatch) => {
 const initialState = {
     messages: [],
     errors: [],
+    loading: false, 
+    failure: false
 };
 
 const chatgptReducer = (state = initialState, action) => {
@@ -145,6 +165,16 @@ const chatgptReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messages: [...state.messages, action.message],
+            };
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.payload,
+            };
+        case SET_FAILURE:
+            return {
+                ...state,
+                failure: action.payload,
             };
         default:
             return state;
