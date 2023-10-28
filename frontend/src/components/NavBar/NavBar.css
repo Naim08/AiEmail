@@ -18,7 +18,7 @@
 }
 
 .nav-link {
-    display: flex;
+    display: flex!important;
     flex-direction: row;
     margin: 15px 0;
     position: relative;
