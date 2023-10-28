@@ -137,3 +137,9 @@ footer {
 .close-modal-btn{
 text-align: center;
 }
+
+.center-btn {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
