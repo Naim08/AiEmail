@@ -6,6 +6,7 @@ import UserPreferModal from "../../UserPreferModal/UserPreferModal";
 import { FormModal } from "../../../context/modal";
 import { setformSlide } from "../../../store/ui";
 import "../EmailShow.css";
+import TutorialModal from "../../TutorialModal/TutorialModal";
 
 //NEW EMAIL PAGE
 const EmailForm = ({ emailToUpdate }) => {
@@ -14,6 +15,7 @@ const EmailForm = ({ emailToUpdate }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const [showModal, setShowModal] = useState(false);
     const error = useSelector((state) => state.emailsReducer.error);
+    const [show, setShow] = useState(false);
 
     const [email, setEmail] = useState({
         subject: emailToUpdate ? emailToUpdate.subject : "",
@@ -81,6 +83,12 @@ const EmailForm = ({ emailToUpdate }) => {
         dispatch(setformSlide("expand"));
     };
 
+    const handleModal = () => setShow(!show);
+    const closerModal = e => {
+        e.preventDefault();
+        setShow(false);
+    }
+
     return (
         <>
             <div className="exit-page-btn-div">
@@ -88,7 +96,24 @@ const EmailForm = ({ emailToUpdate }) => {
                     <i className="fa-regular fa-arrow-left exit-icon"></i>
                     <p className="exit-text">Return to Dashboard</p>
                 </div>
+                <div className="tut-btn">
+                    <button className="neumorphic" onClick={handleModal}>
+                                Tutorial
+                    </button>
+                </div>
             </div>
+            {show && (
+                <div className="tutorialModal">
+                    <TutorialModal />
+                    <div className="close-modal-btn">
+                        <button
+                            onClick={closerModal}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {showModal && (
                 <div className="form-modal-outer">
@@ -165,6 +190,7 @@ const EmailForm = ({ emailToUpdate }) => {
                 </form>
             </div>
             {/* <div className="vertical-line"></div> */}
+
         </>
     );
 };

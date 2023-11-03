@@ -294,3 +294,7 @@ textarea {
     flex-direction: row;
     align-items: flex-start;
 }
+
+.tut-btn{
+    margin-left: 400px;
+  }

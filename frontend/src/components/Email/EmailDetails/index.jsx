@@ -8,6 +8,7 @@ import MessageComponent from "../../ChatGPT/MessageComponent";
 import { setformSlide } from "../../../store/ui";
 import UserPreferModal from "../../UserPreferModal/UserPreferModal";
 import { FormModal } from "../../../context/modal";
+import TutorialModal from "../../TutorialModal/TutorialModal";
 
 import { sendMessage, getMessage } from "../../../store/chatgpt";
 import { sendGmail } from "../../../store/email";
@@ -34,6 +35,7 @@ const EmailDetails = () => {
     const [updateResetTimer, setUpdateResetTimer] = useState(null);
     const [sendResetTimer, setSendResetTimer] = useState(null);
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const [show, setShow] = useState(false);
 
 
     const error = useSelector((state) => state.emailsReducer.error);
@@ -53,7 +55,7 @@ const EmailDetails = () => {
 
             const options = { ...userPreferences };
             dispatch(sendMessage({ prompt, options }));
-            
+
             // setLocalEmail(email);
             setIsFormSubmitted(false);
         }
@@ -96,8 +98,8 @@ const EmailDetails = () => {
     const copyToClipboard = async () => {
         const emailResponseId = Object.keys(emailResponse)[0];
         const textToCopy = emailResponse[emailResponseId].response;
-       
-        
+
+
         try {
             await navigator.clipboard.writeText(textToCopy);
 
@@ -115,7 +117,7 @@ const EmailDetails = () => {
 
             // Store the timer reference
             setCopyResetTimer(timer);
-           
+
         } catch (err) {}
     };
 
@@ -137,6 +139,12 @@ const EmailDetails = () => {
         setSendResetTimer(timer);
     };
 
+    const handleModal = () => setShow(!show);
+    const closerModal = e => {
+        e.preventDefault();
+        setShow(false);
+    }
+
     return (
         <>
             <div className="exit-page-btn-div">
@@ -144,7 +152,25 @@ const EmailDetails = () => {
                     <i className="fa-regular fa-arrow-left exit-icon"></i>
                     <p className="exit-text">Return to Dashboard</p>
                 </div>
+                <div className="tut-btn">
+                    <button className="neumorphic" onClick={handleModal}>
+                                Tutorial
+                    </button>
+                </div>
             </div>
+
+            {show && (
+                <div className="tutorialModal">
+                    <TutorialModal />
+                    <div className="close-modal-btn">
+                        <button
+                            onClick={closerModal}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {showModal && (
                 <div className="form-modal-outer">

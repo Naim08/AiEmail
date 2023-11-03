@@ -144,9 +144,11 @@ z-index: 1; /* so that it appears above other elements */
 .exit-page-btn-div{
   display: flex;
   flex-direction: row;
+  justify-self:auto;
 }
 
 .user-perfer-btn{
   margin-top: 20px;
   margin-left: 500px;
 }
+

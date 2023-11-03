@@ -97,7 +97,6 @@ function MainPage() {
 
                 </div>
 
-
                 //    </Modal>
             )}
             <footer>PRBC &copy; 2023</footer>
